@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "eslint": "^8.0.0-rc.0",
+    "prettierrc": "^0.0.0-5"
+  }
+}
