@@ -15,10 +15,10 @@ const FormContainer = styled(Box)(({ theme }) => ({
 
 const LoginButton = styled(Button)(({ theme }) => ({
   marginTop: '20px',
-  backgroundColor: '#04c4cc',
+  backgroundColor: '#000',
   color: '#fff',
   '&:hover': {
-    backgroundColor: '#9dcccf',
+    backgroundColor: '#333',
   },
 }));
 
@@ -66,7 +66,7 @@ const Login = () => {
             </Typography>
             <Typography variant="body2" component="p" gutterBottom>
               Don't have an account yet? {' '}
-              <Link component={RouterLink} to="/register">
+              <Link component={RouterLink} to="/owner-register">
                     Sign up
               </Link>
             </Typography>
@@ -99,7 +99,7 @@ const Login = () => {
               Forgot Password?
             </Link>
             <Typography variant="body2" component="p" style={{ marginTop: '20px' }}>
-              Are you the property owner? {' '}
+              Are you a tenant? {' '}
               <Link component={RouterLink} to="/login">
                     Login
               </Link>
