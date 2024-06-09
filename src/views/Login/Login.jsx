@@ -6,14 +6,14 @@ import * as Yup from 'yup';
 import { Link as RouterLink } from 'react-router-dom';
 import image from "../../assets/loginSide.PNG";
 
-const FormContainer = styled(Box)(({ theme }) => ({
+const FormContainer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   padding: '20px',
 }));
 
-const LoginButton = styled(Button)(({ theme }) => ({
+const LoginButton = styled(Button)(() => ({
   marginTop: '20px',
   backgroundColor: '#04c4cc',
   color: '#fff',
@@ -65,7 +65,7 @@ const Login = () => {
               Login
             </Typography>
             <Typography variant="body2" component="p" gutterBottom>
-              Don't have an account yet? {' '}
+              Do not have an account yet? {' '}
               <Link component={RouterLink} to="/register">
                     Sign up
               </Link>

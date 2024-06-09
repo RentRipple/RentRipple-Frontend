@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Box, Container } from "@mui/material";
 import { styled } from '@mui/system';
-import backgroundLogin from '../../assets/LoginBackground.avif';
 
-const Root = styled(Box)(({ theme }) => ({
+const Root = styled(Box)(() => ({
   minHeight: "calc(100vh - 16px)", 
   backgroundSize: "cover",
   backgroundColor: "whiteSmoke",
@@ -17,12 +16,11 @@ const Root = styled(Box)(({ theme }) => ({
   justifyContent: "center",
 }));
 
-const Content = styled(Box)(({ theme }) => ({
+const Content = styled(Box)(() => ({
   width: "100%", 
   maxWidth: "850px",
   borderRadius: "8px",
   background: "white",
-  borderRadius: "8px",
   height: "auto",
   maxHeight: "45rem",
   color: "#000",
