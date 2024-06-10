@@ -95,8 +95,8 @@ const Login = () => {
             <LoginButton type="submit" variant="contained" fullWidth disabled={isSubmitting}>
               Login
             </LoginButton>
-            <Link href="#" variant="body2" style={{ marginTop: '10px' }}>
-              Forgot Password?
+            <Link component={RouterLink} to ="/ForgotPassword" variant="body2" style={{ marginTop: '10px' }}>
+            Forgot Password?
             </Link>
             <Typography variant="body2" component="p" style={{ marginTop: '20px' }}>
               Are you the property owner? {' '}
