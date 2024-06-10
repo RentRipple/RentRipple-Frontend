@@ -16,6 +16,9 @@ const MainLayoutDiv = styled('div')(() => ({
   display: "flex",
   justifyContent: "center",
   padding: "10px 100px 10px 100px",
+  "@media(max-width:800px)": {
+        padding: "10px",
+      },
 }));
 
 const Content = styled('div')(() => ({
