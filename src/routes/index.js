@@ -27,7 +27,13 @@ const routData = [
         layout: LoginLayout,
         exact: true,
     },
-
+    {
+        id:"3",
+        path: '/forgotpassword',
+        component: reviews.ForgotPassword,
+        layout: LoginLayout,
+        exact: true,
+    },
     {
         id:"4",
         path: '/property-details',
@@ -41,7 +47,7 @@ const routData = [
         path: "/404",
         component: reviews.NotFound,
         exact: true,
-      },
+    },
     //   {
     //     component: () => <Redirect to="/404" />,
     //   },
