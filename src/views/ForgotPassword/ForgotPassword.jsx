@@ -48,6 +48,9 @@ const ForgotPassword = () => {
     "What's your last name?",
     "What's your favorite sport?",
     "What's your favorite color?",
+    "What's your father's middle name?",
+    "What's your mother's maiden name?",
+    "What's your favorite pet?"
   ];
 
   useEffect(() => {
