@@ -4,6 +4,7 @@ import {
   Button,
   Stepper,
   Step,
+  Link,
   StepLabel,
   Typography,
   TextField,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { Link as RouterLink } from "react-router-dom";
 import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
 
 const steps = [
@@ -45,7 +47,6 @@ const validationSchema = [
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Required"),
-    
   }),
   Yup.object({
     answer1: Yup.string().required("Required"),
@@ -142,6 +143,20 @@ const Register = () => {
             <Form>
               {activeStep === 0 && (
                 <>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    mt={2}
+                    mb={1}
+                  >
+                    <Typography variant="body1" component="p" gutterBottom>
+                      Do you have an account already?{" "}
+                      <Link component={RouterLink} to="/login">
+                        Sign In
+                      </Link>
+                    </Typography>
+                  </Box>
                   <Field
                     as={TextField}
                     name="firstname"
