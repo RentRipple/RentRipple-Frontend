@@ -98,12 +98,6 @@ const Login = () => {
             <Link href="#" variant="body2" style={{ marginTop: '10px' }}>
               Forgot Password?
             </Link>
-            <Typography variant="body2" component="p" style={{ marginTop: '20px' }}>
-              Are you the property owner? {' '}
-              <Link component={RouterLink} to="/login">
-                    Login
-              </Link>
-            </Typography>
           </FormContainer>
         </Form>
       )}
