@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import image from "../../assets/loginSide.PNG";
 import { LoginFormSubmit } from "../../ApiConfig/apiConfig";
+import {ToastContainer} from 'react-toastify';
 
 const FormContainer = styled(Box)(() => ({
   display: 'flex',
@@ -33,6 +34,7 @@ const Login = () => {
 
   return (
     <Grid container justifyContent="center" gap={2}>
+      <ToastContainer />
       <Grid item xs={12} sm={6} md={5}>
         <Box
           sx={{
@@ -69,7 +71,10 @@ const Login = () => {
               // Assuming the response contains a token or user data, handle it here
               // For example, save the token to localStorage
               // localStorage.setItem('token', result.token);
-              navigate('/'); // Redirect to the dashboard or any other page
+              setTimeout(() => {
+                navigate('/');
+              }, 1000);
+              // navigate('/'); // Redirect to the dashboard or any other page
             }
 
             setSubmitting(false);
