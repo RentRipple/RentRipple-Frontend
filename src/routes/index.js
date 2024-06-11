@@ -2,12 +2,14 @@
 
 import * as reviews from '../views'
 import LoginLayout from "../layout/loginLayout";
+import HomeLayout from "../layout/homeLayout";
 
 const routData = [
     {
         id:"0",
         path: '/',
         component: reviews.Home,
+        layout: HomeLayout,
         // guard: true,
         exact: true,
     },
@@ -23,6 +25,14 @@ const routData = [
         path: '/register',
         component: reviews.Register,
         layout: LoginLayout,
+        exact: true,
+    },
+
+    {
+        id:"4",
+        path: '/property-details',
+        component: reviews.PropertyDetails,
+        layout: HomeLayout,
         exact: true,
     },
 
