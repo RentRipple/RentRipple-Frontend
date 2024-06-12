@@ -35,14 +35,6 @@ const routData = [
         exact: true,
     },
     {
-        id:"4",
-        path: '/property-details',
-        component: reviews.PropertyDetails,
-        layout: HomeLayout,
-        exact: true,
-    },
-
-    {
         id:"0",
         path: "/404",
         component: reviews.NotFound,
