@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { AppContext } from "../context/AppContext";
 
 export default function AuthGuard(props) {
   const { children } = props;
-  const [auth, setAuth] = useState(false);
+  console.log(props);
+  const { isLogin } = useContext(AppContext);
 
-  useEffect(() => {
-    setAuth(!!window.localStorage.getItem("token"));
-  }, []);
-
-  if (!auth) {
+  if (!isLogin) {
     return <Navigate to="/login" />;
   }
 
@@ -18,5 +16,5 @@ export default function AuthGuard(props) {
 }
 
 AuthGuard.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

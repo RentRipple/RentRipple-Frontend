@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   AppBar,
   Toolbar,
@@ -11,13 +11,15 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../component/logo";
 import SearchBox from "./searchbox";
 import { NavLink } from "react-router-dom";
 import profile from "../../assets/profile.svg";
+import { useContext } from "react";
 
+import { AppContext } from "../../context/AppContext";
 const headersData = [
   {
     label: "Explore",
@@ -30,45 +32,47 @@ const headersData = [
 ];
 
 const ToolbarStyled = styled(Toolbar)(() => ({
-  backgroundColor: 'transparent',
-  border: 'none',
-  backgroundImage: 'linear-gradient(to right, #0f',
+  backgroundColor: "transparent",
+  border: "none",
+  backgroundImage: "linear-gradient(to right, #0f",
 }));
 
-const DrawerContainer = styled('div')({
-  padding: '20px',
-  width: '250px',
+const DrawerContainer = styled("div")({
+  padding: "20px",
+  width: "250px",
 });
 
 const DrawerIcon = styled(IconButton)({
-  color: 'black',
-  fontSize: '30px',
-  padding: '10px',
+  color: "black",
+  fontSize: "30px",
+  padding: "10px",
 });
 
 const MenuButton = styled(Button)({
-  color: 'inherit',
-  textDecoration: 'none',
-  margin: '0 10px',
+  color: "inherit",
+  textDecoration: "none",
+  margin: "0 10px",
 });
 
 const MenuButtonMobile = styled(MenuItem)({
-  textAlign: 'center',
-  width: '100%',
+  textAlign: "center",
+  width: "100%",
 });
 
 const LogoBox = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
 });
 
 const SearchBoxStyled = styled(SearchBox)({
   flexGrow: 1,
-  display: 'flex',
-  justifyContent: 'center',
+  display: "flex",
+  justifyContent: "center",
 });
 
 function Header() {
+  const { isLogin, handleLogout, handleProtected } = useContext(AppContext);
+
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -92,9 +96,6 @@ function Header() {
   const handleDrawerClose = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
-  // const isLogin = true;
-  const isLogin = false;
-
   const displayDesktop = () => (
     <ToolbarStyled>
       <Grid container alignItems="center">
@@ -107,84 +108,111 @@ function Header() {
         <Grid item xs={3} align="left">
           {SearchBoxx}
         </Grid>
-        
       </Grid>
-      <div>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         {/* User profile and menu */}
         {isLogin ? (
+          <>
             <IconButton
               aria-label="delete"
               aria-controls="simple-menu"
               aria-haspopup="true"
-            //   onClick={}
+              onClick={() => handleProtected()}
               style={{ marginLeft: "10px" }}
               size="small"
             >
-              
-                <img
-                  src={profile}
-                  alt="Profile Image"
-                />
-              
+              <img src={profile} alt="Profile Image" />
             </IconButton>
-          ) : (
-              <Button
-                variant="contained"
-                size="large"
-                color="primary"
-                to="/login"
-                component={Link}
-                style={{ marginLeft: "15px", whiteSpace: "pre", backgroundColor: "#1569C1"}}
-              >
-                Login
-              </Button>
-          )}
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              component={Link}
+              style={{
+                marginLeft: "15px",
+                whiteSpace: "pre",
+                backgroundColor: "#1569C1",
+              }}
+              onClick={() => handleLogout()}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="contained"
+            size="large"
+            color="primary"
+            to="/login"
+            component={Link}
+            style={{
+              marginLeft: "15px",
+              whiteSpace: "pre",
+              backgroundColor: "#1569C1",
+            }}
+          >
+            Login
+          </Button>
+        )}
       </div>
     </ToolbarStyled>
   );
 
   const displayMobile = () => (
     <ToolbarStyled>
-      <Drawer
-        anchor="right"
-        open={drawerOpen}
-        onClose={handleDrawerClose}
-      >
+      <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
         <DrawerContainer>
           <center>
-          {isLogin ? (
-            <IconButton
-              aria-label="delete"
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-            //   onClick={}
-              style={{ marginLeft: "10px" }}
-              size="small"
-            >
-              
-                <img
-                  src={profile}
-                  alt="Profile Image"
-                  width={100}
-                  style={{marginBottom: "10px"}}
-                />
-              
-            </IconButton>
-          ) : (
+            {isLogin ? (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <IconButton
+                  aria-label="delete"
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  //   onClick={}
+                  style={{ marginLeft: "10px" }}
+                  size="small"
+                >
+                  <img
+                    src={profile}
+                    alt="Profile Image"
+                    width={100}
+                    style={{ marginBottom: "10px" }}
+                  />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  component={Link}
+                  style={{
+                    marginLeft: "15px",
+                    whiteSpace: "pre",
+                    backgroundColor: "#1569C1",
+                  }}
+                  onClick={() => handleLogout()}
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
               <Button
                 variant="contained"
                 size="large"
                 color="primary"
                 to="/login"
                 component={Link}
-                style={{ marginLeft: "15px", whiteSpace: "pre", backgroundColor: "#1569C1"}}
+                style={{
+                  marginLeft: "15px",
+                  whiteSpace: "pre",
+                  backgroundColor: "#1569C1",
+                }}
               >
                 Login
               </Button>
-          )}
-          {getDrawerChoices()}
+            )}
+            {getDrawerChoices()}
           </center>
-          
         </DrawerContainer>
       </Drawer>
 
@@ -210,19 +238,12 @@ function Header() {
     </ToolbarStyled>
   );
 
-  const getDrawerChoices = () => (
+  const getDrawerChoices = () =>
     headersData.map(({ label, href }) => (
-      <MenuButton
-        key={label}
-        color="inherit"
-        to={href}
-        component={Link}
-      >
+      <MenuButton key={label} color="inherit" to={href} component={Link}>
         <MenuButtonMobile>{label}</MenuButtonMobile>
       </MenuButton>
-      
-    ))
-  );
+    ));
 
   const femmecubatorLogo = (
     <LogoBox>
@@ -232,11 +253,9 @@ function Header() {
     </LogoBox>
   );
 
-  const SearchBoxx = (
-    <SearchBoxStyled />
-  );
+  const SearchBoxx = <SearchBoxStyled />;
 
-  const getMenuButtons = () => (
+  const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
       <NavLink
         exact
@@ -245,12 +264,16 @@ function Header() {
         to={href}
         className="menuButton"
         activeClassName="active"
-        style={{ padding: '25px', textDecoration: 'none',color:"#333", fontFamily: 'Roboto',}}
+        style={{
+          padding: "25px",
+          textDecoration: "none",
+          color: "#333",
+          fontFamily: "Roboto",
+        }}
       >
         {label}
       </NavLink>
-    ))
-  );
+    ));
 
   return (
     <>
