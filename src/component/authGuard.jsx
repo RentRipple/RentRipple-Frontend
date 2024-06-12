@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { AppContext } from "../context/AppContext";
 
 export default function AuthGuard(props) {
   const { children } = props;
   console.log(props);
   const { isLogin } = useContext(AppContext);
-  
+
   if (!isLogin) {
     return <Navigate to="/login" />;
   }
@@ -16,5 +16,5 @@ export default function AuthGuard(props) {
 }
 
 AuthGuard.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

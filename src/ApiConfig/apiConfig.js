@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {toast} from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 // eslint-disable-next-line no-undef
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -16,7 +16,6 @@ export const LoginFormSubmit = async (values) => {
     console.log("responseCode", res.status); // Use status instead of data.responseCode
     // Uncomment and add your logic here based on the response
     if (res.status === 200) {
-      
       toast.success("Logged in successfully");
       // console.log("Logged in..");
 

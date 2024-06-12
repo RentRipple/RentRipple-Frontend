@@ -1,63 +1,60 @@
-import React from 'react';
-import { Box, TextField, Button, Typography, Link, Grid } from '@mui/material';
-import { styled } from '@mui/system';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { Link as RouterLink , useNavigate} from 'react-router-dom';
+import React from "react";
+import { Box, TextField, Button, Typography, Link, Grid } from "@mui/material";
+import { styled } from "@mui/system";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import image from "../../assets/loginSide.PNG";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 const FormContainer = styled(Box)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
 }));
 
-
 const LoginButton = styled(Button)(() => ({
-  marginTop: '20px',
-  backgroundColor: '#04c4cc',
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: '#9dcccf',
+  marginTop: "20px",
+  backgroundColor: "#04c4cc",
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "#9dcccf",
   },
 }));
 
 const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Required'),
-  password: Yup.string().required('Required'),
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string().required("Required"),
 });
 
 const Login = () => {
-
-  const {setIsLogin, handleLogin} = useContext(AppContext);
+  const { setIsLogin, handleLogin } = useContext(AppContext);
   const Navigate = useNavigate();
-  return (    
+  return (
     <Grid container justifyContent="center" gap={2}>
-
       <Grid item xs={12} sm={6} md={5}>
         <Box
           sx={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <img
             src={image}
             alt="SideImage"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: "100%", height: "auto" }}
           />
         </Box>
       </Grid>
       <Grid item xs={12} sm={6} md={6}>
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
@@ -65,16 +62,16 @@ const Login = () => {
 
             if (result.error) {
               if (result.status === 401) {
-                setFieldError('email', 'Invalid email or password');
-                setFieldError('password', 'Invalid email or password');
+                setFieldError("email", "Invalid email or password");
+                setFieldError("password", "Invalid email or password");
               } else {
                 alert(result.message);
               }
               setIsLogin(false);
             } else {
-              toast.success('Login successful');
+              toast.success("Login successful");
               setIsLogin(true);
-              Navigate('/');
+              Navigate("/");
             }
 
             setSubmitting(false);
@@ -87,7 +84,7 @@ const Login = () => {
                   Login
                 </Typography>
                 <Typography variant="body2" component="p" gutterBottom>
-                  Do not have an account yet? {' '}
+                  Do not have an account yet?{" "}
                   <Link component={RouterLink} to="/register">
                     Sign up
                   </Link>
@@ -114,10 +111,15 @@ const Login = () => {
                   error={touched.password && !!errors.password}
                   helperText={touched.password && errors.password}
                 />
-                <LoginButton type="submit" variant="contained" fullWidth disabled={isSubmitting}>
+                <LoginButton
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  disabled={isSubmitting}
+                >
                   Login
                 </LoginButton>
-                <Link href="#" variant="body2" style={{ marginTop: '10px' }}>
+                <Link href="#" variant="body2" style={{ marginTop: "10px" }}>
                   Forgot Password?
                 </Link>
               </FormContainer>

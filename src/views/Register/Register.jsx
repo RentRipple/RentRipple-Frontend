@@ -15,6 +15,9 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link as RouterLink } from "react-router-dom";
 import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 const steps = [
   "Personal Details",
@@ -36,7 +39,7 @@ const validationSchema = [
     number: Yup.string()
       .matches(
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        "Phone number is not valid"
+        "Phone number is not valid",
       )
       .min(10, "Phone number is not valid")
       .max(10, "Phone number is not valid"),
@@ -74,6 +77,8 @@ const initialValues = {
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const Navigate = useNavigate();
+  const { handleSignUp, setIsLogin } = useContext(AppContext);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -84,12 +89,12 @@ const Register = () => {
   };
 
   const questions = [
-    "What's your favorite city?",
-    "What's your favorite sport?",
-    "What's your favorite color?",
-    "What's your father's middle name?",
-    "What's your mother's maiden name?",
-    "What's your favorite pet?",
+    "What was your childhood nickname?",
+    "What is the name of your favorite childhood friend?",
+    "In what city or town did your mother and father meet?",
+    "What is your favorite team?",
+    "What is your favorite movie?",
+    "What was the name of your first pet?",
   ];
 
   const handleReset = () => {
@@ -129,10 +134,13 @@ const Register = () => {
           validationSchema={validationSchema[activeStep]}
           onSubmit={(values, { setSubmitting }) => {
             if (activeStep === steps.length - 1) {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+              const res = handleSignUp(values);
+
+              if (res.status === 200) {
+                setIsLogin(true);
+                console.log("Sign up successful");
+                Navigate("/");
+              }
             } else {
               handleNext();
               setSubmitting(false);
