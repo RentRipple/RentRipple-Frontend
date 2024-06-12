@@ -17,7 +17,9 @@ import Logo from "../../component/logo";
 import SearchBox from "./searchbox";
 import { NavLink } from "react-router-dom";
 import profile from "../../assets/profile.svg";
+import { useContext } from 'react';
 
+import { AppContext } from "../../context/AppContext";
 const headersData = [
   {
     label: "Explore",
@@ -69,6 +71,9 @@ const SearchBoxStyled = styled(SearchBox)({
 });
 
 function Header() {
+
+  const { isLogin, handleLogout,handleProtected } = useContext(AppContext);
+
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -92,8 +97,7 @@ function Header() {
   const handleDrawerClose = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
-  // const isLogin = true;
-  const isLogin = false;
+
 
   const displayDesktop = () => (
     <ToolbarStyled>
@@ -109,14 +113,15 @@ function Header() {
         </Grid>
         
       </Grid>
-      <div>
+      <div style={{display:'flex', flexDirection:"row"}}>
         {/* User profile and menu */}
         {isLogin ? (
-            <IconButton
+          <>
+                  <IconButton
               aria-label="delete"
               aria-controls="simple-menu"
               aria-haspopup="true"
-            //   onClick={}
+              onClick={ () => handleProtected()}
               style={{ marginLeft: "10px" }}
               size="small"
             >
@@ -127,6 +132,18 @@ function Header() {
                 />
               
             </IconButton>
+                        <Button
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        component={Link}
+                        style={{ marginLeft: "15px", whiteSpace: "pre", backgroundColor: "#1569C1"}}
+                        onClick={() => handleLogout()}
+                      >
+                        Logout
+                      </Button>
+          </>
+    
           ) : (
               <Button
                 variant="contained"
@@ -153,7 +170,8 @@ function Header() {
         <DrawerContainer>
           <center>
           {isLogin ? (
-            <IconButton
+            <div  style={{display:'flex', flexDirection:"column"}}>
+              <IconButton
               aria-label="delete"
               aria-controls="simple-menu"
               aria-haspopup="true"
@@ -170,6 +188,18 @@ function Header() {
                 />
               
             </IconButton>
+            <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                component={Link}
+                style={{ marginLeft: "15px", whiteSpace: "pre", backgroundColor: "#1569C1"}}
+                onClick={() => handleLogout()}
+              >
+                Logout
+              </Button>
+            </div>
+      
           ) : (
               <Button
                 variant="contained"

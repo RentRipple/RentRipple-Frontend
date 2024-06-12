@@ -3,17 +3,19 @@ import { Box, TextField, Button, Typography, Link, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink , useNavigate} from 'react-router-dom';
 import image from "../../assets/loginSide.PNG";
-import { LoginFormSubmit } from "../../ApiConfig/apiConfig";
-import {ToastContainer} from 'react-toastify';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from 'react';
+import { AppContext } from "../../context/AppContext";
 const FormContainer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   padding: '20px',
 }));
+
 
 const LoginButton = styled(Button)(() => ({
   marginTop: '20px',
@@ -30,11 +32,12 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
-  const navigate = useNavigate();
 
-  return (
+  const {setIsLogin, handleLogin} = useContext(AppContext);
+  const Navigate = useNavigate();
+  return (    
     <Grid container justifyContent="center" gap={2}>
-      <ToastContainer />
+
       <Grid item xs={12} sm={6} md={5}>
         <Box
           sx={{
@@ -58,7 +61,7 @@ const Login = () => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
-            const result = await LoginFormSubmit(values);
+            const result = await handleLogin(values);
 
             if (result.error) {
               if (result.status === 401) {
@@ -67,14 +70,11 @@ const Login = () => {
               } else {
                 alert(result.message);
               }
+              setIsLogin(false);
             } else {
-              // Assuming the response contains a token or user data, handle it here
-              // For example, save the token to localStorage
-              // localStorage.setItem('token', result.token);
-              setTimeout(() => {
-                navigate('/');
-              }, 1000);
-              // navigate('/'); // Redirect to the dashboard or any other page
+              toast.success('Login successful');
+              setIsLogin(true);
+              Navigate('/');
             }
 
             setSubmitting(false);

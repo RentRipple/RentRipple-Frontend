@@ -10,7 +10,6 @@ const routData = [
         path: '/',
         component: reviews.Home,
         layout: HomeLayout,
-        // guard: true,
         exact: true,
     },
     {
@@ -18,6 +17,7 @@ const routData = [
         path: '/login',
         component: reviews.Login,
         layout: LoginLayout,
+        // guard: true,
         exact: true,
     },
     {
@@ -25,6 +25,7 @@ const routData = [
         path: '/register',
         component: reviews.Register,
         layout: LoginLayout,
+        // guard: true,
         exact: true,
     },
 

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AuthGuard from '../../component/authGuard';
+import { ToastContainer } from 'react-toastify';
 
 const AppContent = ({ routes }) => {
 
@@ -19,8 +20,16 @@ const AppContent = ({ routes }) => {
     ).isRequired,
   };
 
+
   return (
-    <Fragment>
+    <>
+      <ToastContainer
+       position="top-center"
+       autoClose={500}
+       hideProgressBar={true}
+       newestOnTop={false}
+       rtl={false}
+       theme="light"  />
       <Routes>
         {routes.map((route, i) => {
           const Component = route.component;
@@ -33,11 +42,7 @@ const AppContent = ({ routes }) => {
               element={
                 <Guard>
                   <Layout>
-                  {route.routes ? (
-                    <AppContent routes={route.routes} />
-                  ) : (
                     <Component />
-                  )}
                   </Layout>
                 </Guard>
               }
@@ -45,7 +50,7 @@ const AppContent = ({ routes }) => {
           );
         })}
       </Routes>
-    </Fragment>
+    </>
   );
 };
 
