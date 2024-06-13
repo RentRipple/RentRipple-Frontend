@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Typography, Grid, Snackbar, Alert } from '@mui/material';
+import { Box, TextField, Button, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import image from "../../assets/forgot password.jpg";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const FormContainer = styled(Box)(() => ({
   display: 'flex',
@@ -41,24 +43,76 @@ const ForgotPassword = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [question, setQuestion] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [answer, setAnswer] = useState(''); 
+  const [isAnswerVerified, setIsAnswerVerified] = useState(false); // Renamed this state
   const navigate = useNavigate();
 
-  const questions = [
-    "What's your last name?",
-    "What's your favorite sport?",
-    "What's your favorite color?",
-    "What's your father's middle name?",
-    "What's your mother's maiden name?",
-    "What's your favorite pet?"
-  ];
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      if (step === 2) {
+        try {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/api/auth/forgot-password`,
+            { email },
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+          setQuestion(response.data.question);
+        } catch (error) {
+          
+          toast.error('Invalid email address');
+          navigate('/login');
+
+        }
+      }
+    };
+
+    fetchQuestion();
+  }, [step, email]);
+
+  
 
   useEffect(() => {
-    if (step === 2) {
-      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-      setQuestion(randomQuestion);
-    }
-  }, [step]);
+    const verifyAnswerAndProceed = async () => {
+      if (step === 3) {
+        try {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/api/auth/verify-security-answers`,
+            { email, securityQuestion: question, securityAnswer: answer },
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+          
+          if (response.data.message === 'Success') {
+            setIsAnswerVerified(true);
+            
+          } else {
+            setIsAnswerVerified(false);
+            toast.error('Invalid answer');
+            navigate('/login');
+           
+          }
+        } catch (error) {
+          setIsAnswerVerified(false);
+          toast.error('Invalid answer');
+         
+          navigate('/login');
+         
+        }
+      }
+    };
+
+    verifyAnswerAndProceed();
+  }, [step, email, question, answer, navigate]); // Added `question` and `answer` to the dependency array
+
+  
+  
 
   const handleNext = (values, { setSubmitting }) => {
     setEmail(values.email);
@@ -67,23 +121,34 @@ const ForgotPassword = () => {
   };
 
   const handleAnswerSubmit = (values, { setSubmitting }) => {
+    setAnswer(values.answer); // Set the answer state
     setStep(3);
     setSubmitting(false);
   };
 
-  const handlePasswordSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      setShowSnackbar(true);
+  const handlePasswordSubmit = async (values, { setSubmitting }) => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/reset-password`,
+        { email, newPassword: values.newPassword },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      toast.success('Password reset successful!');
+      navigate('/login');
+    } catch (error) {
+      toast.error('Password reset failed!');
+      navigate('/login');
+    } finally {
       setSubmitting(false);
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000); // Navigate to login after 2 seconds
-    }, 400);
+    }
   };
 
-  const handleSnackbarClose = () => {
-    setShowSnackbar(false);
-  };
+
+
 
   return (
     <Grid container justifyContent="center" gap={2}>
@@ -190,7 +255,7 @@ const ForgotPassword = () => {
             )}
           </Formik>
         )}
-        {step === 3 && (
+        {step === 3 && isAnswerVerified && (
           <Formik
             initialValues={{ newPassword: '', confirmPassword: '' }}
             validationSchema={validationSchemaPassword}
@@ -242,15 +307,6 @@ const ForgotPassword = () => {
           </Formik>
         )}
       </Grid>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          Password has been reset/changed successfully
-        </Alert>
-      </Snackbar>
     </Grid>
   );
 };

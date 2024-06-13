@@ -3,15 +3,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputBase } from "@mui/material";
 import { styled } from "@mui/system";
 
-const SearchBoxDiv = styled('div')({
-    backgroundColor: "#E7EDF1", 
-    display:"flex", 
-    alignItems:"center", 
-    gap:"5px",
-    padding:"5px",
-    borderRadius:"5px",
-  });
-
+const SearchBoxDiv = styled("div")({
+  backgroundColor: "#E7EDF1",
+  display: "flex",
+  alignItems: "center",
+  gap: "5px",
+  padding: "5px",
+  borderRadius: "5px",
+});
 
 export default function SearchBox() {
   const [searchText, setSearchText] = useState("");
@@ -20,7 +19,7 @@ export default function SearchBox() {
   return (
     <SearchBoxDiv>
       <div>
-        <SearchIcon style={{ color: "black", marginTop:"5px" }}/>
+        <SearchIcon style={{ color: "black", marginTop: "5px" }} />
       </div>
       <InputBase
         ref={searchTextRef}

@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import sampleImage from '../../assets/signup.jpg'; // Adjust the path to your image file
+import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
+import { SECURITY_QUESTION } from "../../helpers/constant";
 
 const steps = ["Personal Details", "Contact Details", "Account Details", "Security Questions"];
 
@@ -27,7 +31,7 @@ const validationSchema = [
     number: Yup.string()
       .matches(
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        "Phone number is not valid"
+        "Phone number is not valid",
       )
       .min(10, "Phone number is not valid")
       .max(10, "Phone number is not valid")
@@ -56,6 +60,8 @@ const initialValues = {
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const Navigate = useNavigate();
+  const { handleSignUp, setIsLogin } = useContext(AppContext);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -69,22 +75,14 @@ const Register = () => {
   const [question2, setQuestion2] = useState('');
   const [question3, setQuestion3] = useState('');
 
-  const questions = [
-    "What's your last name?",
-    "What's your favorite sport?",
-    "What's your favorite color?",
-    "What's your father's middle name?",
-    "What's your mother's maiden name?",
-    "What's your favorite pet?"
-  ];
-
+ 
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
   
   useEffect(() => {
     if (activeStep === 3) {
-      const shuffledQuestions = shuffleArray([...questions]);
+      const shuffledQuestions = shuffleArray([...SECURITY_QUESTION]);
       setQuestion1(shuffledQuestions[0]);
       setQuestion2(shuffledQuestions[1]);
       setQuestion3(shuffledQuestions[2]);
@@ -115,10 +113,13 @@ const Register = () => {
           validationSchema={validationSchema[activeStep]}
           onSubmit={(values, { setSubmitting }) => {
             if (activeStep === steps.length - 1) {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+              const res = handleSignUp(values);
+
+              if (res.status === 200) {
+                setIsLogin(true);
+                console.log("Sign up successful");
+                Navigate("/");
+              }
             } else {
               handleNext();
               setSubmitting(false);
