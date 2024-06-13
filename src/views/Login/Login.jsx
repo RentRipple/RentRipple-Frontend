@@ -119,9 +119,9 @@ const Login = () => {
                 >
                   Login
                 </LoginButton>
-                <Link href="#" variant="body2" style={{ marginTop: "10px" }}>
-                  Forgot Password?
-                </Link>
+                <Link component={RouterLink} to ="/ForgotPassword" variant="body2" style={{ marginTop: '10px' }}>
+            Forgot Password?
+            </Link>
               </FormContainer>
             </Form>
           )}

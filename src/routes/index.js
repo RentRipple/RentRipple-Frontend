@@ -28,6 +28,13 @@ const routData = [
     // guard: true,
     exact: true,
   },
+  {
+    id:"3",
+    path: '/forgotpassword',
+    component: reviews.ForgotPassword,
+    layout: LoginLayout,
+    exact: true,
+},
 
   {
     id: "4",
