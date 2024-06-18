@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -17,12 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { SECURITY_QUESTION } from "../../helpers/constant";
+import { toast } from "react-toastify";
 
 const steps = ["Personal Details", "Contact Details", "Account Details", "Security Questions"];
 
 const validationSchema = [
   Yup.object({
-    username: Yup.string().required("Required"),
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
   }),
@@ -43,25 +43,23 @@ const validationSchema = [
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
       .required('Required'),
-    accountType: Yup.string().oneOf(["Tenant", "Owner"]).required("Required"),
   }),
 ];
 
 const initialValues = {
-  username: "",
   firstname: "",
   lastname: "",
   gender: "",
   number: "",
   email: "",
   password: "",
-  accountType: "",
+  confirmPassword: "",
 };
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const Navigate = useNavigate();
-  const { handleSignUp, setIsLogin } = useContext(AppContext);
+  const navigate = useNavigate();
+  const {handleSignUp } = useContext(AppContext);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -70,24 +68,6 @@ const Register = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  const [question1, setQuestion1] = useState('');
-  const [question2, setQuestion2] = useState('');
-  const [question3, setQuestion3] = useState('');
-
- 
-  const shuffleArray = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
-  
-  useEffect(() => {
-    if (activeStep === 3) {
-      const shuffledQuestions = shuffleArray([...SECURITY_QUESTION]);
-      setQuestion1(shuffledQuestions[0]);
-      setQuestion2(shuffledQuestions[1]);
-      setQuestion3(shuffledQuestions[2]);
-    }
-  }, [activeStep]);
 
   const handleReset = () => {
     setActiveStep(0);
@@ -111,14 +91,14 @@ const Register = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema[activeStep]}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting }) => {
             if (activeStep === steps.length - 1) {
-              const res = handleSignUp(values);
-
-              if (res.status === 200) {
-                setIsLogin(true);
-                console.log("Sign up successful");
-                Navigate("/");
+              const res = await handleSignUp(values);
+              if (res.status === 201) {
+                toast.success("Registration successful");
+                navigate("/login");
+              }else{
+                toast.error("Registration failed");
               }
             } else {
               handleNext();
@@ -130,17 +110,6 @@ const Register = () => {
             <Form>
               {activeStep === 0 && (
                 <>
-                  <Field
-                    as={TextField}
-                    name="username"
-                    type="text"
-                    label="Username"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    error={touched.username && !!errors.username}
-                    helperText={touched.username && errors.username}
-                  />
                   <Field
                     as={TextField}
                     name="firstname"
@@ -230,89 +199,93 @@ const Register = () => {
                     error={touched.confirmPassword && !!errors.confirmPassword}
                     helperText={touched.confirmPassword && errors.confirmPassword}
                   />
-                  <Field
-                    as={TextField}
-                    name="accountType"
-                    select
-                    label="Account Type"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    error={touched.accountType && !!errors.accountType}
-                    helperText={touched.accountType && errors.accountType}
-                  >
-                    <MenuItem value="Tenant">Tenant</MenuItem>
-                    <MenuItem value="Owner">Owner</MenuItem>
-                  </Field>
                 </>
               )}
               {activeStep === 3 && (
                 <>
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question1"
-                    label="Question"
+                    select
+                    label="Security Question 1"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question1}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question1 && !!errors.question1}
+                    helperText={touched.question1 && errors.question1}
+                  >
+                    {SECURITY_QUESTION.map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer1"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer1 && !!errors.answer1}
+                    helperText={touched.answer1 && errors.answer1}
                   />
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question2"
-                    label="Question"
+                    select
+                    label="Security Question 2"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question2}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question2 && !!errors.question2}
+                    helperText={touched.question2 && errors.question2}
+                  >
+                    {SECURITY_QUESTION.map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer2"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer2 && !!errors.answer2}
+                    helperText={touched.answer2 && errors.answer2}
                   />
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question3"
-                    label="Question"
+                    select
+                    label="Security Question 3"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question3}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question3 && !!errors.question3}
+                    helperText={touched.question3 && errors.question3}
+                  >
+                    {SECURITY_QUESTION.map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer3"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer3 && !!errors.answer3}
+                    helperText={touched.answer3 && errors.answer3}
                   />
                 </>
               )}
