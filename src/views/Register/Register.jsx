@@ -7,19 +7,25 @@ import {
   StepLabel,
   Typography,
   TextField,
+  Link as MuiLink,
   Grid,
   MenuItem,
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
 import { toast } from "react-toastify";
 
-const steps = ["Personal Details", "Contact Details", "Account Details", "Security Questions"];
+const steps = [
+  "Personal Details",
+  "Contact Details",
+  "Account Details",
+  "Security Questions",
+];
 
 const validationSchema = [
   Yup.object({
@@ -27,11 +33,13 @@ const validationSchema = [
     lastname: Yup.string().required("Required"),
   }),
   Yup.object({
-    gender: Yup.string().oneOf(["Male", "Female", "Other"]).required("Required"),
+    gender: Yup.string()
+      .oneOf(["Male", "Female", "Other"])
+      .required("Required"),
     number: Yup.string()
       .matches(
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        "Phone number is not valid",
+        "Phone number is not valid"
       )
       .min(10, "Phone number is not valid")
       .max(10, "Phone number is not valid")
@@ -39,10 +47,15 @@ const validationSchema = [
     email: Yup.string().email("Invalid email address").required("Required"),
   }),
   Yup.object({
-    password: Yup.string().matches(REGEX_PASSWORD,"password should have atleast 8 characters.atleast one uppercase,atleast one lowercase,atleast one special character and atleast one digit").required("Required"),
+    password: Yup.string()
+      .matches(
+        REGEX_PASSWORD,
+        "password should have atleast 8 characters.atleast one uppercase,atleast one lowercase,atleast one special character and atleast one digit"
+      )
+      .required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Required'),
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Required"),
   }),
 ];
 
@@ -65,7 +78,7 @@ const initialValues = {
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
   const navigate = useNavigate();
-  const {handleSignUp } = useContext(AppContext);
+  const { handleSignUp } = useContext(AppContext);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -77,13 +90,26 @@ const Register = () => {
 
   const handleReset = () => {
     setActiveStep(0);
-  };  
+  };
 
   return (
     <Grid container justifyContent="center" gap={2}>
       <Grid item xs={12} sm={6} md={4}>
-        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-          <img src={sampleImage} alt="Sample" style={{ maxWidth: "300%", maxHeight: "400px", objectFit: "contain" }} />
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
+          <img
+            src={sampleImage}
+            alt="Sample"
+            style={{
+              maxWidth: "300%",
+              maxHeight: "400px",
+              objectFit: "contain",
+            }}
+          />
         </Box>
       </Grid>
       <Grid item xs={12} sm={6} md={6}>
@@ -94,6 +120,13 @@ const Register = () => {
             </Step>
           ))}
         </Stepper>
+        <Box textAlign="center" marginTop={2}>
+          Already have an account?
+          <MuiLink component={Link} to="/login" variant="body2">
+            {" "}
+            Sign in
+          </MuiLink>
+        </Box>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema[activeStep]}
@@ -103,7 +136,7 @@ const Register = () => {
               if (res.status === 201) {
                 toast.success("Registration successful");
                 navigate("/login");
-              }else{
+              } else {
                 toast.error("Registration failed");
               }
             } else {
@@ -203,7 +236,9 @@ const Register = () => {
                     fullWidth
                     margin="normal"
                     error={touched.confirmPassword && !!errors.confirmPassword}
-                    helperText={touched.confirmPassword && errors.confirmPassword}
+                    helperText={
+                      touched.confirmPassword && errors.confirmPassword
+                    }
                   />
                 </>
               )}
@@ -296,10 +331,7 @@ const Register = () => {
                 </>
               )}
               <Box display="flex" justifyContent="space-between" marginTop={2}>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                >
+                <Button disabled={activeStep === 0} onClick={handleBack}>
                   Back
                 </Button>
                 <Button
