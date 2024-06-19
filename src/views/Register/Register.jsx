@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -15,7 +15,6 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
 import { toast } from "react-toastify";
@@ -57,6 +56,14 @@ const validationSchema = [
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Required"),
   }),
+  Yup.object({
+    question1: Yup.string().required("Required"),
+    answer1: Yup.string().required("Required"),
+    question2: Yup.string().required("Required"),
+    answer2: Yup.string().required("Required"),
+    question3: Yup.string().required("Required"),
+    answer3: Yup.string().required("Required"),
+  }),
 ];
 
 const initialValues = {
@@ -77,6 +84,7 @@ const initialValues = {
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
   const navigate = useNavigate();
   const { handleSignUp } = useContext(AppContext);
 
@@ -92,6 +100,20 @@ const Register = () => {
     setActiveStep(0);
   };
 
+  const handleQuestionChange = (question, field, setFieldValue) => {
+    setFieldValue(field, question);
+    setSelectedQuestions((prevQuestions) => {
+      const newQuestions = [...prevQuestions];
+      newQuestions[parseInt(field.charAt(field.length - 1)) - 1] = question;
+      return newQuestions;
+    });
+  };
+
+  const getAvailableQuestions = (currentField) => {
+    const currentQuestionIndex = parseInt(currentField.charAt(currentField.length - 1)) - 1;
+    return SECURITY_QUESTION.filter((question) => !selectedQuestions.includes(question) || selectedQuestions[currentQuestionIndex] === question);
+  };
+
   return (
     <Grid container justifyContent="center" gap={2}>
       <Grid item xs={12} sm={6} md={4}>
@@ -105,7 +127,7 @@ const Register = () => {
             src={sampleImage}
             alt="Sample"
             style={{
-              maxWidth: "300%",
+              maxWidth: "100%",
               maxHeight: "400px",
               objectFit: "contain",
             }}
@@ -145,7 +167,7 @@ const Register = () => {
             }
           }}
         >
-          {({ isSubmitting, errors, touched }) => (
+          {({ isSubmitting, errors, touched, setFieldValue }) => (
             <Form>
               {activeStep === 0 && (
                 <>
@@ -254,8 +276,9 @@ const Register = () => {
                     margin="normal"
                     error={touched.question1 && !!errors.question1}
                     helperText={touched.question1 && errors.question1}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question1", setFieldValue)}
                   >
-                    {SECURITY_QUESTION.map((question, index) => (
+                    {getAvailableQuestions("question1").map((question, index) => (
                       <MenuItem key={index} value={question}>
                         {question}
                       </MenuItem>
@@ -282,8 +305,9 @@ const Register = () => {
                     margin="normal"
                     error={touched.question2 && !!errors.question2}
                     helperText={touched.question2 && errors.question2}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question2", setFieldValue)}
                   >
-                    {SECURITY_QUESTION.map((question, index) => (
+                    {getAvailableQuestions("question2").map((question, index) => (
                       <MenuItem key={index} value={question}>
                         {question}
                       </MenuItem>
@@ -310,8 +334,9 @@ const Register = () => {
                     margin="normal"
                     error={touched.question3 && !!errors.question3}
                     helperText={touched.question3 && errors.question3}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question3", setFieldValue)}
                   >
-                    {SECURITY_QUESTION.map((question, index) => (
+                    {getAvailableQuestions("question3").map((question, index) => (
                       <MenuItem key={index} value={question}>
                         {question}
                       </MenuItem>
