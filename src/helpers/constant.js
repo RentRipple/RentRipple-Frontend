@@ -6,3 +6,6 @@ export const SECURITY_QUESTION = [
   "What is your favorite movie?",
   "What was the name of your first pet?",
 ];
+
+export const REGEX_PASSWORD =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;

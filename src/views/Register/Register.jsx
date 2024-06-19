@@ -16,7 +16,7 @@ import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your im
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { SECURITY_QUESTION } from "../../helpers/constant";
+import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
 import { toast } from "react-toastify";
 
 const steps = ["Personal Details", "Contact Details", "Account Details", "Security Questions"];
@@ -39,7 +39,7 @@ const validationSchema = [
     email: Yup.string().email("Invalid email address").required("Required"),
   }),
   Yup.object({
-    password: Yup.string().required("Required"),
+    password: Yup.string().matches(REGEX_PASSWORD,"password should have atleast 8 characters.atleast one uppercase,atleast one lowercase,atleast one special character and atleast one digit").required("Required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
       .required('Required'),
@@ -54,6 +54,12 @@ const initialValues = {
   email: "",
   password: "",
   confirmPassword: "",
+  question1: "",
+  answer1: "",
+  question2: "",
+  answer2: "",
+  question3: "",
+  answer3: "",
 };
 
 const Register = () => {
