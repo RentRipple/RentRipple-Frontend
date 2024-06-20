@@ -107,15 +107,9 @@ const ContextProvider = ({ children }) => {
           ],
         },
       );
-      if (res.status === 200) {
-        setAccessToken(res.data.accessToken);
-        setLogedInEmail(res.data.email);
-        setRefreshToken(res.data.refreshToken);
-        setIsLogin(true);
-      }
       return res;
     } catch (error) {
-      console.log("ERROR", error);
+       console.log("ERROR", error);
     }
   };
 

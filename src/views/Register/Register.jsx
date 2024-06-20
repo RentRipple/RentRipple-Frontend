@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -7,31 +7,38 @@ import {
   StepLabel,
   Typography,
   TextField,
+  Link as MuiLink,
   Grid,
   MenuItem,
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
-import { SECURITY_QUESTION } from "../../helpers/constant";
+import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
+import { toast } from "react-toastify";
 
-const steps = ["Personal Details", "Contact Details", "Account Details", "Security Questions"];
+const steps = [
+  "Personal Details",
+  "Contact Details",
+  "Account Details",
+  "Security Questions",
+];
 
 const validationSchema = [
   Yup.object({
-    username: Yup.string().required("Required"),
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
   }),
   Yup.object({
-    gender: Yup.string().oneOf(["Male", "Female", "Other"]).required("Required"),
+    gender: Yup.string()
+      .oneOf(["Male", "Female", "Other"])
+      .required("Required"),
     number: Yup.string()
       .matches(
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        "Phone number is not valid",
+        "Phone number is not valid"
       )
       .min(10, "Phone number is not valid")
       .max(10, "Phone number is not valid")
@@ -39,29 +46,47 @@ const validationSchema = [
     email: Yup.string().email("Invalid email address").required("Required"),
   }),
   Yup.object({
-    password: Yup.string().required("Required"),
+    password: Yup.string()
+      .matches(
+        REGEX_PASSWORD,
+        "password should have atleast 8 characters.atleast one uppercase,atleast one lowercase,atleast one special character and atleast one digit"
+      )
+      .required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Required'),
-    accountType: Yup.string().oneOf(["Tenant", "Owner"]).required("Required"),
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Required"),
+  }),
+  Yup.object({
+    question1: Yup.string().required("Required"),
+    answer1: Yup.string().required("Required"),
+    question2: Yup.string().required("Required"),
+    answer2: Yup.string().required("Required"),
+    question3: Yup.string().required("Required"),
+    answer3: Yup.string().required("Required"),
   }),
 ];
 
 const initialValues = {
-  username: "",
   firstname: "",
   lastname: "",
   gender: "",
   number: "",
   email: "",
   password: "",
-  accountType: "",
+  confirmPassword: "",
+  question1: "",
+  answer1: "",
+  question2: "",
+  answer2: "",
+  question3: "",
+  answer3: "",
 };
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const Navigate = useNavigate();
-  const { handleSignUp, setIsLogin } = useContext(AppContext);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const navigate = useNavigate();
+  const { handleSignUp } = useContext(AppContext);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -71,33 +96,42 @@ const Register = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const [question1, setQuestion1] = useState('');
-  const [question2, setQuestion2] = useState('');
-  const [question3, setQuestion3] = useState('');
-
- 
-  const shuffleArray = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
-  
-  useEffect(() => {
-    if (activeStep === 3) {
-      const shuffledQuestions = shuffleArray([...SECURITY_QUESTION]);
-      setQuestion1(shuffledQuestions[0]);
-      setQuestion2(shuffledQuestions[1]);
-      setQuestion3(shuffledQuestions[2]);
-    }
-  }, [activeStep]);
-
   const handleReset = () => {
     setActiveStep(0);
-  };  
+  };
+
+  const handleQuestionChange = (question, field, setFieldValue) => {
+    setFieldValue(field, question);
+    setSelectedQuestions((prevQuestions) => {
+      const newQuestions = [...prevQuestions];
+      newQuestions[parseInt(field.charAt(field.length - 1)) - 1] = question;
+      return newQuestions;
+    });
+  };
+
+  const getAvailableQuestions = (currentField) => {
+    const currentQuestionIndex = parseInt(currentField.charAt(currentField.length - 1)) - 1;
+    return SECURITY_QUESTION.filter((question) => !selectedQuestions.includes(question) || selectedQuestions[currentQuestionIndex] === question);
+  };
 
   return (
     <Grid container justifyContent="center" gap={2}>
       <Grid item xs={12} sm={6} md={4}>
-        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-          <img src={sampleImage} alt="Sample" style={{ maxWidth: "300%", maxHeight: "400px", objectFit: "contain" }} />
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
+          <img
+            src={sampleImage}
+            alt="Sample"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "400px",
+              objectFit: "contain",
+            }}
+          />
         </Box>
       </Grid>
       <Grid item xs={12} sm={6} md={6}>
@@ -108,17 +142,24 @@ const Register = () => {
             </Step>
           ))}
         </Stepper>
+        <Box textAlign="center" marginTop={2}>
+          Already have an account?
+          <MuiLink component={Link} to="/login" variant="body2">
+            {" "}
+            Sign in
+          </MuiLink>
+        </Box>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema[activeStep]}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting }) => {
             if (activeStep === steps.length - 1) {
-              const res = handleSignUp(values);
-
-              if (res.status === 200) {
-                setIsLogin(true);
-                console.log("Sign up successful");
-                Navigate("/");
+              const res = await handleSignUp(values);
+              if (res.status === 201) {
+                toast.success("Registration successful");
+                navigate("/login");
+              } else {
+                toast.error("Registration failed");
               }
             } else {
               handleNext();
@@ -126,21 +167,10 @@ const Register = () => {
             }
           }}
         >
-          {({ isSubmitting, errors, touched }) => (
+          {({ isSubmitting, errors, touched, setFieldValue }) => (
             <Form>
               {activeStep === 0 && (
                 <>
-                  <Field
-                    as={TextField}
-                    name="username"
-                    type="text"
-                    label="Username"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    error={touched.username && !!errors.username}
-                    helperText={touched.username && errors.username}
-                  />
                   <Field
                     as={TextField}
                     name="firstname"
@@ -228,99 +258,105 @@ const Register = () => {
                     fullWidth
                     margin="normal"
                     error={touched.confirmPassword && !!errors.confirmPassword}
-                    helperText={touched.confirmPassword && errors.confirmPassword}
+                    helperText={
+                      touched.confirmPassword && errors.confirmPassword
+                    }
                   />
-                  <Field
-                    as={TextField}
-                    name="accountType"
-                    select
-                    label="Account Type"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    error={touched.accountType && !!errors.accountType}
-                    helperText={touched.accountType && errors.accountType}
-                  >
-                    <MenuItem value="Tenant">Tenant</MenuItem>
-                    <MenuItem value="Owner">Owner</MenuItem>
-                  </Field>
                 </>
               )}
               {activeStep === 3 && (
                 <>
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question1"
-                    label="Question"
+                    select
+                    label="Security Question 1"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question1}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question1 && !!errors.question1}
+                    helperText={touched.question1 && errors.question1}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question1", setFieldValue)}
+                  >
+                    {getAvailableQuestions("question1").map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer1"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer1 && !!errors.answer1}
+                    helperText={touched.answer1 && errors.answer1}
                   />
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question2"
-                    label="Question"
+                    select
+                    label="Security Question 2"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question2}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question2 && !!errors.question2}
+                    helperText={touched.question2 && errors.question2}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question2", setFieldValue)}
+                  >
+                    {getAvailableQuestions("question2").map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer2"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer2 && !!errors.answer2}
+                    helperText={touched.answer2 && errors.answer2}
                   />
-                  <TextField
+                  <Field
+                    as={TextField}
                     name="question3"
-                    label="Question"
+                    select
+                    label="Security Question 3"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={question3}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
+                    error={touched.question3 && !!errors.question3}
+                    helperText={touched.question3 && errors.question3}
+                    onChange={(e) => handleQuestionChange(e.target.value, "question3", setFieldValue)}
+                  >
+                    {getAvailableQuestions("question3").map((question, index) => (
+                      <MenuItem key={index} value={question}>
+                        {question}
+                      </MenuItem>
+                    ))}
+                  </Field>
                   <Field
                     as={TextField}
-                    name="answer"
+                    name="answer3"
                     type="text"
                     label="Answer"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    error={touched.answer && !!errors.answer}
-                    helperText={touched.answer && errors.answer}
+                    error={touched.answer3 && !!errors.answer3}
+                    helperText={touched.answer3 && errors.answer3}
                   />
                 </>
               )}
               <Box display="flex" justifyContent="space-between" marginTop={2}>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                >
+                <Button disabled={activeStep === 0} onClick={handleBack}>
                   Back
                 </Button>
                 <Button
