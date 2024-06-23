@@ -6,18 +6,22 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 
 const Root = styled(Box)(() => ({
+backgroundColor: 'red',
 
-  padding:0,
-  margin:0,
-  backgroundColor: "whiteSmoke!important",
+//   backgroundColor: "whiteSmoke!important",
   backdropFilter: "blur(50px)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  position:"fixed",
-  left:0,
+  display:"flex",
+  justifyContent:"center",
+  alignItems:"center",
+//   flexGrow:1,
+//   marginLeft:"-100px",
+//   marginRight:"-100px",
+
+  position:"absolute",
+  left:"-10px",
+
   minWidth:"100vw",
-  height:"100vh",
+  height:"87vh",
   
 }));
 
@@ -34,11 +38,10 @@ const Content = styled(Box)(() => ({
 
 const ProfileContainer = styled(Root)`
   && {
-    background-color: white;
-    border-radius: 8px;
+    background-color: whitesmoke!important;
+    // border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    display: flex;
-    justify-content: center;
+    
   }
 `;
 
