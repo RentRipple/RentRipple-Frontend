@@ -2,8 +2,6 @@ import React from 'react';
 import { Grid, Box, Typography, Avatar, Button, Divider } from '@mui/material';
 import { styled } from "@mui/system";
 import profilePic from '../../assets/profile.svg'; // Ensure this path is correct
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
 
 const Root = styled(Box)(() => ({
 backgroundColor: 'red',
@@ -83,10 +81,6 @@ const ProfileContent = styled(Content)`
 `;
 
 function UserProfile() {
-  const { setIsLogin } = useContext(AppContext);
-
-  setIsLogin(true);
-
   return (
     <ProfileContainer>
       <ProfileContent>
