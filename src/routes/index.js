@@ -45,6 +45,14 @@ const routData = [
   },
 
   {
+    id: "5",
+    path: "/UserProfile",
+    component: reviews.UserProfile,
+    layout: HomeLayout,
+    exact: true,
+  },
+
+  {
     id: "0",
     path: "/404",
     component: reviews.NotFound,

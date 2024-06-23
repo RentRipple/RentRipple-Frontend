@@ -11,7 +11,7 @@ const Root = styled("div")(() => ({
 const MainLayoutDiv = styled("div")(() => ({
   zIndex: "1",
   position: "relative",
-  minHeight: "calc(100vh - 16px)",
+  // minHeight: "calc(100vh - 16px)",
   // backgroundColor: "green",
   display: "flex",
   justifyContent: "center",
