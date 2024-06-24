@@ -152,6 +152,7 @@ const ContextProvider = ({ children }) => {
       return res;
     } catch (error) {
       console.log("ERROR", error);
+      return error.response
     }
   };
 

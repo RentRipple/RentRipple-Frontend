@@ -31,12 +31,11 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
-
   const Navigate = useNavigate();
 
   useEffect(() => {
     if (sessionStorage.getItem("accessToken")) {
-      Navigate("/")
+      Navigate("/");
     }
   }, []);
 
@@ -68,20 +67,19 @@ const Login = () => {
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
             const result = await handleLogin(values);
-            if (result?.error) {
-              if (result.status === 401) {
+
+            if (result) {
+              if (result.status === 200) {
+                toast.success("Login successful");
+                setIsLogin(true);
+                Navigate("/");
+              } else {
                 setFieldError("email", "Invalid email or password");
                 setFieldError("password", "Invalid email or password");
-              } else {
-                alert(result.message);
+                toast.error("Login Failed");
+                setIsLogin(false); 
               }
-              setIsLogin(false);
-            } else {
-              toast.success("Login successful");
-              setIsLogin(true);
-              Navigate("/");
             }
-
             setSubmitting(false);
           }}
         >
