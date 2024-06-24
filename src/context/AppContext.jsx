@@ -23,9 +23,7 @@ const ContextProvider = ({ children }) => {
   const [refreshToken, setRefreshTokenState] = useState(
     localStorage.getItem("refreshToken") || "",
   );
-  const [logedInEmailAddress, setLogedInEmailAdress] = useState(
-    sessionStorage.getItem("emailaddress") || "",
-  );
+
 
   useEffect(() => {
     if (accessToken) {
@@ -63,14 +61,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const setLogedInEmail = (email) => {
-    setLogedInEmailAdress(email);
-    if (email) {
-      sessionStorage.setItem("emailaddress", email);
-    } else {
-      sessionStorage.removeItem("emailaddress");
-    }
-  };
+
 
   const refreshTokens = async () => {
     try {
@@ -84,7 +75,6 @@ const ContextProvider = ({ children }) => {
       if (response.status === 200) {
         setAccessToken(response.data.accessToken);
         setRefreshToken(response.data.refreshToken);
-        setLogedInEmail(response.data.email);
       } else {
         console.log("Response status not", response.status);
         console.log("Response", response);
@@ -166,7 +156,6 @@ const ContextProvider = ({ children }) => {
       if (res.status === 204) {
         setAccessToken("");
         setRefreshToken("");
-        setLogedInEmail("");
         setIsLogin(false);
         toast.success("Logout successful");
 
@@ -189,7 +178,6 @@ const ContextProvider = ({ children }) => {
         const jwtRes = await refreshTokens();
         if ( jwtRes && jwtRes.status === 200) {
           setAccessToken(jwtRes.data.accessToken);
-          setLogedInEmail(jwtRes.data.email);
           setRefreshToken(jwtRes.data.refreshToken);
           // Retry the protected request with the new token
           await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
@@ -214,8 +202,6 @@ const ContextProvider = ({ children }) => {
         setAccessToken,
         refreshToken,
         setRefreshToken,
-        logedInEmailAddress,
-        setLogedInEmail,
         refreshTokens,
         handleLogin,
         handleLogout,
