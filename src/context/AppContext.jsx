@@ -12,6 +12,11 @@ const AppContext = createContext();
 const ContextProvider = ({ children }) => {
   // State to be shared
   const [isLogin, setIsLogin] = useState(false);
+
+  const [name, setName] = useState(
+    sessionStorage.getItem("name") || "",
+  );
+
   const [accessToken, setAccessTokenState] = useState(
     sessionStorage.getItem("accessToken") || "",
   );
@@ -35,6 +40,16 @@ const ContextProvider = ({ children }) => {
       sessionStorage.setItem("accessToken", token);
     } else {
       sessionStorage.removeItem("accessToken");
+    }
+  };
+
+  const setNameLocal = (name) => {
+    if (name) {
+      sessionStorage.setItem("name", name);
+      setName(name)
+    } else {
+      sessionStorage.removeItem("name");
+      setName(null)
     }
   };
 
@@ -121,14 +136,13 @@ const ContextProvider = ({ children }) => {
       });
       if (res.status === 200) {
         setAccessToken(res.data.accessToken);
-        setLogedInEmail(res.data.email);
         setRefreshToken(res.data.refreshToken);
+        setNameLocal(res.data.name)
         setIsLogin(true);
       } else if (res.status === 401) {
         const jwtRes = await refreshTokens();
         if (jwtRes.status === 200) {
           setAccessToken(jwtRes.data.accessToken);
-          setLogedInEmail(jwtRes.data.email);
           setRefreshToken(jwtRes.data.refreshToken);
           setIsLogin(true);
         } else {
@@ -193,6 +207,7 @@ const ContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        name,
         isLogin,
         setIsLogin,
         accessToken,

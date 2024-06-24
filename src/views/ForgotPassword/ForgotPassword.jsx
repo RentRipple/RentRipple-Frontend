@@ -45,7 +45,14 @@ const ForgotPassword = () => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState(''); 
   const [isAnswerVerified, setIsAnswerVerified] = useState(false); // Renamed this state
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (sessionStorage.getItem("accessToken")) {
+      navigate("/")
+    }
+  }, []);
 
   useEffect(() => {
     const fetchQuestion = async () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, TextField, Button, Typography, Link, Grid } from "@mui/material";
 import { styled } from "@mui/system";
 import { Formik, Form, Field } from "formik";
@@ -31,8 +31,17 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
-  const { setIsLogin, handleLogin } = useContext(AppContext);
+
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    if (sessionStorage.getItem("accessToken")) {
+      Navigate("/")
+    }
+  }, []);
+
+  const { setIsLogin, handleLogin } = useContext(AppContext);
+
   return (
     <Grid container justifyContent="center" gap={2}>
       <Grid item xs={12} sm={6} md={5}>
@@ -59,8 +68,7 @@ const Login = () => {
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             setSubmitting(true);
             const result = await handleLogin(values);
-
-            if (result.error) {
+            if (result?.error) {
               if (result.status === 401) {
                 setFieldError("email", "Invalid email or password");
                 setFieldError("password", "Invalid email or password");
@@ -119,9 +127,14 @@ const Login = () => {
                 >
                   Login
                 </LoginButton>
-                <Link component={RouterLink} to ="/ForgotPassword" variant="body2" style={{ marginTop: '10px' }}>
-            Forgot Password?
-            </Link>
+                <Link
+                  component={RouterLink}
+                  to="/ForgotPassword"
+                  variant="body2"
+                  style={{ marginTop: "10px" }}
+                >
+                  Forgot Password?
+                </Link>
               </FormContainer>
             </Form>
           )}
