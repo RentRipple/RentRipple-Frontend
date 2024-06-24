@@ -5,7 +5,6 @@ import { AppContext } from "../context/AppContext";
 
 export default function AuthGuard(props) {
   const { children } = props;
-  console.log(props);
   const { isLogin } = useContext(AppContext);
 
   if (!isLogin) {
