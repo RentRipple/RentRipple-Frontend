@@ -102,7 +102,7 @@ const propertyDetails = {
 const PropertyDetails = () => {
   const location = useLocation();
   const { data } = location.state;
-  console.log(data._id, "data");
+  console.log(data, "data");
   const [message, setMessage] = React.useState("");
 
   const handleMessage = (e) => {

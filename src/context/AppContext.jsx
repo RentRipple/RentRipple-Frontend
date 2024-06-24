@@ -12,15 +12,18 @@ const AppContext = createContext();
 const ContextProvider = ({ children }) => {
   // State to be shared
   const [isLogin, setIsLogin] = useState(false);
+
+  const [name, setName] = useState(
+    sessionStorage.getItem("name") || "",
+  );
+
   const [accessToken, setAccessTokenState] = useState(
     sessionStorage.getItem("accessToken") || "",
   );
   const [refreshToken, setRefreshTokenState] = useState(
     localStorage.getItem("refreshToken") || "",
   );
-  const [logedInEmailAddress, setLogedInEmailAdress] = useState(
-    sessionStorage.getItem("emailaddress") || "",
-  );
+
 
   useEffect(() => {
     if (accessToken) {
@@ -38,6 +41,16 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const setNameLocal = (name) => {
+    if (name) {
+      sessionStorage.setItem("name", name);
+      setName(name)
+    } else {
+      sessionStorage.removeItem("name");
+      setName(null)
+    }
+  };
+
   // Set the refresh token in state and local storage
   const setRefreshToken = (token) => {
     setRefreshTokenState(token);
@@ -48,14 +61,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const setLogedInEmail = (email) => {
-    setLogedInEmailAdress(email);
-    if (email) {
-      sessionStorage.setItem("emailaddress", email);
-    } else {
-      sessionStorage.removeItem("emailaddress");
-    }
-  };
+
 
   const refreshTokens = async () => {
     try {
@@ -69,7 +75,6 @@ const ContextProvider = ({ children }) => {
       if (response.status === 200) {
         setAccessToken(response.data.accessToken);
         setRefreshToken(response.data.refreshToken);
-        setLogedInEmail(response.data.email);
       } else {
         console.log("Response status not", response.status);
         console.log("Response", response);
@@ -121,14 +126,13 @@ const ContextProvider = ({ children }) => {
       });
       if (res.status === 200) {
         setAccessToken(res.data.accessToken);
-        setLogedInEmail(res.data.email);
         setRefreshToken(res.data.refreshToken);
+        setNameLocal(res.data.name)
         setIsLogin(true);
       } else if (res.status === 401) {
         const jwtRes = await refreshTokens();
         if (jwtRes.status === 200) {
           setAccessToken(jwtRes.data.accessToken);
-          setLogedInEmail(jwtRes.data.email);
           setRefreshToken(jwtRes.data.refreshToken);
           setIsLogin(true);
         } else {
@@ -138,6 +142,7 @@ const ContextProvider = ({ children }) => {
       return res;
     } catch (error) {
       console.log("ERROR", error);
+      return error.response
     }
   };
 
@@ -152,7 +157,6 @@ const ContextProvider = ({ children }) => {
       if (res.status === 204) {
         setAccessToken("");
         setRefreshToken("");
-        setLogedInEmail("");
         setIsLogin(false);
         toast.success("Logout successful");
 
@@ -175,7 +179,6 @@ const ContextProvider = ({ children }) => {
         const jwtRes = await refreshTokens();
         if ( jwtRes && jwtRes.status === 200) {
           setAccessToken(jwtRes.data.accessToken);
-          setLogedInEmail(jwtRes.data.email);
           setRefreshToken(jwtRes.data.refreshToken);
           // Retry the protected request with the new token
           await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
@@ -193,14 +196,13 @@ const ContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        name,
         isLogin,
         setIsLogin,
         accessToken,
         setAccessToken,
         refreshToken,
         setRefreshToken,
-        logedInEmailAddress,
-        setLogedInEmail,
         refreshTokens,
         handleLogin,
         handleLogout,
