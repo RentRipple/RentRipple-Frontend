@@ -8,18 +8,18 @@ import {
   IconButton,
   Button,
   MenuItem,
+  Tooltip,
+  Avatar,
+  Menu,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/logo";
-import SearchBox from "./searchbox";
-import { NavLink } from "react-router-dom";
 import profile from "../../assets/profile.svg";
-import { useContext } from "react";
-
 import { AppContext } from "../../context/AppContext";
+
 const headersData = [
   {
     label: "Explore",
@@ -34,7 +34,6 @@ const headersData = [
 const ToolbarStyled = styled(Toolbar)(() => ({
   backgroundColor: "transparent",
   border: "none",
-  backgroundImage: "linear-gradient(to right, #0f",
 }));
 
 const DrawerContainer = styled("div")({
@@ -43,7 +42,7 @@ const DrawerContainer = styled("div")({
 });
 
 const DrawerIcon = styled(IconButton)({
-  color: "black",
+  // color: "black",
   fontSize: "30px",
   padding: "10px",
 });
@@ -64,14 +63,10 @@ const LogoBox = styled(Box)({
   alignItems: "center",
 });
 
-const SearchBoxStyled = styled(SearchBox)({
-  flexGrow: 1,
-  display: "flex",
-  justifyContent: "center",
-});
-
 function Header() {
-  const { isLogin, handleLogout, handleProtected } = useContext(AppContext);
+  const { name, isLogin, handleLogout } = useContext(AppContext);
+
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const [state, setState] = useState({
     mobileView: false,
@@ -79,6 +74,7 @@ function Header() {
   });
 
   const { mobileView, drawerOpen } = state;
+
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -88,8 +84,22 @@ function Header() {
     };
 
     setResponsiveness();
-    window.addEventListener("resize", () => setResponsiveness());
+    window.addEventListener("resize", setResponsiveness);
+
+    return () => window.removeEventListener("resize", setResponsiveness);
   }, []);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const getInitials = () => {
+    return (name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)).toUpperCase()
+  }
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
@@ -105,38 +115,35 @@ function Header() {
         <Grid item xs={8} align="left">
           {getMenuButtons()}
         </Grid>
-        <Grid item xs={3} align="left">
-          {SearchBoxx}
-        </Grid>
       </Grid>
       <div style={{ display: "flex", flexDirection: "row" }}>
         {/* User profile and menu */}
         {isLogin ? (
           <>
-            <IconButton
-              aria-label="delete"
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={() => handleProtected()}
-              style={{ marginLeft: "10px" }}
-              size="small"
+            <Tooltip title="Account settings">
+              <IconButton
+                onClick={handleClick}
+                size="medium"
+                sx={{ ml: 2 }}
+                aria-controls={anchorEl ? "account-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={anchorEl ? "true" : undefined}
+              >
+                <Avatar sx={{ width: 40, height: 40 }}>{getInitials()}</Avatar>
+              </IconButton>
+            </Tooltip>
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              onClick={handleClose}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <img src={profile} alt="Profile Image" />
-            </IconButton>
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              component={Link}
-              style={{
-                marginLeft: "15px",
-                whiteSpace: "pre",
-                backgroundColor: "#1569C1",
-              }}
-              onClick={() => handleLogout()}
-            >
-              Logout
-            </Button>
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
           </>
         ) : (
           <Button
@@ -190,7 +197,7 @@ function Header() {
                     whiteSpace: "pre",
                     backgroundColor: "#1569C1",
                   }}
-                  onClick={() => handleLogout()}
+                  onClick={handleLogout}
                 >
                   Logout
                 </Button>
@@ -216,17 +223,14 @@ function Header() {
         </DrawerContainer>
       </Drawer>
 
-      <Grid container alignItems="center">
-        <Grid item xs={5}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item>
           <LogoBox>{femmecubatorLogo}</LogoBox>
         </Grid>
-        <Grid item xs={5} align="right">
-          {SearchBoxx}
-        </Grid>
-        <Grid item xs={2} align="right">
+        <Grid item>
           <DrawerIcon
             edge="start"
-            color="inherit"
+            color="black"
             aria-label="menu"
             aria-haspopup="true"
             onClick={handleDrawerOpen}
@@ -252,8 +256,6 @@ function Header() {
       </Link>
     </LogoBox>
   );
-
-  const SearchBoxx = <SearchBoxStyled />;
 
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
@@ -283,10 +285,8 @@ function Header() {
         style={{
           backgroundColor: "transparent",
           border: "none",
-          backgroundImage: "linear-gradient(to right, #0f",
         }}
       >
-        {/* {displayDesktop()} */}
         {mobileView ? displayMobile() : displayDesktop()}
       </AppBar>
     </>

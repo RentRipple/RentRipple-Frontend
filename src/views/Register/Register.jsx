@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Box,
   Button,
@@ -87,6 +87,12 @@ const Register = () => {
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const navigate = useNavigate();
   const { handleSignUp } = useContext(AppContext);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("accessToken")) {
+      navigate("/")
+    }
+  }, []);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

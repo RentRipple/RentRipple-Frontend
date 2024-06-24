@@ -83,9 +83,9 @@ const Home = () => {
 
   const getPropertyList = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/property/get-properties`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/property/get-properties`);
       if (res.status === 200) {
-        setPropertyList(res.data);
+        setPropertyList(res.data.properties);
       }
     } catch (error) {
       console.log("ERROR", error);
@@ -117,10 +117,10 @@ const Home = () => {
             {propertyList.map((data, i) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
                 <PropertyCard
-                  onClick={() => navigate("/property-details", { state: { data } })}
+                  onClick={() => navigate(`/property-details/${data.id}`, { state: { data } })}
                 >
                   <img
-                    src={data.imageUrl}
+                    src={data.imageUrl[0]}
                     alt="hotel"
                     style={{
                       width: "100%",
