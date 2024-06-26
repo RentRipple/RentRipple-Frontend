@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { styled } from "@mui/system";
 import profileImage from "../../assets/profile.svg";
@@ -9,7 +9,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./imageCustom.css";
 
 const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
@@ -18,7 +23,6 @@ const ImageGrid = styled("div")(() => ({
 const LargeImageStyle = styled("img")(() => ({
   width: "100%",
   height: "400px",
-  // objectFit: "contain",
   objectFit: "cover",
   borderRadius: "16px",
 }));
@@ -30,9 +34,9 @@ const ChatGrid = styled("div")(() => ({
   height: "385px",
 }));
 const HeadTitle = styled("div")(() => ({
-  fontSize: "24px",
-  paddingTop: "20px",
-  paddingBottom: "10px",
+  fontSize: "26px",
+  paddingTop: "26px",
+  paddingBottom: "12px",
 }));
 const OpacityText = styled("div")(() => ({
   opacity: "0.5",
@@ -47,96 +51,77 @@ const OwnerDetailsStyle = styled("div")(() => ({
   textAlign: "left",
 }));
 
-const propertyDetails = {
-  contactList: [
-    {
-      id: 1,
-      name: "Linda Smith",
-      role: "Owner",
-      imageUrl: profileImage,
-    },
-    {
-      id: 2,
-      name: "Electrician & Co",
-      role: "Electrician",
-      imageUrl: profileImage,
-    },
-    {
-      id: 3,
-      name: "Plumb Pros",
-      role: "Plumber",
-      imageUrl: profileImage,
-    },
-  ],
-  pricingDetails: [
-    {
-      id: 1,
-      title: "Price",
-      data: "$4,000/month",
-    },
-    {
-      id: 2,
-      title: "Lease Length",
-      data: "12 months",
-    },
-    {
-      id: 3,
-      title: "Deposit",
-      data: "$1,000",
-    },
-    {
-      id: 4,
-      title: "Utilities",
-      data: "Not included",
-    },
-  ],
-  ownerDetails: {
-      name: "Linda Smith",
-      address: "1178 Green Street, Lexington, KY 40507",
-      ratings: "4.5",
-      contact: "8596598569",
-      imageUrl: profileImage,
-    },
-};
-
 const PropertyDetails = () => {
   const location = useLocation();
   const { data } = location.state;
-  console.log(data, "data");
-  const [message, setMessage] = React.useState("");
+  const [message, setMessage] = useState("");
+  const { getPropertyDetails, propertyDetails } = useContext(AppContext);
 
   const handleMessage = (e) => {
     setMessage(e.target.value);
   };
 
   const handleButtonClick = () => {
-    const Finalmessage = message.trim() === "" ? "Interested in this property" : message;
-    console.log("Message sent:", Finalmessage);
+    const finalMessage =
+      message.trim() === "" ? "Interested in this property" : message;
+    console.log("Message sent:", finalMessage);
     toast.success("Message sent successfully");
     // Navigate to chat page
   };
+
+  useEffect(() => {
+    getPropertyDetails(data.id);
+  }, [data.id]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const features = propertyDetails?.propertyDetails?.utilities;
+  console.log("Features", features);
+  // const trueFeatures = Object.keys(features).filter(key => features[key]);
+  // console.log("trueFeatures", trueFeatures);
 
   return (
     <div style={{ fontFamily: "Roboto" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
+          {console.log("Property Details", propertyDetails)}
           <ImageGrid>
-            <LargeImageStyle src={data.imageUrl} alt="hotel" />
+            <Slider {...settings}>
+              {propertyDetails?.propertyDetails?.imageUrl.map((url, index) => (
+                <LargeImageStyle key={index} src={url} alt={`Slide ${index}`} />
+              ))}
+            </Slider>
           </ImageGrid>
         </Grid>
         <Grid item xs={12} sm={12} md={3} lg={3}>
           <ChatGrid>
-          <HeadTitle style={{marginBottom: "14px"}}>Chat with Owner</HeadTitle>
-            <img src={propertyDetails.ownerDetails.imageUrl} alt="profile" style={{ width: "80px"}} />
-            
-            <p> {propertyDetails.ownerDetails.name}</p>
-            <OwnerDetailsStyle> Ratings: {propertyDetails.ownerDetails.ratings}</OwnerDetailsStyle>
-            <OwnerDetailsStyle> Address: {propertyDetails.ownerDetails.address}</OwnerDetailsStyle>
-            <OwnerDetailsStyle style={{marginBottom: "14px"}}> Contact: {propertyDetails.ownerDetails.contact}</OwnerDetailsStyle>
+            <HeadTitle style={{ marginBottom: "14px" }}>
+              Chat with Owner
+            </HeadTitle>
+            <img
+              src={propertyDetails?.ownerDetails?.imageUrl || profileImage}
+              alt="profile"
+              style={{ width: "80px" }}
+            />
+            <p>{propertyDetails?.ownerDetails?.name}</p>
+            <OwnerDetailsStyle>
+              Ratings: {propertyDetails?.ownerDetails?.rating}
+            </OwnerDetailsStyle>
+            <OwnerDetailsStyle>
+              Email: {propertyDetails?.ownerDetails?.email}
+            </OwnerDetailsStyle>
+            <OwnerDetailsStyle style={{ marginBottom: "14px" }}>
+              Contact: {propertyDetails?.ownerDetails?.phone}
+            </OwnerDetailsStyle>
             <Paper
               component="form"
               sx={{
-                // p: "2px 4px",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -148,51 +133,315 @@ const PropertyDetails = () => {
                 placeholder="Interested in this property"
                 inputProps={{ "aria-label": "send a message" }}
               />
-              <IconButton color="primary" aria-label="directions"  onClick={handleButtonClick}>
-                <SendIcon/>
+              <IconButton
+                color="primary"
+                aria-label="directions"
+                onClick={handleButtonClick}
+              >
+                <SendIcon />
               </IconButton>
             </Paper>
           </ChatGrid>
         </Grid>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <HeadTitle>About this Property</HeadTitle>
-          <AboutProperty>{data?.shortDescription}</AboutProperty>
+          <AboutProperty>
+            {propertyDetails?.propertyDetails?.description.slice(0, 200) +
+              "..."}
+          </AboutProperty>
+          <AboutProperty>
+            Address: {propertyDetails?.propertyDetails?.address_line1},{" "}
+            {propertyDetails?.propertyDetails?.city},{" "}
+            {propertyDetails?.propertyDetails?.country}
+          </AboutProperty>
           <HeadTitle>Pricing</HeadTitle>
           <TableContainer>
             <Table sx={{ minWidth: 500 }}>
               <TableBody>
-                {propertyDetails.pricingDetails &&
-                  propertyDetails.pricingDetails.map((row) => (
-                    <TableRow key={row.id} align="left">
-                      <TableCell component="th">
-                        <OpacityText>{row.title}</OpacityText>
-                      </TableCell>
-                      <TableCell>{row.data}</TableCell>
-                    </TableRow>
-                  ))}
+                {/* {propertyDetails?.pricingDetails &&
+                  propertyDetails?.pricingDetails.map((row) => ( */}
+                <TableRow align="left">
+                  <TableCell component="th">
+                    <OpacityText>Price</OpacityText>
+                  </TableCell>
+                  <TableCell>
+                    {propertyDetails?.propertyDetails?.price}
+                  </TableCell>
+                </TableRow>
+                <TableRow align="left">
+                  <TableCell component="th">
+                    <OpacityText>Deposit</OpacityText>
+                  </TableCell>
+                  <TableCell>
+                    {propertyDetails?.propertyDetails?.deposit}
+                  </TableCell>
+                </TableRow>
+                <TableRow align="left">
+                  <TableCell component="th">
+                    <OpacityText>Lease length</OpacityText>
+                  </TableCell>
+                  <TableCell>
+                    {propertyDetails?.propertyDetails?.leaseLength}
+                  </TableCell>
+                </TableRow>
+                {/* ))} */}
               </TableBody>
             </Table>
           </TableContainer>
-          <HeadTitle>Contact List</HeadTitle>
-          {propertyDetails.contactList &&
-            propertyDetails.contactList.map((data, i) => (
-              <Grid container spacing={3} key={i}>
-                <Grid item xs={2} sm={2} md={1} lg={1}>
+          <HeadTitle>Utilities</HeadTitle>
+
+          <Grid container>
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
                   <img
-                    src={data.imageUrl}
-                    alt="profile"
+                    src="https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg"
+                    alt="AC"
                     style={{ width: "50px" }}
                   />
                 </Grid>
-                <Grid item xs={10} sm={10} md={11} lg={11}>
-                  <div>{data.name}</div>
-                  <OpacityText>{data.role}</OpacityText>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Air Conditioning</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities
+                      ?.airConditioning
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
                 </Grid>
               </Grid>
-            ))}
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/006/601/573/original/electric-socket-with-cable-vector.jpg"
+                    alt="AC"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Cable</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.cable
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://media.istockphoto.com/id/1234991640/vector/energy-electricity-power-icon.jpg?s=612x612&w=0&k=20&c=c7mEczpw6phZqtZE1C9BM3cX2QdgH7FwVhD6afpR3og="
+                    alt="Electricity"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Electricity</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.electricity
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://st2.depositphotos.com/1070291/44229/v/450/depositphotos_442291734-stock-illustration-propane-gas-cylinder-vector-glyph.jpg"
+                    alt="gas"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Gas</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.gas
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://img.freepik.com/premium-vector/stand-heater-icon-flat-illustration-stand-heater-vector-icon-web-design_98402-29470.jpg"
+                    alt="heater"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Heating</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.heat
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://icons.veryicon.com/png/o/miscellaneous/smart-icon-library/internet-61.png"
+                    alt="internet"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Internet</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.internet
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={3}>
+                <Grid item xs={4} sm={4} md={3} lg={2}>
+                  <img
+                    src="https://png.pngtree.com/png-vector/20191030/ourmid/pngtree-water-icons-isolated-on-white-background-vector-illustration-png-image_1870622.jpg"
+                    alt="water"
+                    style={{ width: "50px" }}
+                  />
+                </Grid>
+                <Grid item xs={8} sm={8} md={9} lg={10}>
+                  <div>Water</div>
+                  <OpacityText>
+                    {propertyDetails?.propertyDetails?.utilities?.water
+                      ? "Included in rent"
+                      : "Not included in rent"}
+                  </OpacityText>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
+        <Grid item xs={12} sm={12} md={3} lg={3}>
+          <HeadTitle>Features</HeadTitle>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://media.istockphoto.com/id/1449828500/vector/balcony-vector-icon.jpg?s=612x612&w=0&k=20&c=ycXXJ2w8M-WdhIekg8XldqalX2VucsoPZBM5f64hdW8="
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Balcony</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.balcony
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg"
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Elevator</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.elevator
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/000/599/049/original/elevator-icon-vector.jpg"
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Gym</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.gym
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/003/179/642/small/dumbbell-equipment-gym-isolated-icon-free-vector.jpg"
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Pool</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.pool
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://img.freepik.com/premium-vector/swimming-pool-icon-logo-vector-design-template_827767-3032.jpg"
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Dish Washer</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.dishwasher
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4} md={3} lg={2}>
+              <img
+                src="https://img.freepik.com/premium-vector/dishwasher-icon-simple-illustration-dishwasher-vector-icon-web-design-isolated-white-background_98396-9031.jpg"
+                alt="AC"
+                style={{ width: "50px" }}
+              />
+            </Grid>
+            <Grid item xs={8} sm={8} md={9} lg={10}>
+              <div>Laundry</div>
+              <OpacityText>
+                {propertyDetails?.propertyDetails?.features?.laundry
+                  ? "Available"
+                  : "N/A"}
+              </OpacityText>
+            </Grid>
+          </Grid>
+        </Grid>
+
       </Grid>
-      <Grid></Grid>
     </div>
   );
 };
