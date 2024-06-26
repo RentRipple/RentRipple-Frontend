@@ -1,0 +1,27 @@
+/* Custom styles for react-slick carousel */
+.slick-next {
+    right: 19px;
+    z-index: 1;
+  }
+  
+  .slick-prev {
+    left: 19px;
+    z-index: 1;
+  }
+  
+  /* Style for the next and previous buttons */
+  .slick-next:before,
+  .slick-prev:before {
+    font-size: 30px;
+  }
+  
+  /* Style for the dots */
+  .slick-dots li button:before {
+    font-size: 12px;
+   
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #000; /* Change this to your desired color */
+  }
+  
