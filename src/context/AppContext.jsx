@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const LOGIN_URL = `${BACKEND_URL}/api/auth/login`;
@@ -12,6 +13,8 @@ const AppContext = createContext();
 const ContextProvider = ({ children }) => {
   // State to be shared
   const [isLogin, setIsLogin] = useState(false);
+
+  const navigate = useNavigate()
 
   const [name, setName] = useState(
     sessionStorage.getItem("name") || "",
@@ -159,7 +162,7 @@ const ContextProvider = ({ children }) => {
         setRefreshToken("");
         setIsLogin(false);
         toast.success("Logout successful");
-
+        navigate("/")
       }
     } catch (error) {
       console.log("ERROR", error);
