@@ -11,11 +11,11 @@ const Root = styled("div")(() => ({
 const MainLayoutDiv = styled("div")(() => ({
   zIndex: "1",
   position: "relative",
-  // minHeight: "calc(100vh - 16px)",
+  minHeight: "calc(100vh - 16px)",
   // backgroundColor: "green",
   display: "flex",
   justifyContent: "center",
-  padding: "10px 100px 10px 100px",
+  padding: "10px 25px 10px 25px",
   "@media(max-width:800px)": {
     padding: "10px",
   },
@@ -23,11 +23,11 @@ const MainLayoutDiv = styled("div")(() => ({
 
 const Content = styled("div")(() => ({
   width: "100%",
-  maxWidth: "1200px",
+  // maxWidth: "1200px",
   // backgroundColor: "white",
 }));
 
-const HomeLayout = ({ children }) => {
+const GeneralLayout = ({ children }) => {
   return (
     <Root>
       <TopBar />
@@ -39,8 +39,8 @@ const HomeLayout = ({ children }) => {
   );
 };
 
-HomeLayout.propTypes = {
+GeneralLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default HomeLayout;
+export default GeneralLayout;

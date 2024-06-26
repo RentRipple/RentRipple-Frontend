@@ -3,6 +3,7 @@
 import * as reviews from "../views";
 import LoginLayout from "../layout/loginLayout";
 import HomeLayout from "../layout/homeLayout";
+import GeneralLayout from "../layout/generalLayout";
 
 const routData = [
   {
@@ -40,6 +41,14 @@ const routData = [
     id: "4",
     path: "/property-details",
     component: reviews.PropertyDetails,
+    layout: GeneralLayout,
+    exact: true,
+  },
+
+  {
+    id: "5",
+    path: "/UserProfile",
+    component: reviews.UserProfile,
     layout: HomeLayout,
     exact: true,
   },
