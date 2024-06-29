@@ -15,7 +15,7 @@ import {
 import { styled } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState, useEffect, useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/logo";
 import profile from "../../assets/profile.svg";
 import { AppContext } from "../../context/AppContext";
@@ -66,8 +66,6 @@ const LogoBox = styled(Box)({
 
 function Header() {
   const { name, isLogin, handleLogout } = useContext(AppContext);
-
-  const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -144,7 +142,7 @@ function Header() {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </>
@@ -268,6 +266,7 @@ function Header() {
         color="inherit"
         to={href}
         className="menuButton"
+        activeClassName="active"
         style={{
           padding: "25px",
           textDecoration: "none",

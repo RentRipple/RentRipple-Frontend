@@ -15,6 +15,7 @@ const ContextProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
 
   const navigate = useNavigate()
+  const [propertyDetails, setPropertyDetails] = useState();
 
   const [name, setName] = useState(
     sessionStorage.getItem("name") || "",
@@ -169,6 +170,42 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const getPropertyDetails = async (propertyId) => {
+    try {
+      console.log("Property ID", propertyId);
+      
+      const token = accessToken;
+      console.log("Token", token);
+
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/property/get-properties/${propertyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 200) {
+        // console.log("Property Details", res.data);
+        setPropertyDetails(res.data);
+      }
+    } catch (error) {
+      console.log("ERROR", error);
+      if (error.response.status === 401) {
+        const jwtRes = await refreshTokens();
+        if ( jwtRes && jwtRes.status === 200) {
+          setAccessToken(jwtRes.data.accessToken);
+          setRefreshToken(jwtRes.data.refreshToken);
+          setPropertyDetails(jwtRes.data);
+          // Retry the protected request with the new token
+          await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/property/get-properties/${propertyId}`, {
+            headers: {
+              Authorization: `Bearer ${jwtRes.data.accessToken}`,
+            },
+          });
+        }
+    }
+  }
+
+  };
+  
   const handleProtected = async () => {
     try {
       await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
@@ -196,6 +233,8 @@ const ContextProvider = ({ children }) => {
 
   };
 
+
+
   return (
     <AppContext.Provider
       value={{
@@ -211,6 +250,8 @@ const ContextProvider = ({ children }) => {
         handleLogout,
         handleProtected,
         handleSignUp,
+        getPropertyDetails,
+        propertyDetails,
       }}
     >
       {children}
