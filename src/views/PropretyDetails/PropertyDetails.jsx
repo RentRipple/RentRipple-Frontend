@@ -1,16 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { styled } from "@mui/system";
 import profileImage from "../../assets/profile.svg";
-import { Grid, InputBase, IconButton, Paper } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
+import { Button, Grid, TextField } from "@mui/material";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
+import TableBody from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
 import { AppContext } from "../../context/AppContext";
-import { toast } from "react-toastify";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,12 +18,14 @@ const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
   borderRadius: "16px",
 }));
+
 const LargeImageStyle = styled("img")(() => ({
   width: "100%",
   height: "400px",
   objectFit: "cover",
   borderRadius: "16px",
 }));
+
 const ChatGrid = styled("div")(() => ({
   padding: 10,
   backgroundColor: "#E7EDF2",
@@ -33,18 +33,22 @@ const ChatGrid = styled("div")(() => ({
   textAlign: "center",
   height: "385px",
 }));
+
 const HeadTitle = styled("div")(() => ({
   fontSize: "26px",
   paddingTop: "26px",
   paddingBottom: "12px",
 }));
+
 const OpacityText = styled("div")(() => ({
   opacity: "0.5",
 }));
+
 const AboutProperty = styled("div")(() => ({
   fontSize: "14px",
   opacity: "0.8",
 }));
+
 const OwnerDetailsStyle = styled("div")(() => ({
   fontSize: "13.5px",
   padding: "10px",
@@ -54,24 +58,47 @@ const OwnerDetailsStyle = styled("div")(() => ({
 const PropertyDetails = () => {
   const location = useLocation();
   const { data } = location.state;
-  const [message, setMessage] = useState("");
-  const { getPropertyDetails, propertyDetails } = useContext(AppContext);
-
-  const handleMessage = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const handleButtonClick = () => {
-    const finalMessage =
-      message.trim() === "" ? "Interested in this property" : message;
-    console.log("Message sent:", finalMessage);
-    toast.success("Message sent successfully");
-    // Navigate to chat page
-  };
+  const { getPropertyDetails, propertyDetails, name } = useContext(AppContext);
+  const [editMode, setEditMode] = useState(false);
+  const [editedDetails, setEditedDetails] = useState({});
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
-    getPropertyDetails(data.id);
-  }, [data.id]);
+    if (data.id && !propertyDetails) {
+      getPropertyDetails(data.id);
+    }
+  }, [data.id, getPropertyDetails]);
+
+  useEffect(() => {
+    if (propertyDetails?.propertyDetails) {
+      setEditedDetails(propertyDetails.propertyDetails);
+      setImages(propertyDetails.propertyDetails.imageUrl || []);
+    }
+  }, [propertyDetails]);
+
+  const handleEditToggle = () => {
+    setEditMode(!editMode);
+  };
+
+  const handleChange = (e) => {
+    setEditedDetails({
+      ...editedDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    // EDIT API (PATCH)
+    console.log("Edited Data", editedDetails);
+    console.log("Images", images);
+    setEditMode(false);
+  };
+
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setImages((prevImages) => [...prevImages, ...newImages]);
+  };
 
   const settings = {
     dots: true,
@@ -81,91 +108,201 @@ const PropertyDetails = () => {
     slidesToScroll: 1,
   };
 
-  const features = propertyDetails?.propertyDetails?.utilities;
-  console.log("Features", features);
-  // const trueFeatures = Object.keys(features).filter(key => features[key]);
-  // console.log("trueFeatures", trueFeatures);
-
   return (
     <div style={{ fontFamily: "Roboto" }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={12} md={9} lg={9}>
-          {console.log("Property Details", propertyDetails)}
-          <ImageGrid>
-            <Slider {...settings}>
-              {propertyDetails?.propertyDetails?.imageUrl.map((url, index) => (
-                <LargeImageStyle key={index} src={url} alt={`Slide ${index}`} />
-              ))}
-            </Slider>
-          </ImageGrid>
-        </Grid>
-        <Grid item xs={12} sm={12} md={3} lg={3}>
-          <ChatGrid>
-            <HeadTitle style={{ marginBottom: "14px" }}>
-              Chat with Owner
-            </HeadTitle>
-            <img
-              src={propertyDetails?.ownerDetails?.imageUrl || profileImage}
-              alt="profile"
-              style={{ width: "80px" }}
-            />
-            <p>{propertyDetails?.ownerDetails?.name}</p>
-            <OwnerDetailsStyle>
-              Ratings: {propertyDetails?.ownerDetails?.rating}
-            </OwnerDetailsStyle>
-            <OwnerDetailsStyle>
-              Email: {propertyDetails?.ownerDetails?.email}
-            </OwnerDetailsStyle>
-            <OwnerDetailsStyle style={{ marginBottom: "14px" }}>
-              Contact: {propertyDetails?.ownerDetails?.phone}
-            </OwnerDetailsStyle>
-            <Paper
-              component="form"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                value={message}
-                onChange={handleMessage}
-                placeholder="Interested in this property"
-                inputProps={{ "aria-label": "send a message" }}
-              />
-              <IconButton
-                color="primary"
-                aria-label="directions"
-                onClick={handleButtonClick}
-              >
-                <SendIcon />
-              </IconButton>
-            </Paper>
-          </ChatGrid>
+        {name === propertyDetails?.ownerDetails?.name ? (
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <ImageGrid>
+              {editMode ? (
+                <div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                  />
+                  <div
+                    style={{ display: "flex", gap: "10px", marginTop: "10px" }}
+                  >
+                    {propertyDetails?.propertyDetails?.imageUrl.map(
+                      (url, index) => (
+                        <img
+                          key={index}
+                          src={url}
+                          alt={`Thumbnail ${index}`}
+                          style={{
+                            width: "80px",
+                            height: "80px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                          }}
+                        />
+                      )
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <Slider {...settings}>
+                  {propertyDetails?.propertyDetails?.imageUrl?.map(
+                    (url, index) => (
+                      <LargeImageStyle
+                        key={index}
+                        src={url}
+                        alt={`Slide ${index}`}
+                      />
+                    )
+                  ) || <p>No images available</p>}
+                </Slider>
+              )}
+            </ImageGrid>
+          </Grid>
+        ) : (
+          <>
+            <Grid item xs={12} sm={12} md={9} lg={9}>
+              <ImageGrid>
+                {editMode ? (
+                  <div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handleImageUpload}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      {propertyDetails?.propertyDetails?.imageUrl.map(
+                        (url, index) => (
+                          <img
+                            key={index}
+                            src={url}
+                            alt={`Thumbnail ${index}`}
+                            style={{
+                              width: "80px",
+                              height: "80px",
+                              objectFit: "cover",
+                              borderRadius: "8px",
+                            }}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <Slider {...settings}>
+                    {propertyDetails?.propertyDetails?.imageUrl?.map(
+                      (url, index) => (
+                        <LargeImageStyle
+                          key={index}
+                          src={url}
+                          alt={`Slide ${index}`}
+                        />
+                      )
+                    ) || <p>No images available</p>}
+                  </Slider>
+                )}
+              </ImageGrid>
+            </Grid>
+            <Grid item xs={12} sm={12} md={3} lg={3}>
+              <ChatGrid>
+                <HeadTitle style={{ marginBottom: "14px" }}>
+                  Owner Details
+                </HeadTitle>
+                <img
+                  src={propertyDetails?.ownerDetails?.imageUrl || profileImage}
+                  alt="profile"
+                  style={{ width: "80px" }}
+                />
+                <p>{propertyDetails?.ownerDetails?.name}</p>
+                <OwnerDetailsStyle>
+                  Ratings: {propertyDetails?.ownerDetails?.rating}
+                </OwnerDetailsStyle>
+                <OwnerDetailsStyle>
+                  Email: {propertyDetails?.ownerDetails?.email}
+                </OwnerDetailsStyle>
+                <OwnerDetailsStyle style={{ marginBottom: "14px" }}>
+                  Contact: {propertyDetails?.ownerDetails?.phone}
+                </OwnerDetailsStyle>
+              </ChatGrid>
+            </Grid>
+          </>
+        )}
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          {name === propertyDetails?.ownerDetails?.name ? (
+            <>
+              {!editMode && (
+                <>
+                  <Button style={{backgroundColor:"#04c4cc", color:"white", margin:"0 20px 0 0"}} onClick={handleEditToggle}> Edit Property</Button>
+                  <Button style={{backgroundColor:"#04c4cc", color:"white"}}> Add new property</Button>
+                </>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
         </Grid>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <HeadTitle>About this Property</HeadTitle>
-          <AboutProperty>
-            {propertyDetails?.propertyDetails?.description.slice(0, 200) +
-              "..."}
-          </AboutProperty>
-          <AboutProperty>
-            Address: {propertyDetails?.propertyDetails?.address_line1},{" "}
-            {propertyDetails?.propertyDetails?.city},{" "}
-            {propertyDetails?.propertyDetails?.country}
-          </AboutProperty>
+          {editMode ? (
+            <>
+              <AboutProperty>
+                Description:
+                <TextField
+                  name="description"
+                  value={editedDetails.description}
+                  onChange={handleChange}
+                  fullWidth
+                  multiline
+                  rows={4}
+                />
+              </AboutProperty>
+              <AboutProperty>
+                Address:{" "}
+                <TextField
+                  name="address_line1"
+                  value={editedDetails.address_line1}
+                  onChange={handleChange}
+                  fullWidth
+                  rows={4}
+                />
+              </AboutProperty>
+            </>
+          ) : (
+            <>
+              <AboutProperty>
+                {propertyDetails?.propertyDetails?.description.slice(0, 200) +
+                  "..."}
+              </AboutProperty>
+              <AboutProperty>
+                Address: {propertyDetails?.propertyDetails?.address_line1},{" "}
+                {propertyDetails?.propertyDetails?.city},{" "}
+                {propertyDetails?.propertyDetails?.country}
+              </AboutProperty>
+            </>
+          )}
           <HeadTitle>Pricing</HeadTitle>
           <TableContainer>
             <Table sx={{ minWidth: 500 }}>
               <TableBody>
-                {/* {propertyDetails?.pricingDetails &&
-                  propertyDetails?.pricingDetails.map((row) => ( */}
                 <TableRow align="left">
                   <TableCell component="th">
                     <OpacityText>Price</OpacityText>
                   </TableCell>
                   <TableCell>
-                    {propertyDetails?.propertyDetails?.price}
+                    {editMode ? (
+                      <TextField
+                        name="price"
+                        value={editedDetails.price}
+                        onChange={handleChange}
+                      />
+                    ) : (
+                      propertyDetails?.propertyDetails?.price
+                    )}
                   </TableCell>
                 </TableRow>
                 <TableRow align="left">
@@ -173,7 +310,15 @@ const PropertyDetails = () => {
                     <OpacityText>Deposit</OpacityText>
                   </TableCell>
                   <TableCell>
-                    {propertyDetails?.propertyDetails?.deposit}
+                    {editMode ? (
+                      <TextField
+                        name="deposit"
+                        value={editedDetails.deposit}
+                        onChange={handleChange}
+                      />
+                    ) : (
+                      propertyDetails?.propertyDetails?.deposit
+                    )}
                   </TableCell>
                 </TableRow>
                 <TableRow align="left">
@@ -181,10 +326,17 @@ const PropertyDetails = () => {
                     <OpacityText>Lease length</OpacityText>
                   </TableCell>
                   <TableCell>
-                    {propertyDetails?.propertyDetails?.leaseLength}
+                    {editMode ? (
+                      <TextField
+                        name="leaseLength"
+                        value={editedDetails.leaseLength}
+                        onChange={handleChange}
+                      />
+                    ) : (
+                      propertyDetails?.propertyDetails?.leaseLength
+                    )}
                   </TableCell>
                 </TableRow>
-                {/* ))} */}
               </TableBody>
             </Table>
           </TableContainer>
@@ -440,7 +592,14 @@ const PropertyDetails = () => {
             </Grid>
           </Grid>
         </Grid>
-
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          {editMode && (
+            <>
+              <Button onClick={handleEditToggle} style={{backgroundColor:"#04c4cc", color:"white", margin:"0 20px 0 0"}} > Cancel </Button>
+              <Button onClick={handleSave} style={{backgroundColor:"#04c4cc", color:"white"}}>Save Changes</Button>
+            </>
+          )}
+        </Grid>
       </Grid>
     </div>
   );
