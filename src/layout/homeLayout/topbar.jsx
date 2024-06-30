@@ -27,8 +27,8 @@ const headersData = [
     href: "/",
   },
   {
-    label: "Chats",
-    href: "/#",
+    label: "Add Property",
+    href: "/add-property",
   },
 ];
 

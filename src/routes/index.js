@@ -55,6 +55,13 @@ const routData = [
   },
 
   {
+    id: "6",
+    path: "/add-property",
+    component: reviews.AddProperty,
+    layout: GeneralLayout,
+  },
+
+  {
     id: "0",
     path: "/404",
     component: reviews.NotFound,

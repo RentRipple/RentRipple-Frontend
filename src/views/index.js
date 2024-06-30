@@ -5,4 +5,5 @@ export { Register } from "./Register"
 export { ForgotPassword } from "./ForgotPassword"
 export { NotFound } from "./NotFound"
 export { PropertyDetails } from "./PropretyDetails";
-export { Profile } from "./Profile"
+export { Profile } from "./Profile";
+export { AddProperty } from "./AddProperty";
