@@ -58,17 +58,17 @@ const OwnerDetailsStyle = styled("div")(() => ({
 const PropertyDetails = () => {
   const location = useLocation();
   const { data } = location.state;
-  const { getPropertyDetails, propertyDetails, name } = useContext(AppContext);
+  const { getPropertyDetails, propertyDetails, userId } = useContext(AppContext);
   const [editMode, setEditMode] = useState(false);
   const [editedDetails, setEditedDetails] = useState({});
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    if (data.id && !propertyDetails) {
+    if (data.id && (!propertyDetails || data.id !== propertyDetails.propertyDetails.id)) {
       getPropertyDetails(data.id);
     }
-  }, [data.id, getPropertyDetails]);
-
+  }, [data.id, getPropertyDetails, propertyDetails]);
+  
   useEffect(() => {
     if (propertyDetails?.propertyDetails) {
       setEditedDetails(propertyDetails.propertyDetails);
@@ -111,7 +111,7 @@ const PropertyDetails = () => {
   return (
     <div style={{ fontFamily: "Roboto" }}>
       <Grid container spacing={2}>
-        {name === propertyDetails?.ownerDetails?.name ? (
+        {userId === propertyDetails?.ownerDetails?.id ? (
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <ImageGrid>
               {editMode ? (
@@ -233,7 +233,7 @@ const PropertyDetails = () => {
           </>
         )}
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          {name === propertyDetails?.ownerDetails?.name ? (
+          {userId === propertyDetails?.ownerDetails?.id ? (
             <>
               {!editMode && (
                 <>
