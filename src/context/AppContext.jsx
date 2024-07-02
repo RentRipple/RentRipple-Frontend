@@ -21,6 +21,10 @@ const ContextProvider = ({ children }) => {
     sessionStorage.getItem("name") || "",
   );
 
+  const [userId, setUserId] = useState(
+    sessionStorage.getItem("userId") || "",
+  );
+
   const [accessToken, setAccessTokenState] = useState(
     sessionStorage.getItem("accessToken") || "",
   );
@@ -52,6 +56,17 @@ const ContextProvider = ({ children }) => {
     } else {
       sessionStorage.removeItem("name");
       setName(null)
+    }
+  };
+
+  const setUserIdLocal = (userId) => {
+    if (userId) {
+      sessionStorage.setItem("userId", userId);
+      setUserId(userId)
+    }
+    else {
+      sessionStorage.removeItem("userId");
+      setUserId(null)
     }
   };
 
@@ -131,7 +146,8 @@ const ContextProvider = ({ children }) => {
       if (res.status === 200) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
-        setNameLocal(res.data.name)
+        setNameLocal(res.data.name);
+        setUserIdLocal(res.data._id);
         setIsLogin(true);
       } else if (res.status === 401) {
         const jwtRes = await refreshTokens();
@@ -161,6 +177,8 @@ const ContextProvider = ({ children }) => {
       if (res.status === 204) {
         setAccessToken("");
         setRefreshToken("");
+        setNameLocal("");
+        setUserIdLocal("");
         setIsLogin(false);
         toast.success("Logout successful");
         navigate("/")
@@ -239,6 +257,7 @@ const ContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         name,
+        userId,
         isLogin,
         setIsLogin,
         accessToken,

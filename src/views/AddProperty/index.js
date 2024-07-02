@@ -1,1 +1,1 @@
-export { AddProperty } from "./AddProperty";
+export { default as AddProperty } from "./AddProperty";

@@ -58,7 +58,7 @@ const routData = [
     id: "6",
     path: "/add-property",
     component: reviews.AddProperty,
-    layout: GeneralLayout,
+    layout: HomeLayout,
   },
 
   {
