@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import api from './api';
+import api from '../helpers/api';
+
 
 const ProfileContext = createContext();
 
