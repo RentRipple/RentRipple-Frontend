@@ -2,7 +2,6 @@ import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
-// Axios instance with default configuration
 const api = axios.create({
   baseURL: apiUrl,
   responseType: "json",
@@ -26,6 +25,20 @@ function setRefreshToken(token) {
   localStorage.setItem("refreshToken", token);
 }
 
+async function Logout() {
+  try {
+    await api.post("/api/auth/logout", { refreshToken: getRefreshToken() });
+  }
+  catch (error) {
+    console.log("Error logging out");
+  }
+  finally {
+    sessionStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    window.location.href = "/";
+  }
+ 
+}
 // Function to fetch a new access token using the refresh token
 async function fetchNewAccessToken() {
   const refreshToken = getRefreshToken();
@@ -37,65 +50,53 @@ async function fetchNewAccessToken() {
     const response = await api.post("/api/auth/refresh-token", { refreshToken });
     setAccessToken(response.data.accessToken);
     setRefreshToken(response.data.refreshToken);
-    return response.status; // Return status code
+    return response.data.accessToken;
   } catch (error) {
-    throw new Error("Failed to fetch new access");
+    throw error;
   }
 }
 
-let isRefreshing = false;
-let refreshSubscribers = [];
+// Function to handle API calls with automatic token refresh
+async function callApiWithRefresh(url, method = "get", data = null) {
+  let accessToken = sessionStorage.getItem("accessToken");
+  const config = {
+    url,
+    method,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    data,
+  };
 
-// Axios interceptor to handle token refreshing
-api.interceptors.response.use(
-  (response) => {
-    // Return the response directly if successful
+  try {
+    const response = await api(config);
     return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
-
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
-      if (isRefreshing) {
-        // If already refreshing, wait for new token
-        try {
-          const token = await new Promise((resolve) => {
-            refreshSubscribers.push((newToken) => {
-              resolve(newToken);
-            });
-          });
-          originalRequest.headers.Authorization = `Bearer ${token}`;
-          return api(originalRequest);
-        } catch (err) {
-          return Promise.reject(err);
-        }
-      }
-
-      originalRequest._retry = true;
-      isRefreshing = true;
-
+  } catch (error) {
+    
+    if (error.response && error.response.status === 401) {
       try {
-        const response = await fetchNewAccessToken();
-        if (response === 200) {
-          const token = sessionStorage.getItem('accessToken');
-          originalRequest.headers.Authorization = `Bearer ${token}`;
-          refreshSubscribers.forEach(callback => callback(token));
-          refreshSubscribers = [];
-          return api(originalRequest);
-        } else {
-          // Handle refresh token failure (e.g., logout)
-          return Promise.reject(error);
-        }
-      } catch (err) {
-        // Handle refresh token error (e.g., logout)
-        return Promise.reject(err);
-      } finally {
-        isRefreshing = false;
+        // Attempt to refresh the token
+        accessToken = await fetchNewAccessToken();
+
+        // Update the Authorization header with the new token
+        config.headers.Authorization = `Bearer ${accessToken}`;
+
+        // Retry the original request with the new token
+        const response = await api(config);
+        console.log(response);
+        return response;
+      } catch (refreshError) {
+        await Logout();
+        throw refreshError;
       }
     }
 
-    return Promise.reject(error);
+    await Logout();
+    throw error;
   }
-);
+}
 
-export default api;
+
+// Exporting the callApiWithRefresh function or other specific API functions
+export { callApiWithRefresh };

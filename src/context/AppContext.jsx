@@ -160,6 +160,8 @@ const ContextProvider = ({ children }) => {
       if (res.status === 204) {
         setAccessToken("");
         setRefreshToken("");
+        sessionStorage.clear();
+        localStorage.clear();
         setIsLogin(false);
         toast.success("Logout successful");
         navigate("/")

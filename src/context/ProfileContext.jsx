@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import api from '../helpers/api';
+import { callApiWithRefresh } from '../helpers/api';
 
 
 const ProfileContext = createContext();
@@ -13,17 +13,15 @@ const ProfileContextProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/api/user/viewUserProfile', {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
-        },
-      });
+      const response = await callApiWithRefresh("/api/user/viewUserProfile");
+      
 
       if (response.status === 200) {
         setUserProfile(response.data.userProfile);
       } else {
         throw new Error('Failed to fetch user profile');
       }
+      
     } catch (err) {
       setError(err.message);
     } finally {
@@ -34,12 +32,8 @@ const ProfileContextProvider = ({ children }) => {
   const updateUserProfile = async (updatedProfile) => {
     setLoading(true);
     try {
-      const response = await api.put('/api/user/editUserProfile', updatedProfile, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
-        },
-      });
-
+      const response = await callApiWithRefresh('/api/user/editUserProfile',"put", updatedProfile);
+      console.log(response);
       if (response.status === 200) {
         setUserProfile(updatedProfile);
       } else {
