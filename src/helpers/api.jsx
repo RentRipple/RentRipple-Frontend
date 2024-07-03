@@ -28,16 +28,13 @@ function setRefreshToken(token) {
 async function Logout() {
   try {
     await api.post("/api/auth/logout", { refreshToken: getRefreshToken() });
-  }
-  catch (error) {
+  } catch (error) {
     console.log("Error logging out");
-  }
-  finally {
+  } finally {
     sessionStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     window.location.href = "/";
   }
- 
 }
 // Function to fetch a new access token using the refresh token
 async function fetchNewAccessToken() {
@@ -46,14 +43,10 @@ async function fetchNewAccessToken() {
     throw new Error("No refresh token available");
   }
 
-  try {
-    const response = await api.post("/api/auth/refresh-token", { refreshToken });
-    setAccessToken(response.data.accessToken);
-    setRefreshToken(response.data.refreshToken);
-    return response.data.accessToken;
-  } catch (error) {
-    throw error;
-  }
+  const response = await api.post("/api/auth/refresh-token", { refreshToken });
+  setAccessToken(response.data.accessToken);
+  setRefreshToken(response.data.refreshToken);
+  return response.data.accessToken;
 }
 
 // Function to handle API calls with automatic token refresh
@@ -73,7 +66,6 @@ async function callApiWithRefresh(url, method = "get", data = null) {
     const response = await api(config);
     return response;
   } catch (error) {
-    
     if (error.response && error.response.status === 401) {
       try {
         // Attempt to refresh the token
@@ -96,7 +88,6 @@ async function callApiWithRefresh(url, method = "get", data = null) {
     throw error;
   }
 }
-
 
 // Exporting the callApiWithRefresh function or other specific API functions
 export { callApiWithRefresh };
