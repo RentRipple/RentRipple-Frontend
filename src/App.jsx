@@ -4,13 +4,16 @@ import { AppContent } from "./views";
 import { ContextProvider } from "./context/AppContext";
 import { ProfileContextProvider } from "./context/ProfileContext";
 import routes from "./routes";
+import { PropertyContextProvider } from "./context/PropertyContext";
 
 function App() {
   return (
     <Router>
       <ContextProvider>
         <ProfileContextProvider>
-          <AppContent routes={routes} />
+          <PropertyContextProvider>
+            <AppContent routes={routes} />
+          </PropertyContextProvider>
         </ProfileContextProvider>
       </ContextProvider>
     </Router>

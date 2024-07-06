@@ -38,7 +38,7 @@ const routData = [
 
   {
     id: "4",
-    path: "/property-details",
+    path: "/property-details/:id",
     component: reviews.PropertyDetails,
     layout: HomeLayout,
     exact: true,

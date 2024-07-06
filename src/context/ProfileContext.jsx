@@ -1,8 +1,7 @@
-// src/context/UserProfileContext.js
+import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
+import { callApiWithRefresh } from '../helpers/api';
 
-import axios from "axios";
-import React, { createContext, useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
 
 const ProfileContext = createContext();
 
@@ -14,25 +13,18 @@ const ProfileContextProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/user/viewUserProfile`,
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-          },
-        }
-      );
+      const response = await callApiWithRefresh("/api/user/viewUserProfile");
+      
 
-      const data = response.data
-
-      if (data.status === 200) {
-        setUserProfile(data.userProfile);
+      if (response.status === 200) {
+        setUserProfile(response.data.userProfile);
       } else {
-        throw new Error("Failed to fetch user profile");
+        throw new Error('Failed to fetch user profile');
       }
-      setLoading(false);
+      
     } catch (err) {
       setError(err.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -40,18 +32,12 @@ const ProfileContextProvider = ({ children }) => {
   const updateUserProfile = async (updatedProfile) => {
     setLoading(true);
     try {
-      const response = await fetch(`https://api.yourdomain.com/user/profile`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userProfile: updatedProfile }),
-      });
-      const data = await response.json();
-      if (data.status === 200) {
+      const response = await callApiWithRefresh('/api/user/editUserProfile',"put", updatedProfile);
+      console.log(response);
+      if (response.status === 200) {
         setUserProfile(updatedProfile);
       } else {
-        throw new Error("Failed to update user profile");
+        throw new Error('Failed to update user profile');
       }
     } catch (err) {
       setError(err.message);
@@ -76,7 +62,7 @@ const ProfileContextProvider = ({ children }) => {
 };
 
 ProfileContextProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Validate children as React nodes
+  children: PropTypes.node.isRequired,
 };
 
 export { ProfileContext, ProfileContextProvider };
