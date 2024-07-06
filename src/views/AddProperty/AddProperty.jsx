@@ -7,26 +7,44 @@ import {
   FormControlLabel,
   Checkbox,
   Paper,
+  Typography,
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import { AppContext } from "../../context/AppContext";
 import { styled } from "@mui/system";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const MainDiv = styled("div")(() => ({
   fontFamily: "Roboto",
 }));
-
 
 const HeadTitle = styled("div")(() => ({
   fontSize: "20px",
   paddingTop: "20px",
 }));
 
+const ImagePreview = styled("div")(() => ({
+  display: "flex",
+  marginTop: "10px",
+  alignItems: "center",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  backgroundColor: "#5e909117",
+  borderRadius: "10px",
+}));
+
+const ImageItem = styled("div")(() => ({
+  margin: "10px",
+  textAlign: "center",
+}));
+
 const AddProperty = () => {
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const ADDPROPERTY_URL = `${BACKEND_URL}/api/property/add-property`;
+  const ADDPROPERTYIMAGE_URL = `${BACKEND_URL}/api/property/add-property-images`;
   const { userId, accessToken } = useContext(AppContext);
-
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     address_line1: "",
     city: "",
@@ -69,6 +87,8 @@ const AddProperty = () => {
     ownerDetails: userId,
     extraFeatures: "",
   });
+  const [propertyId, setPropertyId] = useState(null);
+  const [showImageUpload, setShowImageUpload] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,34 +109,16 @@ const AddProperty = () => {
     });
   };
 
-  // const onDrop = (acceptedFiles) => {
-  //   const filePromises = acceptedFiles.map((file) => {
-  //     return new Promise((resolve, reject) => {
-  //       const reader = new FileReader();
-  //       reader.readAsDataURL(file);
-  //       reader.onload = () => resolve(reader.result);
-  //       reader.onerror = reject;
-  //     });
-  //   });
-
-  //   Promise.all(filePromises).then((fileContents) => {
-  //     setFormValues((prevValues) => ({
-  //       ...prevValues,
-  //       imageUrl: [...prevValues.imageUrl, ...fileContents],
-  //     }));
-  //   });
-  // };
-
   const onDrop = (acceptedFiles) => {
     const filePromises = acceptedFiles.map((file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
+        reader.onload = () => resolve({ base64: reader.result, file });
         reader.onerror = reject;
       });
     });
-  
+
     Promise.all(filePromises).then((fileContents) => {
       setFormValues((prevValues) => ({
         ...prevValues,
@@ -127,52 +129,51 @@ const AddProperty = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  // const addProperty = async (propertyData) => {
-  //   try {
-  //     const res = await axios.post(ADDPROPERTY_URL, propertyData, {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     if (res.status === 200) {
-  //       console.log("Property added successfully");
-  //     } else {
-  //       console.log("Failed to add property");
-  //     }
-  //     return res;
-  //   } catch (error) {
-  //     console.log("ERROR", error);
-  //     return error.response;
-  //   }
-  // };
-
   const addProperty = async (propertyData) => {
     try {
-      // Convert image URLs to base64 here if needed
-      const base64Images = await Promise.all(
-        propertyData.imageUrl.map(async (imageUrl) => {
-          const response = await axios.get(imageUrl, { responseType: 'blob' });
-          const reader = new FileReader();
-          reader.readAsDataURL(response.data);
-          return new Promise((resolve) => {
-            reader.onloadend = () => {
-              resolve(reader.result);
-            };
-          });
-        })
-      );
-  
-      // Replace image URLs with base64 encoded strings
-      propertyData.imageUrl = base64Images;
-  
-      const res = await axios.post(ADDPROPERTY_URL, propertyData, {
+      const {
+        address_line1,
+        city,
+        state,
+        country,
+        postal_code,
+        description,
+        price,
+        leaseLength,
+        deposit,
+        location,
+        utilities,
+        features,
+        extraFeatures,
+      } = propertyData;
+
+      const propertyDetails = {
+        address_line1,
+        city,
+        state,
+        country,
+        postal_code,
+        description,
+        price,
+        leaseLength,
+        deposit,
+        location,
+        utilities,
+        features,
+        extraFeatures,
+        // ownerDetails: userId,
+      };
+
+      const res = await axios.post(ADDPROPERTY_URL, propertyDetails, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-  
+
       if (res.status === 200) {
-        console.log("Property added successfully");
+        toast.success("Property added successfully");
+        setPropertyId(res.data._id); // Assuming the backend returns the property ID
+        setShowImageUpload(true);
       } else {
         console.log("Failed to add property");
       }
@@ -183,214 +184,274 @@ const AddProperty = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const addPropertyImages = async (imageData) => {
+    try {
+      const res = await axios.post(ADDPROPERTYIMAGE_URL, imageData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (res.status === 200) {
+        toast.success("Images added successfully");
+        navigate("/");
+      } else {
+        console.log("Failed to add images");
+      }
+      return res;
+    } catch (error) {
+      console.log("ERROR", error);
+      return error.response;
+    }
+  };
+
+  const handleSubmitProperty = async (e) => {
     e.preventDefault();
     console.log("formValues", formValues);
     const response = await addProperty(formValues);
     console.log("response", response);
   };
 
+  const handleSubmitImages = async (e) => {
+    e.preventDefault();
+    const imagePayload = {
+      propertyId: propertyId,
+      imageUrl: formValues.imageUrl.map((file) => file.base64),
+    };
+    const response = await addPropertyImages(imagePayload);
+    console.log("response", response);
+  };
+
+  
+
+  const handleRemoveImage = (index) => {
+    const updatedImages = [...formValues.imageUrl];
+    updatedImages.splice(index, 1);
+    setFormValues({
+      ...formValues,
+      imageUrl: updatedImages,
+    });
+  };
+
   return (
     <MainDiv>
-    <Paper style={{padding:"20px 80px"}}>
-      <h1>Add Property</h1>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12}>
-            <HeadTitle> Address </HeadTitle>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Address Line 1"
-              name="address_line1"
-              value={formValues.address_line1}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="City"
-              name="city"
-              value={formValues.city}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="State"
-              name="state"
-              value={formValues.state}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Country"
-              name="country"
-              value={formValues.country}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Postal Code"
-              name="postal_code"
-              value={formValues.postal_code}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}></Grid>
-          <Grid item xs={12} sm={12}>
-            <HeadTitle> Pricing Details </HeadTitle>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Price"
-              name="price"
-              value={formValues.price}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Lease Length"
-              name="leaseLength"
-              value={formValues.leaseLength}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Deposit"
-              name="deposit"
-              value={formValues.deposit}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Location"
-              name="location"
-              value={formValues.location}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={12}>
-            <HeadTitle> Property Details</HeadTitle>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <TextField
-              multiline
-              label="Description"
-              name="description"
-              value={formValues.description}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Extra Features"
-              name="extraFeatures"
-              value={formValues.extraFeatures}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <HeadTitle>Utilities</HeadTitle>
-            {Object.entries(formValues.utilities).map(([key, value]) => (
-              <FormControlLabel
-                key={key}
-                control={
-                  <Checkbox
-                    checked={value}
-                    onChange={(e) => handleCheckboxChange(e, "utilities")}
-                    name={key}
-                  />
-                }
-                label={key}
+      <Paper style={{ padding: "20px 80px" }}>
+        <h1>Add Property</h1>
+        <form onSubmit={handleSubmitProperty}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={12}>
+              <HeadTitle> Address </HeadTitle>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Address Line 1"
+                name="address_line1"
+                value={formValues.address_line1}
+                onChange={handleChange}
+                fullWidth
               />
-            ))}
-          </Grid>
-          <Grid item xs={12}>
-            <HeadTitle>Features</HeadTitle>
-            {Object.entries(formValues.features).map(([key, value]) => (
-              <FormControlLabel
-                key={key}
-                control={
-                  <Checkbox
-                    checked={value}
-                    onChange={(e) => handleCheckboxChange(e, "features")}
-                    name={key}
-                  />
-                }
-                label={key}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="City"
+                name="city"
+                value={formValues.city}
+                onChange={handleChange}
+                fullWidth
               />
-            ))}
-          </Grid>
-          <Grid item xs={12}>
-            <HeadTitle>Upload Images</HeadTitle>
-            <div
-              {...getRootProps({ className: "dropzone" })}
-              style={{
-                border: "2px dashed #cccccc",
-                padding: "20px",
-                textAlign: "center",
-              }}
-            >
-              <input {...getInputProps()} />
-              <h4>Drag and drop some files here, or click to select files</h4>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "10px",
-                  justifyContent: "center",
-                }}
-              >
-                {formValues.imageUrl.map((file, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      position: "relative",
-                      width: "100px",
-                      height: "100px",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <img
-                      src={file}
-                      alt={`Uploaded ${index}`}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="State"
+                name="state"
+                value={formValues.state}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Country"
+                name="country"
+                value={formValues.country}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Postal Code"
+                name="postal_code"
+                value={formValues.postal_code}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <HeadTitle> Pricing Details </HeadTitle>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Price"
+                name="price"
+                value={formValues.price}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Lease Length"
+                name="leaseLength"
+                value={formValues.leaseLength}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Deposit"
+                name="deposit"
+                value={formValues.deposit}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Location"
+                name="location"
+                value={formValues.location}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <HeadTitle> Property Details</HeadTitle>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                multiline
+                label="Description"
+                name="description"
+                value={formValues.description}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Extra Features"
+                name="extraFeatures"
+                value={formValues.extraFeatures}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <HeadTitle>Utilities</HeadTitle>
+              {Object.entries(formValues.utilities).map(([key, value]) => (
+                <FormControlLabel
+                  key={key}
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => handleCheckboxChange(e, "utilities")}
+                      name={key}
                     />
-                  </div>
-                ))}
-              </div>
-            </div>
+                  }
+                  label={key}
+                />
+              ))}
+            </Grid>
+            <Grid item xs={12}>
+              <HeadTitle>Features</HeadTitle>
+              {Object.entries(formValues.features).map(([key, value]) => (
+                <FormControlLabel
+                  key={key}
+                  control={
+                    <Checkbox
+                      checked={value}
+                      onChange={(e) => handleCheckboxChange(e, "features")}
+                      name={key}
+                    />
+                  }
+                  label={key}
+                />
+              ))}
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
+              >
+                Submit Property
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" style={{    backgroundColor: "rgb(4, 196, 204)",color: "white"}}>
-              Add Property
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Paper>
+        </form>
+
+        {showImageUpload && (
+          <form onSubmit={handleSubmitImages}>
+            <Grid container spacing={2} style={{ marginTop: "20px" }}>
+              <Grid item xs={12} sm={12}>
+                <HeadTitle>Upload Images</HeadTitle>
+              </Grid>
+              <Grid item xs={12}>
+                <div
+                  {...getRootProps()}
+                  style={{
+                    border: "1px dashed gray",
+                    padding: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  <input {...getInputProps()} />
+                  <p>Drag & drop images here, or click to select images</p>
+                </div>
+              </Grid>
+              {formValues.imageUrl.length > 0 && (
+                <Grid item xs={12}>
+                  <HeadTitle>Preview</HeadTitle>
+                  <ImagePreview>
+                    {formValues.imageUrl.map((file, index) => (
+                      <ImageItem key={index}>
+                        <img
+                          src={file.base64}
+                          alt={`Preview ${index}`}
+                          style={{ maxWidth: "100px", maxHeight: "100px" }}
+                        />
+                        <Typography variant="caption" style={{padding: "0 10px"}}>
+                          {file.file.name}
+                        </Typography>
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => handleRemoveImage(index)}
+                          style={{ marginTop: "5px", padding: "0"}}
+                        >
+                          Remove
+                        </Button>
+                      </ImageItem>
+                    ))}
+                  </ImagePreview>
+                </Grid>
+              )}
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
+                >
+                  Submit Images
+                </Button>
+              </Grid>
+              
+            </Grid>
+          </form>
+        )}
+      </Paper>
     </MainDiv>
   );
 };

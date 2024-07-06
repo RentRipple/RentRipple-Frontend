@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./imageCustom.css";
+import { features, utilities } from "../../helpers/utilityAndFeatures";
 
 const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
@@ -135,127 +136,6 @@ const PropertyDetails = () => {
     slidesToScroll: 1,
   };
 
-  // Data for utilities and features
-  const utilities = [
-    {
-      name: "Air Conditioning",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "airConditioning",
-    },
-    {
-      name: "Cable",
-      icon: "https://static.vecteezy.com/system/resources/previews/006/601/573/original/electric-socket-with-cable-vector.jpg",
-      key: "cable",
-    },
-    {
-      name: "Electricity",
-      icon: "https://media.istockphoto.com/id/1234991640/vector/energy-electricity-power-icon.jpg?s=612x612&w=0&k=20&c=c7mEczpw6phZqtZE1C9BM3cX2QdgH7FwVhD6afpR3og=",
-      key: "electricity",
-    },
-    {
-      name: "Gas",
-      icon: "https://st2.depositphotos.com/1070291/44229/v/450/depositphotos_442291734-stock-illustration-propane-gas-cylinder-vector-glyph.jpg",
-      key: "gas",
-    },
-    {
-      name: "Heating",
-      icon: "https://img.freepik.com/premium-vector/stand-heater-icon-flat-illustration-stand-heater-vector-icon-web-design_98402-29470.jpg",
-      key: "heat",
-    },
-    {
-      name: "Internet",
-      icon: "https://icons.veryicon.com/png/o/miscellaneous/smart-icon-library/internet-61.png",
-      key: "internet",
-    },
-    {
-      name: "Water",
-      icon: "https://png.pngtree.com/png-vector/20191030/ourmid/pngtree-water-icons-isolated-on-white-background-vector-illustration-png-image_1870622.jpg",
-      key: "water",
-    },
-  ];
-
-  const features = [
-    {
-      name: "Balcony",
-      icon: "https://media.istockphoto.com/id/1449828500/vector/balcony-vector-icon.jpg?s=612x612&w=0&k=20&c=ycXXJ2w8M-WdhIekg8XldqalX2VucsoPZBM5f64hdW8=",
-      key: "balcony",
-    },
-    {
-      name: "Dish Washer",
-      icon: "https://img.freepik.com/premium-vector/dishwasher-icon-simple-illustration-dishwasher-vector-icon-web-design-isolated-white-background_98396-9031.jpg",
-      key: "dishwasher",
-    },
-    {
-      name: "Elevator",
-      icon: "https://static.vecteezy.com/system/resources/thumbnails/003/179/642/small/dumbbell-equipment-gym-isolated-icon-free-vector.jpg",
-      key: "elevator",
-    },
-    {
-      name: "Fireplace",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "fireplace",
-    },
-    {
-      name: "Furnished",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "furnished",
-    },
-    {
-      name: "Garbage Disposal",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "garbageDisposal",
-    },
-    {
-      name: "Gym",
-      icon: "https://static.vecteezy.com/system/resources/thumbnails/003/179/642/small/dumbbell-equipment-gym-isolated-icon-free-vector.jpg",
-      key: "gym",
-    },
-    {
-      name: "Hot Tub",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "hotTub",
-    },
-    {
-      name: "Laundry",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "laundry",
-    },
-    {
-      name: "Microwave",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "microwave",
-    },
-    {
-      name: "Parking",
-      icon: "https://img.freepik.com/premium-vector/swimming-pool-icon-logo-vector-design-template_827767-3032.jpg",
-      key: "parking",
-    },
-    {
-      name: "Pet Friendly",
-      icon: "https://static.vecteezy.com/system/resources/thumbnails/003/179/642/small/dumbbell-equipment-gym-isolated-icon-free-vector.jpg",
-      key: "petFriendly",
-    },
-    {
-      name: "Pool",
-      icon: "https://img.freepik.com/premium-vector/swimming-pool-icon-logo-vector-design-template_827767-3032.jpg",
-      key: "pool",
-    },
-    {
-      name: "Refrigerator",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "refrigerator",
-    },
-    {
-      name: "Stove",
-      icon: "https://static.vecteezy.com/system/resources/previews/025/725/916/original/ac-outside-unit-thick-line-icon-for-personal-and-commercial-use-free-vector.jpg",
-      key: "stove",
-    },
-    {
-      name: "Wheelchair Accessible",
-      icon: "https://static.vecteezy.com/system/resources/thumbnails/003/179/642/small/dumbbell-equipment-gym-isolated-icon-free-vector.jpg",
-      key: "wheelchairAccessible",
-    },
-  ];
 
   return (
     <div style={{ fontFamily: "Roboto" }}>
