@@ -161,7 +161,6 @@ const AddProperty = () => {
         utilities,
         features,
         extraFeatures,
-        // ownerDetails: userId,
       };
 
       const res = await axios.post(ADDPROPERTY_URL, propertyDetails, {
@@ -172,7 +171,7 @@ const AddProperty = () => {
 
       if (res.status === 200) {
         toast.success("Property added successfully");
-        setPropertyId(res.data._id); // Assuming the backend returns the property ID
+        setPropertyId(res.data._id); 
         setShowImageUpload(true);
       } else {
         console.log("Failed to add property");
