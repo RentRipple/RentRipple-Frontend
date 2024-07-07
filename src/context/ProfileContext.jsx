@@ -17,7 +17,7 @@ const ProfileContextProvider = ({ children }) => {
       
 
       if (response.status === 200) {
-        setUserProfile(response.data.userProfile);
+        setUserProfile(response.data.userProfile.UserDetails);
       } else {
         throw new Error('Failed to fetch user profile');
       }
