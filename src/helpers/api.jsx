@@ -27,7 +27,7 @@ function setRefreshToken(token) {
 
 async function Logout() {
   try {
-    await api.post("/api/auth/logout", { refreshToken: getRefreshToken() });
+    await api.delete("/api/auth/logout", { refreshToken: getRefreshToken() });
   } catch (error) {
     console.log("Error logging out");
   } finally {
@@ -52,13 +52,18 @@ async function fetchNewAccessToken() {
 // Function to handle API calls with automatic token refresh
 async function callApiWithRefresh(url, method = "get", data = null) {
   let accessToken = sessionStorage.getItem("accessToken");
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+  };
+  if (data instanceof FormData) {
+    headers["Content-Type"] = "multipart/form-data";
+  } else {
+    headers["Content-Type"] = "application/json";
+  }
   const config = {
     url,
     method,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     data,
   };
 
@@ -76,7 +81,6 @@ async function callApiWithRefresh(url, method = "get", data = null) {
 
         // Retry the original request with the new token
         const response = await api(config);
-        console.log(response);
         return response;
       } catch (refreshError) {
         await Logout();

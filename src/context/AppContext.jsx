@@ -20,6 +20,10 @@ const ContextProvider = ({ children }) => {
     sessionStorage.getItem("name") || "",
   );
 
+  const [userId, setUserId] = useState(
+    sessionStorage.getItem("userId") || "",
+  );
+
   const [accessToken, setAccessTokenState] = useState(
     sessionStorage.getItem("accessToken") || "",
   );
@@ -51,6 +55,17 @@ const ContextProvider = ({ children }) => {
     } else {
       sessionStorage.removeItem("name");
       setName(null)
+    }
+  };
+
+  const setUserIdLocal = (userId) => {
+    if (userId) {
+      sessionStorage.setItem("userId", userId);
+      setUserId(userId)
+    }
+    else {
+      sessionStorage.removeItem("userId");
+      setUserId(null)
     }
   };
 
@@ -130,7 +145,8 @@ const ContextProvider = ({ children }) => {
       if (res.status === 200) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
-        setNameLocal(res.data.name)
+        setNameLocal(res.data.name);
+        setUserIdLocal(res.data._id);
         setIsLogin(true);
       } else if (res.status === 401) {
         const jwtRes = await refreshTokens();
@@ -154,12 +170,14 @@ const ContextProvider = ({ children }) => {
       const res = await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`,
         {
-          data: { refreshToken },
+          data: { refreshToken: localStorage.getItem("refreshToken") },
         },
       );
       if (res.status === 204) {
         setAccessToken("");
         setRefreshToken("");
+        setNameLocal("");
+        setUserIdLocal("");
         sessionStorage.clear();
         localStorage.clear();
         setIsLogin(false);
@@ -171,47 +189,21 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const handleProtected = async () => {
-    try {
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-    } catch (error) {
-      console.log("ERROR", error);
-      if (error.response.status === 401) {
-        const jwtRes = await refreshTokens();
-        if ( jwtRes && jwtRes.status === 200) {
-          setAccessToken(jwtRes.data.accessToken);
-          setRefreshToken(jwtRes.data.refreshToken);
-          // Retry the protected request with the new token
-          await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
-            headers: {
-              Authorization: `Bearer ${jwtRes.data.accessToken}`,
-            },
-          });
-        }
-      
-    }
-  }
 
-  };
 
   return (
     <AppContext.Provider
       value={{
         name,
+        userId,
         isLogin,
         setIsLogin,
         accessToken,
         setAccessToken,
         refreshToken,
         setRefreshToken,
-        refreshTokens,
         handleLogin,
         handleLogout,
-        handleProtected,
         handleSignUp,
       }}
     >

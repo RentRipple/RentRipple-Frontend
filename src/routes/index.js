@@ -3,6 +3,7 @@
 import * as reviews from "../views";
 import LoginLayout from "../layout/loginLayout";
 import HomeLayout from "../layout/homeLayout";
+import GeneralLayout from "../layout/generalLayout";
 
 const routData = [
   {
@@ -38,9 +39,10 @@ const routData = [
 
   {
     id: "4",
-    path: "/property-details/:id",
+    path: "/property-details/:propertyId",
     component: reviews.PropertyDetails,
-    layout: HomeLayout,
+    guard: true,
+    layout: GeneralLayout,
     exact: true,
   },
 
@@ -50,6 +52,13 @@ const routData = [
     component: reviews.Profile,
     layout: HomeLayout,
     exact: true,
+  },
+
+  {
+    id: "6",
+    path: "/add-property",
+    component: reviews.AddProperty,
+    layout: HomeLayout,
   },
 
   {

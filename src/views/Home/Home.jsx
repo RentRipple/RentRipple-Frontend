@@ -15,7 +15,7 @@ const SearchBoxStyled = styled(SearchBox)({
   justifyContent: "center",
 });
 
-const Item = styled(Paper)(() => ({
+const FilterItem = styled(Paper)(() => ({
   textAlign: "center",
   padding: "8px 18px",
   fontFamily: "Roboto",
@@ -29,7 +29,7 @@ const StatText = styled("div")(() => ({
   fontFamily: "Roboto",
   fontSize: "14px",
   color: "#333",
-  margin: "18px 0px",
+  margin: "10px 0px",
   textAlign: "left",
 }));
 
@@ -68,6 +68,23 @@ const SearchBoxx = <SearchBoxStyled />;
 
 const Home = () => {
   const navigate = useNavigate();
+  // const [propertyList, setPropertyList] = useState([]);
+
+  // const getPropertyList = async () => {
+  //   try {
+  //     // http://localhost:8000/api/property/get-properties
+  //     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/property/get-properties`);
+
+  //     if(res.status === 200)
+  //       {
+  //         setPropertyList(res.data.properties)
+  //       }
+  //     // console.log("Property List", res.data);
+  //   } catch (error) {
+  //     console.log("ERROR", error);
+  //   }
+  // };
+
   const { properties, fetchProperties, loading, error } = useContext(PropertyContext);
 
   useEffect(() => {
@@ -91,15 +108,14 @@ const Home = () => {
             {SearchBoxx}
           </Grid>
           <Grid container spacing={2} xs={12} style={{ marginTop: "10px" }}>
-            {filters &&
-              filters.map((data, i) => (
-                <Grid item xs="auto" key={i}>
-                  <Item>{data.name}</Item>
-                </Grid>
-              ))}
+            {filters.map((data, i) => (
+              <Grid item xs="auto" key={i}>
+                <FilterItem>{data.name}</FilterItem>
+              </Grid>
+            ))}
           </Grid>
           <Grid xs={12}>
-            <StatText>1,000+ rentals : Sep 12 - Sep 15</StatText>
+            <StatText style={{ padding: "8px 0px" }}>1,000+ rentals : Sep 12 - Sep 15</StatText>
           </Grid>
           <Grid container spacing={2} xs={12}>
             {loading ? (
@@ -110,7 +126,7 @@ const Home = () => {
               properties &&
               properties.map((data, i) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-                  <Item
+                  <FilterItem
                     style={{
                       backgroundColor: "white",
                       height: "260px",
@@ -121,7 +137,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src={data.imageUrl[0]}
+                      src={data.imageUrl[0] }
                       alt="hotel"
                       style={{
                         width: "100%",
@@ -137,7 +153,7 @@ const Home = () => {
                     <StatText style={{ color: "#879AAD", padding: "0px 8px" }}>
                       {data.price}/ per month
                     </StatText>
-                  </Item>
+                  </FilterItem>
                 </Grid>
               ))
             )}
