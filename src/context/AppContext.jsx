@@ -154,7 +154,7 @@ const ContextProvider = ({ children }) => {
       const res = await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`,
         {
-          data: { refreshToken },
+          data: { refreshToken: localStorage.getItem("refreshToken") },
         },
       );
       if (res.status === 204) {
@@ -171,33 +171,6 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const handleProtected = async () => {
-    try {
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-    } catch (error) {
-      console.log("ERROR", error);
-      if (error.response.status === 401) {
-        const jwtRes = await refreshTokens();
-        if ( jwtRes && jwtRes.status === 200) {
-          setAccessToken(jwtRes.data.accessToken);
-          setRefreshToken(jwtRes.data.refreshToken);
-          // Retry the protected request with the new token
-          await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proctected`, {
-            headers: {
-              Authorization: `Bearer ${jwtRes.data.accessToken}`,
-            },
-          });
-        }
-      
-    }
-  }
-
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -208,10 +181,8 @@ const ContextProvider = ({ children }) => {
         setAccessToken,
         refreshToken,
         setRefreshToken,
-        refreshTokens,
         handleLogin,
         handleLogout,
-        handleProtected,
         handleSignUp,
       }}
     >

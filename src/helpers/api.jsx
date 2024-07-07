@@ -27,7 +27,7 @@ function setRefreshToken(token) {
 
 async function Logout() {
   try {
-    await api.post("/api/auth/logout", { refreshToken: getRefreshToken() });
+    await api.delete("/api/auth/logout", { refreshToken: getRefreshToken() });
   } catch (error) {
     console.log("Error logging out");
   } finally {
