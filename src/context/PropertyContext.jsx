@@ -32,16 +32,18 @@ const PropertyContextProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await callApiWithRefresh(
-        "api/property/get-properties",
+        `api/property/get-properties`, 
         "get"
       );
-      setProperties(response.data.properties);
+      setProperties(response.data.properties || []);
+      console.log(properties,"properties")
     } catch (err) {
       setError(err);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const fetchPropertyById = async (propertyId) => {
     try {
