@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./imageCustom.css";
 import { features, utilities } from "../../helpers/utilityAndFeatures";
+import { PropertyContext } from "../../context/PropertyContext";
 
 const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
@@ -57,16 +58,16 @@ const OwnerDetailsStyle = styled("div")(() => ({
 
 const PropertyDetails = () => {
   const navigate = useNavigate();
-  const { getPropertyDetails, propertyDetails, userId } =
-    useContext(AppContext);
+  const { userId } = useContext(AppContext);
+  const { fetchPropertyById, propertyDetails } = useContext(PropertyContext);
   const [editMode, setEditMode] = useState(false);
   const [editedDetails, setEditedDetails] = useState({});
   const [images, setImages] = useState([]);
 
+  
   const propertyId = useParams();
-  // console.log("property id", propertyId);
   useEffect(() => {
-    getPropertyDetails(propertyId.propertyId);
+    fetchPropertyById(propertyId.propertyId);
   }, [propertyId.propertyId]);
 
   useEffect(() => {
@@ -254,6 +255,7 @@ const PropertyDetails = () => {
           : "No ratings"}
                 </OwnerDetailsStyle>
                 <OwnerDetailsStyle>
+
                   {propertyDetails?.ownerDetails?.email}
                 </OwnerDetailsStyle>
                 <OwnerDetailsStyle style={{ marginBottom: "14px" }}>

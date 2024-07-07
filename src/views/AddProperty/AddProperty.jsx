@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import {
   Grid,
   TextField,
@@ -10,11 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
-import { AppContext } from "../../context/AppContext";
 import { styled } from "@mui/system";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import {PropertyContext} from "../../context/PropertyContext";
 const MainDiv = styled("div")(() => ({
   fontFamily: "Roboto",
 }));
@@ -40,10 +38,7 @@ const ImageItem = styled("div")(() => ({
 }));
 
 const AddProperty = () => {
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-  const ADDPROPERTY_URL = `${BACKEND_URL}/api/property/add-property`;
-  const ADDPROPERTYIMAGE_URL = `${BACKEND_URL}/api/property/add-property-images`;
-  const { userId, accessToken } = useContext(AppContext);
+  const { addProperty, uploadImagesToproperty } = useContext(PropertyContext);
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     address_line1: "",
@@ -55,7 +50,6 @@ const AddProperty = () => {
     price: "",
     leaseLength: "",
     deposit: "",
-    imageUrl: [],
     location: "",
     utilities: {
       electricity: false,
@@ -84,8 +78,8 @@ const AddProperty = () => {
       wheelchairAccessible: false,
       petFriendly: false,
     },
-    ownerDetails: userId,
     extraFeatures: "",
+    imageUrl: [],
   });
   const [propertyId, setPropertyId] = useState(null);
   const [showImageUpload, setShowImageUpload] = useState(false);
@@ -129,99 +123,34 @@ const AddProperty = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const addProperty = async (propertyData) => {
-    try {
-      const {
-        address_line1,
-        city,
-        state,
-        country,
-        postal_code,
-        description,
-        price,
-        leaseLength,
-        deposit,
-        location,
-        utilities,
-        features,
-        extraFeatures,
-      } = propertyData;
-
-      const propertyDetails = {
-        address_line1,
-        city,
-        state,
-        country,
-        postal_code,
-        description,
-        price,
-        leaseLength,
-        deposit,
-        location,
-        utilities,
-        features,
-        extraFeatures,
-      };
-
-      const res = await axios.post(ADDPROPERTY_URL, propertyDetails, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      if (res.status === 200) {
-        toast.success("Property added successfully");
-        setPropertyId(res.data._id); 
-        setShowImageUpload(true);
-      } else {
-        console.log("Failed to add property");
-      }
-      return res;
-    } catch (error) {
-      console.log("ERROR", error);
-      return error.response;
-    }
-  };
-
-  const addPropertyImages = async (imageData) => {
-    try {
-      const res = await axios.post(ADDPROPERTYIMAGE_URL, imageData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      if (res.status === 200) {
-        toast.success("Images added successfully");
-        navigate("/");
-      } else {
-        console.log("Failed to add images");
-      }
-      return res;
-    } catch (error) {
-      console.log("ERROR", error);
-      return error.response;
-    }
-  };
-
   const handleSubmitProperty = async (e) => {
     e.preventDefault();
     console.log("formValues", formValues);
     const response = await addProperty(formValues);
+    if (response) {
+      setPropertyId(response._id);
+      setShowImageUpload(true);
+      toast.success("Property added successfully");
+    } else {
+      toast.error("Failed to add property");
+    }
     console.log("response", response);
   };
 
   const handleSubmitImages = async (e) => {
     e.preventDefault();
-    const imagePayload = {
-      propertyId: propertyId,
-      imageUrl: formValues.imageUrl.map((file) => file.base64),
-    };
-    const response = await addPropertyImages(imagePayload);
+    if (!propertyId) return;
+
+    const images = formValues.imageUrl.map((file) => file.file);
+    const response = await uploadImagesToproperty(propertyId, images);
+    if (response.status === 200) {
+      toast.success("Images added successfully");
+      navigate("/");
+    } else {
+      toast.error("Failed to upload images");
+    }
     console.log("response", response);
   };
-
-  
 
   const handleRemoveImage = (index) => {
     const updatedImages = [...formValues.imageUrl];

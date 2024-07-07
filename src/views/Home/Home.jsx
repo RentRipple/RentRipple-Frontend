@@ -137,7 +137,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src={data.imageUrl[0]}
+                      src={data.imageUrl[0] }
                       alt="hotel"
                       style={{
                         width: "100%",
