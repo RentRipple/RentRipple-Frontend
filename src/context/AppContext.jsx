@@ -179,6 +179,8 @@ const ContextProvider = ({ children }) => {
         setRefreshToken("");
         setNameLocal("");
         setUserIdLocal("");
+        sessionStorage.clear();
+        localStorage.clear();
         setIsLogin(false);
         toast.success("Logout successful");
         navigate("/")
