@@ -83,6 +83,7 @@ const AddProperty = () => {
   });
   const [propertyId, setPropertyId] = useState(null);
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [showSubmitPropertyButton, setShowSubmitPropertyButton] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -130,6 +131,7 @@ const AddProperty = () => {
     if (response) {
       setPropertyId(response._id);
       setShowImageUpload(true);
+      setShowSubmitPropertyButton(false);
       toast.success("Property added successfully");
     } else {
       toast.error("Failed to add property");
@@ -308,6 +310,7 @@ const AddProperty = () => {
                 />
               ))}
             </Grid>
+            {showSubmitPropertyButton ? 
             <Grid item xs={12}>
               <Button
                 type="submit"
@@ -317,6 +320,7 @@ const AddProperty = () => {
                 Submit Property
               </Button>
             </Grid>
+            : ""}
           </Grid>
         </form>
 
