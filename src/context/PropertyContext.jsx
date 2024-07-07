@@ -6,7 +6,7 @@ const PropertyContext = createContext();
 
 const PropertyContextProvider = ({ children }) => {
   const [properties, setProperties] = useState(null);
-  const [property, setProperty] = useState([]);
+  const [propertyDetails, setPropertyDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,6 +19,8 @@ const PropertyContextProvider = ({ children }) => {
         propertyData
       );
       setProperties((prevProperties) => [...prevProperties, response.data]);
+      console.log("saved property", response.data);
+      return response.data;
     } catch (err) {
       setError(err);
     } finally {
@@ -50,7 +52,27 @@ const PropertyContextProvider = ({ children }) => {
         `api/property/get-properties/${propertyId}`,
         "get"
       );
-      setProperty(response.data);
+      setPropertyDetails(response.data);
+      console.log("sdasdsa",response.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const uploadImagesToproperty = async (propertyId, images) => {
+    try {
+      setLoading(true);
+      const url = `api/property/add-property-images/${propertyId}`;
+      const form = new FormData();
+      images.forEach((image) => {
+        form.append('images', image);
+      });
+
+      const response = await callApiWithRefresh(url, "post", form);
+      setPropertyDetails(response.data);
     } catch (err) {
       setError(err);
     } finally {
@@ -62,10 +84,11 @@ const PropertyContextProvider = ({ children }) => {
     <PropertyContext.Provider
       value={{
         properties,
-        property,
+        propertyDetails,
         addProperty,
         fetchProperties,
         fetchPropertyById,
+        uploadImagesToproperty,
         loading,
         error,
       }}
