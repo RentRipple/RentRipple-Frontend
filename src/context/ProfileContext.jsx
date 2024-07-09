@@ -14,7 +14,6 @@ const ProfileContextProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await callApiWithRefresh("/api/user/viewUserProfile");
-      
 
       if (response.status === 200) {
         setUserProfile(response.data.userProfile.UserDetails);
@@ -32,15 +31,17 @@ const ProfileContextProvider = ({ children }) => {
   const updateUserProfile = async (updatedProfile) => {
     setLoading(true);
     try {
-      const response = await callApiWithRefresh('/api/user/editUserProfile',"put", updatedProfile);
-      console.log(response);
+      const response = await callApiWithRefresh('/api/user/editUserProfile',"post", updatedProfile);
       if (response.status === 200) {
-        setUserProfile(updatedProfile);
+        setUserProfile(null);
+        fetchUserProfile();
+        return true;
       } else {
         throw new Error('Failed to update user profile');
       }
     } catch (err) {
       setError(err.message);
+      return false;
     } finally {
       setLoading(false);
     }
