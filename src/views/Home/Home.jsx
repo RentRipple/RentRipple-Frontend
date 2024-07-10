@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/system";
-import { Container, Grid, CircularProgress, Pagination } from "@mui/material";
-import SearchBox from "../../layout/homeLayout/searchbox";
+import {
+  Button,
+  Container,
+  Grid,
+  CircularProgress,
+  Pagination,
+  TextField
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import { PropertyContext } from "../../context/PropertyContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const SearchBoxStyled = styled(SearchBox)({
-  flexGrow: 1,
-  display: "flex",
-  justifyContent: "center",
-});
 
 const FilterItem = styled(Paper)(() => ({
   textAlign: "center",
@@ -33,38 +33,34 @@ const StatText = styled("div")(() => ({
   textAlign: "left",
 }));
 
-const filters = [
-  {
-    id: 1,
-    name: "Entire Place",
-  },
-  {
-    id: 2,
-    name: "Private Room",
-  },
-  {
-    id: 3,
-    name: "Hotel Room",
-  },
-  {
-    id: 4,
-    name: "Shared Room",
-  },
-  {
-    id: 5,
-    name: "Free Cancellation",
-  },
-  {
-    id: 6,
-    name: "Air Conditioning",
-  },
-  {
-    id: 7,
-    name: "Pool",
-  },
+const utilitiesMeet = [
+  "electricity",
+  "water",
+  "gas",
+  "internet",
+  "cable",
+  "heat",
+  "airConditioning",
 ];
 
-const SearchBoxx = <SearchBoxStyled />;
+const featuresMeet = [
+  "parking",
+  "laundry",
+  "dishwasher",
+  "refrigerator",
+  "stove",
+  "microwave",
+  "garbageDisposal",
+  "fireplace",
+  "balcony",
+  "pool",
+  "hotTub",
+  "gym",
+  "elevator",
+  "furnished",
+  "wheelchairAccessible",
+  "petFriendly",
+];
 
 const Home = () => {
   const navigate = useNavigate();
@@ -73,13 +69,83 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const pageSize = 16;
 
-  const isHttpUrl = function (url) {
-    return url && url.startsWith("http");
-  }
+  const [searchText, setSearchText] = useState("");
+
+  const [utilitiesFilters, setUtilitiesFilters] = useState({
+    electricity: false,
+    water: false,
+    gas: false,
+    internet: false,
+    cable: false,
+    heat: false,
+    airConditioning: false,
+  });
+
+  const [featuresFilters, setFeaturesFilters] = useState({
+    parking: false,
+    laundry: false,
+    dishwasher: false,
+    refrigerator: false,
+    stove: false,
+    microwave: false,
+    garbageDisposal: false,
+    fireplace: false,
+    balcony: false,
+    pool: false,
+    hotTub: false,
+    gym: false,
+    elevator: false,
+    furnished: false,
+    wheelchairAccessible: false,
+    petFriendly: false,
+  });
+
+  const [filteredProperties, setFilteredProperties] = useState([])
 
   useEffect(() => {
     fetchProperties();
   }, []);
+
+  useEffect(() => {setFilteredProperties(properties)}, [properties]);
+
+  const paginatedProperties =
+    filteredProperties && filteredProperties.slice((page - 1) * pageSize, page * pageSize);
+
+    useEffect(() => {
+      let temp = properties;
+      
+      if (searchText) {
+        temp = temp.filter((property) =>
+          property.description.toLowerCase().includes(searchText.toLowerCase()) 
+          || property.location.toLowerCase().includes(searchText.toLowerCase())
+          || property.price.toString().includes(searchText)
+        );
+      }
+
+      //Make me filter for featuresFilters
+      if (Object.values(featuresFilters).some((value) => value === true)) {
+        temp = temp.filter((property) => {
+          return Object.keys(featuresFilters).every((key) => {
+            return featuresFilters[key] ? property.features[key] : true;
+          });
+        });
+      }
+
+      //Make me filter for utilitiesFilters
+      if (Object.values(utilitiesFilters).some((value) => value === true)) {
+        temp = temp.filter((property) => {
+          return Object.keys(utilitiesFilters).every((key) => {
+            return utilitiesFilters[key] ? property.utilities[key] : true;
+          });
+        });
+      }
+  
+      setFilteredProperties(temp);
+    }, [searchText, featuresFilters, utilitiesFilters, properties ])  
+
+  const isHttpUrl = function (url) {
+    return url && url.startsWith("http");
+  };
 
   useEffect(() => {
     if (error) {
@@ -91,28 +157,65 @@ const Home = () => {
     setPage(value);
   };
 
-  const paginatedProperties =
-    properties && properties.slice((page - 1) * pageSize, page * pageSize);
+  const handleUtilitiesFilterChange = (filter) => {
+    setUtilitiesFilters((prevState) => ({
+      ...prevState,
+      [filter]: !prevState[filter],
+    }));
+  };
+
+  const handleFeaturesFilterChange = (filter) => {
+    setFeaturesFilters((prevState) => ({
+      ...prevState,
+      [filter]: !prevState[filter],
+    }));
+  };
 
   return (
     <div>
       <Box>
         <Container>
           <Grid item xs={12} align="center">
-            {SearchBoxx}
+            <TextField fullWidth label="Search Box" id="fullWidth" value={searchText} onChange={(event)=>{setSearchText(event.target.value)}} />
           </Grid>
-          <Grid container spacing={2} xs={12} style={{ marginTop: "10px" }}>
-            {filters.map((data, i) => (
-              <Grid item xs="auto" key={i}>
-                <FilterItem>{data.name}</FilterItem>
-              </Grid>
+          <Box
+            mt={2}
+            mb={2}
+            display="flex"
+            flexWrap="wrap"
+          >
+            {utilitiesMeet.map((filter) => (
+              <Button
+                key={filter}
+                variant={utilitiesFilters[filter] ? "contained" : "outlined"}
+                color="primary"
+                size="small"
+                onClick={() => handleUtilitiesFilterChange(filter)}
+                style={{ margin: "2px" }}
+              >
+                {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              </Button>
             ))}
-          </Grid>
-          <Grid xs={12}>
-            <StatText style={{ padding: "8px 0px" }}>
-              1,000+ rentals : Sep 12 - Sep 15
-            </StatText>
-          </Grid>
+          </Box>
+          <Box
+            mt={2}
+            mb={2}
+            display="flex"
+            flexWrap="wrap"
+          >
+            {featuresMeet.map((filter) => (
+              <Button
+                key={filter}
+                variant={featuresFilters[filter] ? "contained" : "outlined"}
+                color="primary"
+                size="small"
+                onClick={() => handleFeaturesFilterChange(filter)}
+                style={{ margin: "2px" }}
+              >
+                {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              </Button>
+            ))}
+          </Box>
           <Box>
             <Grid container spacing={2} xs={12}>
               {loading ? (
@@ -141,7 +244,11 @@ const Home = () => {
                     >
                       <img
                         // src={data.imageUrl[0]}
-                        src={isHttpUrl(data.imageUrl[0]) ? data.imageUrl[0] : require(`../../assets/${data.imageUrl[0]}`)}                        
+                        src={
+                          isHttpUrl(data.imageUrl[0])
+                            ? data.imageUrl[0]
+                            : require(`../../assets/${data.imageUrl[0]}`)
+                        }
                         alt="hotel"
                         style={{
                           width: "100%",
@@ -151,13 +258,17 @@ const Home = () => {
                         }}
                       />
                       <StatText
-                        style={{ fontSize: "16px", padding: "0px 8px" }}
+                        style={{ fontSize: "20px", padding: "0px 8px" }}
                       >
-                        {data.description}, {data.location}
+                        {data.address_line1}, {data.location}
                       </StatText>
-
                       <StatText
-                        style={{ color: "#879AAD", padding: "0px 8px" }}
+                        style={{ fontSize: "13px", padding: "0px 8px" }}
+                      >
+                        {data.description}
+                      </StatText>
+                      <StatText
+                        style={{ color: "#879AAD", padding: "0px 8px", textAlign: "right"}}
                       >
                         {data.price}/ per month
                       </StatText>
