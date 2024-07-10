@@ -199,7 +199,7 @@ const PropertyDetails = () => {
                     (url, index) => (
                       <LargeImageStyle
                         key={index}
-                        src={url}
+                        src={ require(`../../assets/${url}`)}
                         alt={`Slide ${index}`}
                       />
                     )
@@ -251,7 +251,7 @@ const PropertyDetails = () => {
                       (url, index) => (
                         <LargeImageStyle
                           key={index}
-                          src={url}
+                          src={require(`../../assets/${url}`)}
                           alt={`Slide ${index}`}
                         />
                       )
