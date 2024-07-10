@@ -73,6 +73,10 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const pageSize = 16;
 
+  const isHttpUrl = function (url) {
+    return url && url.startsWith("http");
+  }
+
   useEffect(() => {
     fetchProperties();
   }, []);
@@ -130,15 +134,14 @@ const Home = () => {
                         padding: "20px",
                       }}
                       onClick={() => {
-                        navigate(`/property-details/${data.id}`, {
+                        navigate(`/property-details/${data._id}`, {
                           state: { data },
                         });
                       }}
                     >
                       <img
                         // src={data.imageUrl[0]}
-                        src={ require(`../../assets/${data.imageUrl[0]}`)}
-                        
+                        src={isHttpUrl(data.imageUrl[0]) ? data.imageUrl[0] : require(`../../assets/${data.imageUrl[0]}`)}                        
                         alt="hotel"
                         style={{
                           width: "100%",
@@ -150,7 +153,7 @@ const Home = () => {
                       <StatText
                         style={{ fontSize: "16px", padding: "0px 8px" }}
                       >
-                        {data.shortDescription}, {data.location}
+                        {data.description}, {data.location}
                       </StatText>
 
                       <StatText

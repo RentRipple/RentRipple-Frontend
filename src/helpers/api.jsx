@@ -33,7 +33,7 @@ async function Logout() {
   } finally {
     sessionStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    window.location.href = "/";
+    // window.location.href = "/";
   }
 }
 // Function to fetch a new access token using the refresh token

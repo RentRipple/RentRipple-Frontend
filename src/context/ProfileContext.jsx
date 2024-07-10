@@ -16,7 +16,7 @@ const ProfileContextProvider = ({ children }) => {
       const response = await callApiWithRefresh("/api/user/viewUserProfile");
 
       if (response.status === 200) {
-        setUserProfile(response.data.userProfile.UserDetails);
+        setUserProfile(response.data.userProfile);
       } else {
         throw new Error('Failed to fetch user profile');
       }

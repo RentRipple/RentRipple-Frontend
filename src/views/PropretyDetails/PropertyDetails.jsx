@@ -133,6 +133,9 @@ const PropertyDetails = () => {
   //   }));
   // };
 
+  const isHttpUrl = function (url) {
+    return url && url.startsWith("http");
+  }
   
   const renderRatingStars = (rating) => {
     return (
@@ -199,7 +202,7 @@ const PropertyDetails = () => {
                     (url, index) => (
                       <LargeImageStyle
                         key={index}
-                        src={ require(`../../assets/${url}`)}
+                        src={isHttpUrl(url) ? url : require(`../../assets/${url}`)}
                         alt={`Slide ${index}`}
                       />
                     )
@@ -251,7 +254,7 @@ const PropertyDetails = () => {
                       (url, index) => (
                         <LargeImageStyle
                           key={index}
-                          src={require(`../../assets/${url}`)}
+                          src={isHttpUrl(url) ? url : require(`../../assets/${url}`)}
                           alt={`Slide ${index}`}
                         />
                       )
