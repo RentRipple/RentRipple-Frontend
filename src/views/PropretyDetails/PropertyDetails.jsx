@@ -15,7 +15,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./imageCustom.css";
 import { features, utilities } from "../../helpers/utilityAndFeatures";
 import { PropertyContext } from "../../context/PropertyContext";
-import {toast} from "react-toastify";
 
 const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
@@ -60,7 +59,7 @@ const OwnerDetailsStyle = styled("div")(() => ({
 const PropertyDetails = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AppContext);
-  const { fetchPropertyById, propertyDetails, updateProperty } = useContext(PropertyContext);
+  const { fetchPropertyById, propertyDetails } = useContext(PropertyContext);
   const [editMode, setEditMode] = useState(false);
   const [editedDetails, setEditedDetails] = useState({});
   const [images, setImages] = useState([]);
@@ -98,40 +97,21 @@ const PropertyDetails = () => {
     }));
   };
 
-
-  const handleSave = async (e) => {
-    e.preventDefault();
-  
-    // Filtering out id and imageUel
-    const filterOutId = (details) => {
-      const { id,imageUrl, ...rest } = details;
-      console.log(id,imageUrl)
-      return rest;
-    };
-  
-    const filteredDetails = filterOutId(editedDetails);
-  
-    console.log("Edited Data", filteredDetails);
-  
-    const response = await updateProperty(propertyId.propertyId, filteredDetails);
-    if (response) {
-      toast.success("Property updated successfully");
-      // reload the page
-      fetchPropertyById(propertyId.propertyId);
-    }
-  
+  const handleSave = () => {
+    // EDIT API (PATCH)
+    console.log("Edited Data", editedDetails);
     console.log("Images", images);
     setEditMode(false);
   };
 
-  // const handleImageUpload = (e) => {
-  //   const files = Array.from(e.target.files);
-  //   const newImages = files.map((file) => URL.createObjectURL(file));
-  //   setEditedDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     imageUrl: [...prevDetails.imageUrl, ...newImages],
-  //   }));
-  // };
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setEditedDetails((prevDetails) => ({
+      ...prevDetails,
+      imageUrl: [...prevDetails.imageUrl, ...newImages],
+    }));
+  };
 
   
   const renderRatingStars = (rating) => {
@@ -165,41 +145,40 @@ const PropertyDetails = () => {
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <ImageGrid>
               {editMode ? (
-                <></>
-                // <div>
-                //   <input
-                //     type="file"
-                //     accept="image/*"
-                //     multiple
-                //     onChange={handleImageUpload}
-                //   />
-                //   <div
-                //     style={{ display: "flex", gap: "10px", marginTop: "10px" }}
-                //   >
-                //     {propertyDetails?.propertyDetails?.imageUrl.map(
-                //       (url, index) => (
-                //         <img
-                //           key={index}
-                //           src={url}
-                //           alt={`Thumbnail ${index}`}
-                //           style={{
-                //             width: "80px",
-                //             height: "80px",
-                //             objectFit: "cover",
-                //             borderRadius: "8px",
-                //           }}
-                //         />
-                //       )
-                //     )}
-                //   </div>
-                // </div>
+                <div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                  />
+                  <div
+                    style={{ display: "flex", gap: "10px", marginTop: "10px" }}
+                  >
+                    {propertyDetails?.propertyDetails?.imageUrl.map(
+                      (url, index) => (
+                        <img
+                          key={index}
+                          src={url}
+                          alt={`Thumbnail ${index}`}
+                          style={{
+                            width: "80px",
+                            height: "80px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                          }}
+                        />
+                      )
+                    )}
+                  </div>
+                </div>
               ) : (
                 <Slider {...settings}>
                   {propertyDetails?.propertyDetails?.imageUrl?.map(
                     (url, index) => (
                       <LargeImageStyle
                         key={index}
-                        src={ require(`../../assets/${url}`)}
+                        src={url}
                         alt={`Slide ${index}`}
                       />
                     )
@@ -213,45 +192,44 @@ const PropertyDetails = () => {
             <Grid item xs={12} sm={12} md={9} lg={9}>
               <ImageGrid>
                 {editMode ? (
-                  <></>
-                  // <div>
-                  //   <input
-                  //     type="file"
-                  //     accept="image/*"
-                  //     multiple
-                  //     onChange={handleImageUpload}
-                  //   />
-                  //   <div
-                  //     style={{
-                  //       display: "flex",
-                  //       gap: "10px",
-                  //       marginTop: "10px",
-                  //     }}
-                  //   >
-                  //     {propertyDetails?.propertyDetails?.imageUrl.map(
-                  //       (url, index) => (
-                  //         <img
-                  //           key={index}
-                  //           src={url}
-                  //           alt={`Thumbnail ${index}`}
-                  //           style={{
-                  //             width: "80px",
-                  //             height: "80px",
-                  //             objectFit: "cover",
-                  //             borderRadius: "8px",
-                  //           }}
-                  //         />
-                  //       )
-                  //     )}
-                  //   </div>
-                  // </div>
+                  <div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handleImageUpload}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      {propertyDetails?.propertyDetails?.imageUrl.map(
+                        (url, index) => (
+                          <img
+                            key={index}
+                            src={url}
+                            alt={`Thumbnail ${index}`}
+                            style={{
+                              width: "80px",
+                              height: "80px",
+                              objectFit: "cover",
+                              borderRadius: "8px",
+                            }}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
                 ) : (
                   <Slider {...settings}>
                     {propertyDetails?.propertyDetails?.imageUrl?.map(
                       (url, index) => (
                         <LargeImageStyle
                           key={index}
-                          src={require(`../../assets/${url}`)}
+                          src={url}
                           alt={`Slide ${index}`}
                         />
                       )
