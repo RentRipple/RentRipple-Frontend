@@ -18,7 +18,6 @@ const PropertyContextProvider = ({ children }) => {
         "post",
         propertyData
       );
-      setProperties((prevProperties) => [...prevProperties, response.data]);
       console.log("saved property", response.data);
       return response.data;
     } catch (err) {
@@ -61,6 +60,23 @@ const PropertyContextProvider = ({ children }) => {
     }
   };
 
+  const updateProperty = async (propertyId, updateData) => {
+    try {
+      console.log("updateData", updateData)
+      setLoading(true);
+      const response = await callApiWithRefresh(
+        `api/property/update-property/${propertyId}`,
+        "put",
+        updateData
+      );
+      console.log("Updated property", response.data);
+      return response.data;
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const uploadImagesToproperty = async (propertyId, images) => {
     try {
@@ -72,7 +88,8 @@ const PropertyContextProvider = ({ children }) => {
       });
 
       const response = await callApiWithRefresh(url, "post", form);
-      setPropertyDetails(response.data);
+      return response;
+
     } catch (err) {
       setError(err);
     } finally {
@@ -88,6 +105,7 @@ const PropertyContextProvider = ({ children }) => {
         addProperty,
         fetchProperties,
         fetchPropertyById,
+        updateProperty,
         uploadImagesToproperty,
         loading,
         error,

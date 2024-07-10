@@ -79,8 +79,10 @@ const AddProperty = () => {
       petFriendly: false,
     },
     extraFeatures: "",
-    imageUrl: [],
+    // imageUrl: [],
   });
+
+  
   const [propertyId, setPropertyId] = useState(null);
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [showSubmitPropertyButton, setShowSubmitPropertyButton] = useState(true);
@@ -117,7 +119,10 @@ const AddProperty = () => {
     Promise.all(filePromises).then((fileContents) => {
       setFormValues((prevValues) => ({
         ...prevValues,
-        imageUrl: [...prevValues.imageUrl, ...fileContents],
+        // imageUrl: [...prevValues.imageUrl, ...fileContents],
+        imageUrl: Array.isArray(prevValues.imageUrl)
+          ? [...prevValues.imageUrl, ...fileContents]
+          : [...fileContents],
       }));
     });
   };
@@ -145,8 +150,9 @@ const AddProperty = () => {
 
     const images = formValues.imageUrl.map((file) => file.file);
     const response = await uploadImagesToproperty(propertyId, images);
+    
     if (response.status === 200) {
-      toast.success("Images added successfully");
+      toast.success("Property and Images added successfully");
       navigate("/");
     } else {
       toast.error("Failed to upload images");
@@ -317,7 +323,7 @@ const AddProperty = () => {
                 variant="contained"
                 style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
               >
-                Submit Property
+                Upload Images
               </Button>
             </Grid>
             : ""}
@@ -343,7 +349,7 @@ const AddProperty = () => {
                   <p>Drag & drop images here, or click to select images</p>
                 </div>
               </Grid>
-              {formValues.imageUrl.length > 0 && (
+              {formValues.imageUrl?.length > 0 && (
                 <Grid item xs={12}>
                   <HeadTitle>Preview</HeadTitle>
                   <ImagePreview>
@@ -376,7 +382,7 @@ const AddProperty = () => {
                   variant="contained"
                   style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
                 >
-                  Submit Images
+                  Submit
                 </Button>
               </Grid>
               
