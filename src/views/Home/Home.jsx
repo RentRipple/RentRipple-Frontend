@@ -119,6 +119,7 @@ const Home = () => {
           property.description.toLowerCase().includes(searchText.toLowerCase()) 
           || property.location.toLowerCase().includes(searchText.toLowerCase())
           || property.price.toString().includes(searchText)
+          || property.address_line1.toLowerCase().includes(searchText.toLowerCase())
         );
       }
 
