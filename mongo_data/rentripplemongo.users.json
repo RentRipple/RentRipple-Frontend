@@ -1,0 +1,915 @@
+[{
+  "_id": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "firstName": "User4",
+  "lastName": "user4",
+  "email": "user4@test.com",
+  "password": "$2a$10$4XMaSU49i3U1Jih4.xCfEerMWY3aZtUyDxPqViLOMrHfY3GMNodJW",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13e7fa05496bafa68033"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13e7fa05496bafa68034"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13e7fa05496bafa68035"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:04:55.141Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:04:55.141Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13e7fa05496bafa68036"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a13e7fa05496bafa68037"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "firstName": "User6",
+  "lastName": "user6",
+  "email": "user6@test.com",
+  "password": "$2a$10$h0Eo0hpaD/IHZ91l5z4yNuSDkHo6Mcat9xz/QwTfRI54fxKyE2smu",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13fafa05496bafa68043"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13fafa05496bafa68044"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13fafa05496bafa68045"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:14.583Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:14.583Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13fafa05496bafa68046"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a13fafa05496bafa68047"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "firstName": "User1",
+  "lastName": "user1",
+  "email": "user1@test.com",
+  "password": "$2a$10$sbf0/feskjkz02Kp58.FCeN/6vBtX2ivw6B/YS0/JABQgK5HfEkE2",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13abfa05496bafa6801b"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13abfa05496bafa6801c"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13abfa05496bafa6801d"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "1654 Bruce Ave User2",
+  "createdAt": {
+    "$date": "2024-07-07T04:03:55.489Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:03:55.489Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13abfa05496bafa6801e"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada",
+      "_id": {
+        "$oid": "668a13abfa05496bafa6801f"
+      }
+    }
+  ],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "668a13d5fa05496bafa68022"
+  },
+  "firstName": "User2",
+  "lastName": "user2",
+  "email": "user2@test.com",
+  "password": "$2a$10$1oa415IFVcjoYcpw6jUIFOjdVtelFoSxvubYGbaWH5P4/FVsRtPNi",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13d5fa05496bafa68023"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13d5fa05496bafa68024"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13d5fa05496bafa68025"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:04:37.881Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:04:37.881Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13d5fa05496bafa68026"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a13d5fa05496bafa68027"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "firstName": "User7",
+  "lastName": "user7",
+  "email": "user7@test.com",
+  "password": "$2a$10$cRMT9DpSka.3lrGppPignu6zU9FueiNNpEgBtrWuFrZWbx3JiH2GK",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1405fa05496bafa6804b"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1405fa05496bafa6804c"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1405fa05496bafa6804d"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:25.631Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:25.631Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a1405fa05496bafa6804e"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a1405fa05496bafa6804f"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "firstName": "User3",
+  "lastName": "user3",
+  "email": "user3@test.com",
+  "password": "$2a$10$h7/gbeW4cnQ1sh4edukXBevtNrrlgTpa/KHniRB4wo758.MxhlIQK",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13defa05496bafa6802b"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13defa05496bafa6802c"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13defa05496bafa6802d"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "User 3 Address",
+  "createdAt": {
+    "$date": "2024-07-07T04:04:46.817Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:04:46.817Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13defa05496bafa6802e"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada",
+      "_id": {
+        "$oid": "668a13defa05496bafa6802f"
+      }
+    }
+  ],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "668a140ffa05496bafa68052"
+  },
+  "firstName": "User8",
+  "lastName": "user8",
+  "email": "user8@test.com",
+  "password": "$2a$10$p1VFUe2lRB75VDq1tE2prOdLB.QU91ZcwQ/J8rSq4905UUOhnM8Si",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a140ffa05496bafa68053"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a140ffa05496bafa68054"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a140ffa05496bafa68055"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:35.866Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:35.866Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a140ffa05496bafa68056"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a140ffa05496bafa68057"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "firstName": "User9",
+  "lastName": "user9",
+  "email": "user9@test.com",
+  "password": "$2a$10$PC.RfyR1ITICMLDEI0kc.eFysdDiY3RlUlzrYkpRcFtlt3NyZ6x5S",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1418fa05496bafa6805b"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1418fa05496bafa6805c"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1418fa05496bafa6805d"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:44.588Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:44.588Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a1418fa05496bafa6805e"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a1418fa05496bafa6805f"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "firstName": "User10",
+  "lastName": "user10",
+  "email": "user10@test.com",
+  "password": "$2a$10$7ygNC9SgJF20Q7FW8CDJYuViz86JwUD.gAc7QCjnbGtXIbkusPaXG",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1423fa05496bafa68063"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1423fa05496bafa68064"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a1423fa05496bafa68065"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:55.524Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:55.524Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a1423fa05496bafa68066"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a1423fa05496bafa68067"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "firstName": "User5",
+  "lastName": "user5",
+  "email": "user5@test.com",
+  "password": "$2a$10$LoXKB9ukqV1hCYjqc0Dpn.jkEuZbkfcbE8t8T2lFTiGGGefeeo4pq",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13f1fa05496bafa6803b"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13f1fa05496bafa6803c"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "668a13f1fa05496bafa6803d"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-07T04:05:05.092Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:05:05.092Z"
+  },
+  "birthDate": "2024-07-07",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "668a13f1fa05496bafa6803e"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "668a13f1fa05496bafa6803f"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "firstName": "User11",
+  "lastName": "user1",
+  "email": "user11@test.com",
+  "password": "$2a$10$D.rgT7wfPdHWk1CMpZEAbOJXVbfH.c2o3HVTrieRaHKbdL8YRIaX6",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "6697f4305c36dfba3f8ab711"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "6697f4305c36dfba3f8ab712"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "6697f4305c36dfba3f8ab713"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "createdAt": {
+    "$date": "2024-07-17T16:41:20.311Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-17T16:41:20.311Z"
+  },
+  "birthDate": "2024-07-17",
+  "rentalHistory": [
+    {
+      "_id": {
+        "$oid": "6697f4305c36dfba3f8ab714"
+      },
+      "address_line1": "300 Ouellette",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "preferredLocation": [
+    {
+      "_id": {
+        "$oid": "6697f4305c36dfba3f8ab715"
+      },
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "firstName": "Khushbu",
+  "lastName": "Modi",
+  "email": "khushbu@test.com",
+  "password": "$2a$10$5YFJOP1Q3eqkscBuibWenOjDCWT8nKE1nM6lWDsjxQAfJY53DXQae",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "Johnny",
+      "_id": {
+        "$oid": "6670c12354eff79c97da9025"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "Doe",
+      "_id": {
+        "$oid": "6670c12354eff79c97da9026"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "Inception",
+      "_id": {
+        "$oid": "6670c12354eff79c97da9027"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1234567890",
+  "accountType": "Tenant",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "firstName": "Miti",
+  "lastName": "Tamakuwala",
+  "email": "miti@example.com",
+  "password": "$2a$10$R2RZ/lsycnVLWYdOKwqs8Oz4hsDa9TE.5hp5AtTTVbJ.NKnqXXDWq",
+  "securityQuestions": [
+    {
+      "question": "What was your childhood nickname?",
+      "answer": "test",
+      "_id": {
+        "$oid": "667afb0417fe69826222cb3d"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "test",
+      "_id": {
+        "$oid": "667afb0417fe69826222cb3e"
+      }
+    },
+    {
+      "question": "What is your favorite movie?",
+      "answer": "test",
+      "_id": {
+        "$oid": "667afb0417fe69826222cb3f"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "865988226",
+  "rating": 2,
+  "contact": null,
+  "profilePicture": "",
+  "isDeleted": false,
+  "createdAt": {
+    "$date": "2024-06-25T17:14:44.170Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-25T17:14:44.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "firstName": "MK",
+  "lastName": "T",
+  "email": "m@gmail.com",
+  "password": "$2a$10$p62ak8zRKJ6sKZU4cSP/WO/8VJ80kuMQEBu6rBHICCzaBWThU3BLm",
+  "securityQuestions": [
+    {
+      "question": "In what city or town did your mother and father meet?",
+      "answer": "fff",
+      "_id": {
+        "$oid": "66805c7df963fbe0d8cca85e"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "fff",
+      "_id": {
+        "$oid": "66805c7df963fbe0d8cca85f"
+      }
+    },
+    {
+      "question": "What is your favorite team?",
+      "answer": "fff",
+      "_id": {
+        "$oid": "66805c7df963fbe0d8cca860"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "1252365265",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "test",
+  "rentalProperties": [],
+  "rentalHistory": [],
+  "createdAt": {
+    "$date": "2024-06-29T19:11:57.054Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-29T19:11:57.054Z"
+  },
+  "birthDate": "2024-06-29",
+  "__v": 1,
+  "preferredLocation": [
+    {
+      "address_line1": "Sunset Avenue",
+      "city": "Windsor",
+      "country": "Canada",
+      "_id": {
+        "$oid": "668eeffb39913903754db497"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "firstName": "Simran",
+  "lastName": "Somani",
+  "email": "sim@gmail.com",
+  "password": "$2a$10$JCeC3VdeMDlbXxapm48.2uPN68NThZod8l4hkGlIHSd/4xP7Y9A2G",
+  "securityQuestions": [
+    {
+      "question": "In what city or town did your mother and father meet?",
+      "answer": "dssd",
+      "_id": {
+        "$oid": "6681d4832cfc3340d6cb6c8e"
+      }
+    },
+    {
+      "question": "What is the name of your favorite childhood friend?",
+      "answer": "dssd",
+      "_id": {
+        "$oid": "6681d4832cfc3340d6cb6c8f"
+      }
+    },
+    {
+      "question": "What is your favorite team?",
+      "answer": "dssd",
+      "_id": {
+        "$oid": "6681d4832cfc3340d6cb6c90"
+      }
+    }
+  ],
+  "gender": "Female",
+  "number": "5253652365",
+  "rating": 2,
+  "profilePicture": "",
+  "isDeleted": false,
+  "address": "",
+  "rentalProperties": [],
+  "rentalHistory": [],
+  "createdAt": {
+    "$date": "2024-06-30T21:56:19.716Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-30T21:56:19.716Z"
+  },
+  "birthDate": {
+    "$date": "2024-06-30T21:56:19.716Z"
+  },
+  "__v": 0
+}]

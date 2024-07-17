@@ -1,0 +1,1596 @@
+[{
+  "_id": {
+    "$oid": "523018673951233043327314"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "965683469146991076882345"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 2,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "344590207738631075819870"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "587947693389702173973140"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 1,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "495605830644375483676296"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 3,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "810974820875619136361507"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 2,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "412928538504713121423315"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "355155046215711006627755"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "rating": 5,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "174295721931673577857799"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "rating": 4,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "803287573564293077004850"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "rating": 1,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "331627433274098572250720"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "rating": 5,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "239790644831092832523777"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "rating": 2,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "508444069991704613762054"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "rating": 1,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "659817878316480150516661"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "151357027725677005418091"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "rating": 4,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "844127346141406964319926"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "222041323911353798001010"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "rating": 4,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "935208528848518457010719"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 2,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "156183285739283285244174"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 1,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "815569218212847716758358"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 3,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "173821384595874003910334"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 1,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "495046654319359076183841"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 2,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "466320017310790081331263"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "rating": 5,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "200128260247319707164707"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "144365101111695061831204"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "rating": 1,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "805573801070698118449869"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "rating": 3,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "861549473647808947007165"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "650914941552623419518269"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "305569273226074262761105"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "372098607427788780620999"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "632392806559759642702576"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 1,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "269790984937943097464187"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "233954669584146031059760"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 4,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "107177816109303494683104"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "716398503743774163145518"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "rating": 5,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "494189604150083386432060"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "rating": 1,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "732455795403161142061888"
+  },
+  "reviewer_user": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "rating": 1,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "396585519632656682423481"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "988487236491015121727277"
+  },
+  "reviewer_user": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "rating": 3,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "600911119341951657869591"
+  },
+  "reviewer_user": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "reviewee_property": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "931924595834617850330551"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "354173116633329450992348"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "rating": 1,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "920210061840359626228489"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "190535476339323207950677"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "rating": 2,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "352178082382889653346703"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "rating": 2,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "939250399394993290700936"
+  },
+  "reviewer_user": {
+    "$oid": "668a13d5fa05496bafa68022"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684337247474226700981470"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "455982289600102254220694"
+  },
+  "reviewer_user": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "841950319331151173616342"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 3,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "546023540999460945857614"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 4,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "169427162282426547957928"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 2,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "741840945577305588754046"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "rating": 2,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "492816665034375228901319"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "rating": 3,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "444468977218815114344934"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "rating": 4,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "504094073130600914784429"
+  },
+  "reviewer_user": {
+    "$oid": "668a13d5fa05496bafa68022"
+  },
+  "reviewee_property": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "rating": 3,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "455770850933329621142882"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "rating": 5,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "198817768595638469866059"
+  },
+  "reviewer_user": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "reviewee_property": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "rating": 3,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "126458298539090639599706"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 3,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "267151127059632283871324"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 3,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "896352923164092665516822"
+  },
+  "reviewer_user": {
+    "$oid": "668a13d5fa05496bafa68022"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 5,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "343949258460892395383670"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 2,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "160084249327665192590568"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 4,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "820575774331500036246446"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "rating": 1,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "272134585797742948648752"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 2,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "169655708101476141840574"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 3,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "169295657944787678250560"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 1,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "351446427442701693953332"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 3,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "932459488453399727916800"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 3,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "593362814562116019048518"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 5,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "513817741953560178162372"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "rating": 2,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "657033293581995137093699"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 1,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "634988337965139258685307"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 1,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "648616040426711083445472"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 2,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "625358202447366376111139"
+  },
+  "reviewer_user": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 3,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "679492795944782585900902"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 5,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "880011119443302421968378"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "rating": 4,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "531949327398870249104041"
+  },
+  "reviewer_user": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 3,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "448611963431910124700911"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "136073074643007792292029"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 2,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "213575189445467751039879"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 5,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "507830123789176127443191"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 3,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "925628535645747337183155"
+  },
+  "reviewer_user": {
+    "$oid": "668a13fafa05496bafa68042"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 3,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624936655868024597398154"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "rating": 5,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "710099323769818128959549"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 2,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "404306027048659435413743"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 4,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "373077977785123882789884"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 1,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "935896022399770378796941"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 4,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "518045433685203628314532"
+  },
+  "reviewer_user": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 4,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "244282729980399917255119"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 3,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "124111472942578551856301"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "rating": 5,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "454043130651584743339566"
+  },
+  "reviewer_user": {
+    "$oid": "668a13abfa05496bafa6801a"
+  },
+  "reviewee_property": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "rating": 3,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "100938507004720324667373"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "rating": 5,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "208265725436149181248631"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "rating": 2,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "531270439961076478856401"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "rating": 3,
+  "review": "Living here has been a great experience. The property is in excellent condition and the management is very responsive and helpful. The location is also ideal, close to schools, parks, and shopping centers. We couldn't have asked for a better place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684614519573904248211464"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "rating": 4,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "607594166529679744919148"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 3,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "306313647397107935053610"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 1,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "726558734284905644165370"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 3,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690908917651379105291834"
+  },
+  "reviewer_user": {
+    "$oid": "668a1423fa05496bafa68062"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 3,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "698646031919321216921309"
+  },
+  "reviewer_user": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 2,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "590835841312336776282565"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "rating": 5,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687701580115733588978636"
+  },
+  "reviewer_user": {
+    "$oid": "668a13defa05496bafa6802a"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 1,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "741152722822275667748944"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 4,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "915468222807179782170498"
+  },
+  "reviewer_user": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 3,
+  "review": "We are extremely happy with our decision to rent this property. It offers a perfect blend of comfort and convenience. The neighbors are friendly, and the area is very peaceful. The property itself is well-maintained and beautifully designed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "199368487697743238154243"
+  },
+  "reviewer_user": {
+    "$oid": "6697f4305c36dfba3f8ab710"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 2,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "734126572211093564288120"
+  },
+  "reviewer_user": {
+    "$oid": "667afb0417fe69826222cb3c"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 2,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "141730815045469081382650"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 2,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "193784170094707522632487"
+  },
+  "reviewer_user": {
+    "$oid": "668a13f1fa05496bafa6803a"
+  },
+  "reviewee_property": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "rating": 5,
+  "review": "This property is amazing! The rooms are large and filled with natural light, and the kitchen is perfect for someone who loves to cook. The community amenities are also a big plus, providing us with plenty of options for relaxation and entertainment.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "409037285829459587359082"
+  },
+  "reviewer_user": {
+    "$oid": "6681d4832cfc3340d6cb6c8d"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 2,
+  "review": "We had a wonderful experience staying at this property. The location is fantastic, with easy access to public transportation and local shops. The apartment itself was clean, well-maintained, and equipped with everything we needed.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "432431917479464946114715"
+  },
+  "reviewer_user": {
+    "$oid": "668a1418fa05496bafa6805a"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 5,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "883237599174169331671317"
+  },
+  "reviewer_user": {
+    "$oid": "668a13e7fa05496bafa68032"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696527324316832645394881"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 4,
+  "review": "The property exceeded our expectations with its spacious layout and modern amenities. The neighborhood is quiet and safe, making it perfect for our family. We highly recommend this property to anyone looking for a comfortable and convenient place to live.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "292542444235771366847949"
+  },
+  "reviewer_user": {
+    "$oid": "668a1405fa05496bafa6804a"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 4,
+  "review": "This property is a true gem. It's well-located, beautifully maintained, and offers all the amenities we could ask for. The landlord is also very friendly and accommodating. We would highly recommend this place to anyone looking for a great rental experience.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "771752766780773290496259"
+  },
+  "reviewer_user": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "reviewee_property": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "rating": 4,
+  "review": "Our stay at this property has been nothing short of wonderful. The interiors are modern and stylish, and the space is very well-utilized. The proximity to local amenities and public transport makes it very convenient for daily living.",
+  "__v": 0
+}]
