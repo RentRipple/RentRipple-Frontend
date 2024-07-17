@@ -9,6 +9,7 @@ import {
   Card,
   CardContent,
   Typography,
+  Pagination,
 } from "@mui/material";
 import { toast } from "react-toastify";
 import { styled } from "@mui/system";
@@ -42,6 +43,8 @@ const PropertyReviewSection = ({ propertyId, isOwner }) => {
     rating: 0,
     review: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 5;
 
   useEffect(() => {
     fetchReviewsByProperty(propertyId);
@@ -72,6 +75,15 @@ const PropertyReviewSection = ({ propertyId, isOwner }) => {
       toast.error("Failed to add review");
     }
   };
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  // Calculate the reviews to be shown on the current page
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
 
   return (
     <Grid item xs={12}>
@@ -115,7 +127,8 @@ const PropertyReviewSection = ({ propertyId, isOwner }) => {
         </ReviewFormContainer>
       )}
       <Grid container spacing={2} style={{ marginTop: "20px" }}>
-        {reviews.map((review) => (
+        {/* currentReviews in reverse order */}
+        {currentReviews.map((review) => (
           <Grid item xs={12} key={review._id}>
             <Card>
               <CardContent>
@@ -128,6 +141,13 @@ const PropertyReviewSection = ({ propertyId, isOwner }) => {
           </Grid>
         ))}
       </Grid>
+      <Pagination
+        count={Math.ceil(reviews.length / reviewsPerPage)}
+        page={currentPage}
+        onChange={handlePageChange}
+        color="primary"
+        style={{ marginTop: "20px" }}
+      />
     </Grid>
   );
 };

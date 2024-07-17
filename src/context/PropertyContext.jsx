@@ -118,7 +118,7 @@ const PropertyContextProvider = ({ children }) => {
         `api/reviews/get-reviews/${propertyId}`,
         "get"
       );
-      setReviews(response.data.reviews || []);
+      setReviews(response.data.reviews.reverse() || []);
     } catch (err) {
       setError(err);
     } finally {
