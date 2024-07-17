@@ -16,6 +16,7 @@ import "./imageCustom.css";
 import { features, utilities } from "../../helpers/utilityAndFeatures";
 import { PropertyContext } from "../../context/PropertyContext";
 import {toast} from "react-toastify";
+import PropertyReviewSection from "./PropertyReviewSection";
 
 const ImageGrid = styled("div")(() => ({
   backgroundColor: "#f0f0f0",
@@ -123,15 +124,6 @@ const PropertyDetails = () => {
     console.log("Images", images);
     setEditMode(false);
   };
-
-  // const handleImageUpload = (e) => {
-  //   const files = Array.from(e.target.files);
-  //   const newImages = files.map((file) => URL.createObjectURL(file));
-  //   setEditedDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     imageUrl: [...prevDetails.imageUrl, ...newImages],
-  //   }));
-  // };
 
   const isHttpUrl = function (url) {
     return url && url.startsWith("http");
@@ -476,6 +468,9 @@ const PropertyDetails = () => {
                   ))}
                 </Grid>
               </Grid>
+                <Grid>
+                  <PropertyReviewSection propertyId={propertyId.propertyId} isOwner={userId === propertyDetails?.ownerDetails?.id} />
+                </Grid>
             </>
           )}
         </Grid>

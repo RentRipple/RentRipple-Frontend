@@ -259,14 +259,14 @@ const Home = () => {
                         }}
                       />
                       <StatText
-                        style={{ fontSize: "20px", padding: "0px 8px" }}
+                        style={{ fontSize: "18px", padding: "0px 8px" }}
                       >
                         {data.address_line1}, {data.location}
                       </StatText>
                       <StatText
                         style={{ fontSize: "13px", padding: "0px 8px" }}
                       >
-                        {data.description}
+                        {data.description.length > 50 ? data.description.substring(0, 50) + "..." : data.description}
                       </StatText>
                       <StatText
                         style={{ color: "#879AAD", padding: "0px 8px", textAlign: "right"}}

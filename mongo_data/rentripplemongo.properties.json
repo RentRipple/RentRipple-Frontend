@@ -1,0 +1,997 @@
+[{
+  "_id": {
+    "$oid": "668ed34e39913903754db0bd"
+  },
+  "address_line1": "123 Main Street",
+  "city": "Vancouver",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Experience the charm of this cozy apartment with its open floor plan, hardwood floors, and beautiful views of the city. The bedroom offers ample space and storage, while the kitchen is fully equipped with the latest appliances. Enjoy the community amenities such as a fitness center, swimming pool, and 24-hour security.",
+  "price": "180$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720636276215-home2.jpg",
+    "1720636276244-home1.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": true,
+    "microwave": true,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": true,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": true,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": true
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed54e39913903754db0e2"
+  },
+  "address_line1": "123 Main St",
+  "city": "Calgary",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "An elegant property featuring a gourmet kitchen, spacious bedrooms, and a luxurious bathroom. The living area opens up to a private garden, providing a serene environment. Located in a friendly neighborhood with top-rated schools and recreational facilities nearby. Perfect for families or anyone looking for a tranquil living space.",
+  "price": "180$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720636771566-image1.jpg",
+    "1720636771566-image3.jpg",
+    "1720636771566-image4.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": true,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": true,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": true,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Near public transport",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed5ef39913903754db10a"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Toronto",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A beautiful home with a perfect blend of traditional and modern elements. It offers a spacious layout, including a master suite with a walk-in closet and en-suite bathroom. The backyard is landscaped and includes a patio area for entertaining guests. Conveniently located near schools, shopping districts, and major highways.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720636950142-image36.jpg",
+    "1720636950206-image37.jpg",
+    "1720636950223-image39.jpg",
+    "1720636950236-image40.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": true,
+    "heat": true,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": true,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": true,
+    "fireplace": true,
+    "balcony": true,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Energy efficient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed6f039913903754db11b"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Ottawa",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A beautiful home with a perfect blend of traditional and modern elements. It offers a spacious layout, including a master suite with a walk-in closet and en-suite bathroom. The backyard is landscaped and includes a patio area for entertaining guests. Conveniently located near schools, shopping districts, and major highways.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720637183080-image32.jpg",
+    "1720637183089-image33.jpg",
+    "1720637183095-image34.jpg",
+    "1720637183101-image35.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": true
+  },
+  "features": {
+    "parking": true,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": true,
+    "garbageDisposal": true,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": false,
+    "elevator": true,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed72c39913903754db12c"
+  },
+  "address_line1": "123 Main St ",
+  "city": "Ottawa",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A beautiful home with a perfect blend of traditional and modern elements. It offers a spacious layout, including a master suite with a walk-in closet and en-suite bathroom. The backyard is landscaped and includes a patio area for entertaining guests. Conveniently located near schools, shopping districts, and major highways.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637244718-image31.jpg",
+    "1720637245476-image32.jpg",
+    "1720637245481-image33.jpg",
+    "1720637245484-image34.jpg",
+    "1720637245490-image35.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": false,
+    "water": true,
+    "gas": true,
+    "internet": true,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed76339913903754db13f"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Calgary",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "This newly renovated property includes stylish finishes and thoughtful touches throughout. The open concept living and dining area is perfect for entertaining, and the bedrooms are designed for comfort and relaxation. With its prime location near public transportation and local amenities, this home is perfect for those seeking a convenient lifestyle.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637304459-image4.jpg",
+    "1720637304459-image5.jpg",
+    "1720637304460-image6.jpg",
+    "1720637304460-image7.jpg",
+    "1720637304489-image8.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": true,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Energy efficient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed7a839913903754db150"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Vancouver",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Nestled in a vibrant community, this property boasts a contemporary design with high ceilings, large windows, and a private balcony. The kitchen features granite countertops and stainless steel appliances, perfect for those who love to cook. Close to parks, restaurants, and entertainment venues, making it an ideal choice for urban living.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637371527-image5.jpg",
+    "1720637371527-image6.jpg",
+    "1720637371768-image7.jpg",
+    "1720637372817-image8.jpg",
+    "1720637372887-image9.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": true,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": true,
+    "fireplace": false,
+    "balcony": true,
+    "pool": false,
+    "hotTub": true,
+    "gym": false,
+    "elevator": false,
+    "furnished": true,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "High-speed internet",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed80e39913903754db165"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Ottawa",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A stunning property that offers a blend of luxury and comfort. It includes a state-of-the-art kitchen, a spacious living area, and a master bedroom with an en-suite bathroom. The community offers additional amenities such as a clubhouse, a gym, and a swimming pool. Ideal for those who appreciate fine living.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637474604-image30.jpg",
+    "1720637474639-image31.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": false,
+    "water": true,
+    "gas": false,
+    "internet": true,
+    "cable": false,
+    "heat": true,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": true,
+    "garbageDisposal": false,
+    "fireplace": true,
+    "balcony": false,
+    "pool": true,
+    "hotTub": true,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Energy efficient",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed89439913903754db18a"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Ottawa",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Nestled in a vibrant community, this property boasts a contemporary design with high ceilings, large windows, and a private balcony. The kitchen features granite countertops and stainless steel appliances, perfect for those who love to cook. Close to parks, restaurants, and entertainment venues, making it an ideal choice for urban living.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637601242-image 38.jpg",
+    "1720637601254-image37.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": true,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": true,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": true
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Pet friendly",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ed8d539913903754db1a3"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Vancouver",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Nestled in a vibrant community, this property boasts a contemporary design with high ceilings, large windows, and a private balcony. The kitchen features granite countertops and stainless steel appliances, perfect for those who love to cook. Close to parks, restaurants, and entertainment venues, making it an ideal choice for urban living.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720637670934-image23.jpg",
+    "1720637670952-image24.jpg",
+    "1720637670964-image25.jpg",
+    "1720637670979-image26.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": false,
+    "water": true,
+    "gas": true,
+    "internet": false,
+    "cable": true,
+    "heat": false,
+    "airConditioning": true
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": true,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": false,
+    "elevator": true,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ee86639913903754db36e"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Toronto",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Experience the charm of this cozy apartment with its open floor plan, hardwood floors, and beautiful views of the city. The bedroom offers ample space and storage, while the kitchen is fully equipped with the latest appliances. Enjoy the community amenities such as a fitness center, swimming pool, and 24-hour security.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720641666044-image37.jpg",
+    "1720641667829-image39.jpg",
+    "1720641668639-image40.jpg"
+  ],
+  "location": "Canada",
+  "utilities": {
+    "electricity": false,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": true,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Near public transport",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eea6739913903754db38a"
+  },
+  "address_line1": "150 Main St ",
+  "city": "Calgary",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Experience the charm of this cozy apartment with its open floor plan, hardwood floors, and beautiful views of the city. The bedroom offers ample space and storage, while the kitchen is fully equipped with the latest appliances. Enjoy the community amenities such as a fitness center, swimming pool, and 24-hour security.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720642167375-image19.jpg",
+    "1720642167436-image20.jpg",
+    "1720642167450-image21.jpg",
+    "1720642167463-image22.jpg",
+    "1720642167514-image23.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": true,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": true,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": false,
+    "elevator": true,
+    "furnished": true,
+    "wheelchairAccessible": false,
+    "petFriendly": true
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Near public transport",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eeaaf39913903754db39c"
+  },
+  "address_line1": "123 Main St Posted",
+  "city": "Montreal",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A beautiful home with a perfect blend of traditional and modern elements. It offers a spacious layout, including a master suite with a walk-in closet and en-suite bathroom. The backyard is landscaped and includes a patio area for entertaining guests. Conveniently located near schools, shopping districts, and major highways.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720642246323-image12.jpg",
+    "1720642246337-image13.jpg",
+    "1720642246351-image14.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": false,
+    "water": false,
+    "gas": false,
+    "internet": true,
+    "cable": true,
+    "heat": true,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": true,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": true,
+    "gym": true,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "High-speed internet",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eec2339913903754db3ec"
+  },
+  "address_line1": "150 Main St",
+  "city": "Montreal",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "An elegant property featuring a gourmet kitchen, spacious bedrooms, and a luxurious bathroom. The living area opens up to a private garden, providing a serene environment. Located in a friendly neighborhood with top-rated schools and recreational facilities nearby. Perfect for families or anyone looking for a tranquil living space.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720642623496-image35.jpg",
+    "1720642623499-image36.jpg",
+    "1720642623508-image37.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": true,
+    "water": false,
+    "gas": true,
+    "internet": false,
+    "cable": true,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": true,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": true,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": true,
+    "balcony": false,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": true,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eec5e39913903754db3fc"
+  },
+  "address_line1": "150 Main St",
+  "city": "Calgary",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "A beautiful home with a perfect blend of traditional and modern elements. It offers a spacious layout, including a master suite with a walk-in closet and en-suite bathroom. The backyard is landscaped and includes a patio area for entertaining guests. Conveniently located near schools, shopping districts, and major highways.",
+  "price": "150$",
+  "leaseLength": "40 months",
+  "deposit": "aaaaa",
+  "imageUrl": [
+    "1720642663256-image5.jpg",
+    "1720642663256-image6.jpg",
+    "1720642663256-image7.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": false,
+    "stove": true,
+    "microwave": true,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": false,
+    "hotTub": false,
+    "gym": true,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Pet friendly",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eecc639913903754db418"
+  },
+  "address_line1": " 452 Josephene",
+  "city": "Toronto",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "An elegant property featuring a gourmet kitchen, spacious bedrooms, and a luxurious bathroom. The living area opens up to a private garden, providing a serene environment. Located in a friendly neighborhood with top-rated schools and recreational facilities nearby. Perfect for families or anyone looking for a tranquil living space.",
+  "price": "54$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720642774994-image36.jpg",
+    "1720642775000-image37.jpg",
+    "1720642775040-image39.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": false,
+    "water": false,
+    "gas": true,
+    "internet": true,
+    "cable": true,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": false,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": true,
+    "fireplace": true,
+    "balcony": false,
+    "pool": true,
+    "hotTub": true,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Pet friendly",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eed0439913903754db42c"
+  },
+  "address_line1": "500 Main St",
+  "city": "Ottawa",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "This property features a spacious living room with natural light, a modern kitchen with updated appliances, and a large backyard perfect for outdoor activities. Located in a quiet neighborhood with easy access to public transportation, schools, and shopping centers. Ideal for families or professionals seeking comfort and convenience.",
+  "price": "180$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720642830666-image1.jpg",
+    "1720642830666-image3.jpg",
+    "1720642830666-image4.jpg",
+    "1720642830666-image5.jpg",
+    "1720642830666-image6.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": false,
+    "internet": false,
+    "cable": true,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": true,
+    "fireplace": true,
+    "balcony": true,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": true,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668eedde39913903754db43c"
+  },
+  "address_line1": "400 Main St",
+  "city": "Montreal",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "Nestled in a vibrant community, this property boasts a contemporary design with high ceilings, large windows, and a private balcony. The kitchen features granite countertops and stainless steel appliances, perfect for those who love to cook. Close to parks, restaurants, and entertainment venues, making it an ideal choice for urban living.",
+  "price": "180$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720636950206-image37.jpg",
+    "1720643052640-image39.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": false,
+    "water": true,
+    "gas": true,
+    "internet": true,
+    "cable": true,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": true,
+    "dishwasher": false,
+    "refrigerator": true,
+    "stove": false,
+    "microwave": false,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": true,
+    "pool": true,
+    "hotTub": false,
+    "gym": false,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "6670c12354eff79c97da9024"
+  },
+  "extraFeatures": "Extra storage space",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ef16139913903754db4c7"
+  },
+  "address_line1": "400 Main St",
+  "city": "Toronto",
+  "state": "Ontario",
+  "country": "Canada",
+  "postal_code": "N9A 4G4",
+  "description": "This newly renovated property includes stylish finishes and thoughtful touches throughout. The open concept living and dining area is perfect for entertaining, and the bedrooms are designed for comfort and relaxation. With its prime location near public transportation and local amenities, this home is perfect for those seeking a convenient lifestyle.",
+  "price": "180$",
+  "leaseLength": "40 months",
+  "deposit": "255$",
+  "imageUrl": [
+    "1720636950206-image37.jpg",
+    "1720643950082-image34.jpg",
+    "1720643950091-image35.jpg"
+  ],
+  "location": "London",
+  "utilities": {
+    "electricity": true,
+    "water": true,
+    "gas": true,
+    "internet": false,
+    "cable": false,
+    "heat": false,
+    "airConditioning": false
+  },
+  "features": {
+    "parking": false,
+    "laundry": false,
+    "dishwasher": true,
+    "refrigerator": true,
+    "stove": true,
+    "microwave": true,
+    "garbageDisposal": false,
+    "fireplace": false,
+    "balcony": false,
+    "pool": true,
+    "hotTub": true,
+    "gym": true,
+    "elevator": false,
+    "furnished": false,
+    "wheelchairAccessible": false,
+    "petFriendly": false
+  },
+  "ownerDetails": {
+    "$oid": "66805c7cf963fbe0d8cca85d"
+  },
+  "extraFeatures": "Pet friendly",
+  "__v": 0
+}]
