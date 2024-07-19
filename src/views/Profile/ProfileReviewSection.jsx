@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import { Typography, Box, Grid } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { Typography, Box, Grid, Pagination } from "@mui/material";
 import { styled } from "@mui/system";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 
 const Container = styled("div")(({ theme }) => ({
@@ -27,17 +28,29 @@ const ReviewImage = styled("img")({
   marginRight: "16px",
 });
 
-const renderRatingStars = (rating) => {
-  return <Rating name="rating-stars" value={rating} precision={0.5} readOnly />;
-};
 
 const ProfileReviewSection = () => {
   const { fetchUserReviews, userReviews } = useContext(ProfileContext);
+  const navigate = useNavigate();
   const { userId } = useContext(AppContext);
+  const [page, setPage] = useState(1);
+  const reviewsPerPage = 6;
 
   useEffect(() => {
     fetchUserReviews(userId);
   }, [userId]);
+
+  const renderRatingStars = (rating) => {
+    return <Rating name="rating-stars" value={rating} precision={0.5} readOnly />;
+  };
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const indexOfLastReview = page * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = userReviews.slice(indexOfFirstReview, indexOfLastReview);
 
   return (
     <Container>
@@ -46,11 +59,11 @@ const ProfileReviewSection = () => {
       </Typography>
       <hr />
       <Grid container spacing={2}>
-        {userReviews.map((review) => {
+        {currentReviews.map((review) => {
           const firstImageUrl = review.property_imageUrl[0];
           return (
             <Grid item xs={12} sm={6} key={review._id}>
-              <ReviewCard>
+              <ReviewCard onClick={() => navigate(`/property-details/${review.reviewee_property}`)}>
                 {firstImageUrl && (
                   <ReviewImage
                     src={require(`../../assets/${firstImageUrl}`)}
@@ -76,6 +89,14 @@ const ProfileReviewSection = () => {
           );
         })}
       </Grid>
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Pagination
+          count={Math.ceil(userReviews.length / reviewsPerPage)}
+          page={page}
+          onChange={handlePageChange}
+          color="primary"
+        />
+      </Box>
     </Container>
   );
 };
