@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import sampleImage from "../../assets/signup.jpg"; // Adjust the path to your image file
+import sampleImage from "../../assets/forgot.gif"; 
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
@@ -122,7 +122,7 @@ const Register = () => {
 
   return (
     <Grid container justifyContent="center" gap={2}>
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} sm={6} md={5}>
         <Box
           display="flex"
           justifyContent="center"

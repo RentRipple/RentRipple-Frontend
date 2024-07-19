@@ -6,7 +6,7 @@ import { styled } from "@mui/system";
 const Root = styled(Box)(() => ({
   minHeight: "calc(100vh - 16px)",
   backgroundSize: "cover",
-  backgroundColor: "whiteSmoke",
+  backgroundColor: "#E7EDF2",
   backdropFilter: "blur(50px)",
   display: "flex",
   alignItems: "center",

@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import image from "../../assets/forgot password.jpg";
+import image from "../../assets/register.gif";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -17,10 +17,10 @@ const FormContainer = styled(Box)(() => ({
 
 const LoginButton = styled(Button)(() => ({
   marginTop: '20px',
-  backgroundColor: '#04c4cc',
+  backgroundColor: '#22538d',
   color: '#fff',
   '&:hover': {
-    backgroundColor: '#9dcccf',
+    opacity: '0.9',
   },
 }));
 
@@ -202,6 +202,7 @@ const ForgotPassword = () => {
                     margin="normal"
                     error={touched.email && !!errors.email}
                     helperText={touched.email && errors.email}
+                    style={{ marginTop: '40px' }}
                   />
                   <LoginButton type="submit" variant="contained" fullWidth disabled={isSubmitting}>
                     Next
