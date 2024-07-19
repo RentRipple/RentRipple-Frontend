@@ -7,6 +7,7 @@ const ProfileContext = createContext();
 
 const ProfileContextProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
+  const [userReviews, setUserReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -47,12 +48,32 @@ const ProfileContextProvider = ({ children }) => {
     }
   };
 
+  const fetchUserReviews = async (userId) => {
+    try {
+      const response = await callApiWithRefresh(
+        `api/reviews/user-reviews/${userId}`,
+        "get"
+      );
+      if (response.status === 200) {
+        setUserReviews(response.data.reviews);
+      } else {
+        throw new Error('Failed to fetch user reviews');
+      }
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
         userProfile,
         fetchUserProfile,
         updateUserProfile,
+        fetchUserReviews,
+        userReviews,
         loading,
         error,
       }}
