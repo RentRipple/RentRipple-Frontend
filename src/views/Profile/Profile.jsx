@@ -16,7 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import { ProfileContext } from "../../context/ProfileContext";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import ProfileReviewSection from "./ProfileReviewSection";
 
 const Profile = () => {

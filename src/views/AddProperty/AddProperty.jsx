@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import { styled } from "@mui/system";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom";
 import {PropertyContext} from "../../context/PropertyContext";
 const MainDiv = styled("div")(() => ({

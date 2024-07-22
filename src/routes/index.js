@@ -60,6 +60,12 @@ const routData = [
     component: reviews.AddProperty,
     layout: HomeLayout,
   },
+  {
+    id: "7",
+    path: "/chat",
+    component: reviews.Chat,
+    layout: HomeLayout,
+  },
 
   {
     id: "0",

@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import image from "../../assets/loginSide.PNG";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";

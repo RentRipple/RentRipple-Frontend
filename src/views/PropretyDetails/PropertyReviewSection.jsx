@@ -11,7 +11,7 @@ import {
   Typography,
   Pagination,
 } from "@mui/material";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import { styled } from "@mui/system";
 import propTypes from "prop-types";
 

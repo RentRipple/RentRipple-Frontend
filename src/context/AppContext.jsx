@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;

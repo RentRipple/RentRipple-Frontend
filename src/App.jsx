@@ -5,17 +5,22 @@ import { ContextProvider } from "./context/AppContext";
 import { ProfileContextProvider } from "./context/ProfileContext";
 import routes from "./routes";
 import { PropertyContextProvider } from "./context/PropertyContext";
+import { SocketContextProvider } from "./context/ChatContext";
 
 function App() {
   return (
     <Router>
-      <ContextProvider>
+            <ContextProvider>
+
+      <SocketContextProvider>
         <ProfileContextProvider>
           <PropertyContextProvider>
             <AppContent routes={routes} />
           </PropertyContextProvider>
         </ProfileContextProvider>
+      </SocketContextProvider>
       </ContextProvider>
+
     </Router>
   );
 }

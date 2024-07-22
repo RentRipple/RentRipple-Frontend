@@ -248,7 +248,7 @@ function Header() {
   const getDrawerChoices = () =>
     headersData.map(({ label, href }) => (
       <MenuButton key={label} color="inherit" to={href} component={Link}>
-        <MenuButtonMobile>{label}</MenuButtonMobile>
+        <MenuButtonMobile className="text-2xl text-red-500">{label}</MenuButtonMobile>
       </MenuButton>
     ));
 
