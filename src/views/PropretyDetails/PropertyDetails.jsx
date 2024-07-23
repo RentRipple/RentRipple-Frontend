@@ -289,7 +289,7 @@ const PropertyDetails = () => {
                 <>
                   <Button
                     style={{
-                      backgroundColor: "#04c4cc",
+                      backgroundColor: "rgb(34, 83, 141)",
                       color: "white",
                       margin: "0 20px 0 0",
                     }}
@@ -299,7 +299,7 @@ const PropertyDetails = () => {
                     Edit Property
                   </Button>
                   <Button
-                    style={{ backgroundColor: "#04c4cc", color: "white" }}
+                    style={{ backgroundColor: "rgb(34, 83, 141)", color: "white" }}
                     onClick={handleAddProperty}
                   >
                     {" "}
@@ -550,14 +550,14 @@ const PropertyDetails = () => {
             <>
               <Button
                 onClick={handleSave}
-                style={{ backgroundColor: "#04c4cc", color: "white", margin: "0 20px 0 0", }}
+                style={{ backgroundColor: "rgb(34, 83, 141)", color: "white", margin: "0 20px 0 0", }}
               >
                 Save Changes
               </Button>
               <Button
                 onClick={handleEditToggle}
                 style={{
-                  backgroundColor: "#04c4cc",
+                  backgroundColor: "rgb(34, 83, 141)",
                   color: "white",
                 }}
               >
