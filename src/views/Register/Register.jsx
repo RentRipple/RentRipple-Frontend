@@ -17,7 +17,7 @@ import sampleImage from "../../assets/forgot.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { REGEX_PASSWORD, SECURITY_QUESTION } from "../../helpers/constant";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 
 const steps = [
   "Personal Details",

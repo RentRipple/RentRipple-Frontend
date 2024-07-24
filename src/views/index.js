@@ -7,3 +7,4 @@ export { NotFound } from "./NotFound"
 export { PropertyDetails } from "./PropretyDetails";
 export { Profile } from "./Profile";
 export { AddProperty } from "./AddProperty";
+export { Chat } from "./Chat";

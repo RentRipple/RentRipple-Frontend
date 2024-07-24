@@ -177,7 +177,7 @@ const Home = () => {
       <Box>
         <Container>
           <Grid item xs={12} align="center">
-            <TextField fullWidth label="Search Box" id="fullWidth" value={searchText} onChange={(event)=>{setSearchText(event.target.value)}} />
+            <TextField  fullWidth label="Search Box" id="fullWidth" value={searchText} onChange={(event)=>{setSearchText(event.target.value)}} />
           </Grid>
           <Box
             mt={2}
@@ -258,7 +258,7 @@ const Home = () => {
                           borderRadius: "12px",
                         }}
                       />
-                      <StatText
+                      <StatText className="text-lg font-semibold text-red-700"
                         style={{ fontSize: "18px", padding: "0px 8px" }}
                       >
                         {data.address_line1}, {data.location}

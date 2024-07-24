@@ -15,11 +15,12 @@ import {
 import { styled } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState, useEffect, useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/logo";
 import profile from "../../assets/profile.svg";
 import { AppContext } from "../../context/AppContext";
 import { indigo } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
 
 const headersData = [
   {
@@ -33,10 +34,8 @@ const headersData = [
 ];
 
 const ToolbarStyled = styled(Toolbar)(() => ({
-  backgroundColor: "#E7EDF2",
+  backgroundColor: "transparent",
   border: "none",
-  marginBottom: "32px",
-  padding: "5px",
 }));
 
 const DrawerContainer = styled("div")({
@@ -45,6 +44,7 @@ const DrawerContainer = styled("div")({
 });
 
 const DrawerIcon = styled(IconButton)({
+  // color: "black",
   fontSize: "30px",
   padding: "10px",
 });
@@ -63,17 +63,12 @@ const MenuButtonMobile = styled(MenuItem)({
 const LogoBox = styled(Box)({
   display: "flex",
   alignItems: "center",
-  transition: "transform 0.3s",
-  '&:hover': {
-    cursor: "pointer",
-    transform: "scale(1.1)",
-  }
 });
 
 function Header() {
   const { name, isLogin, handleLogout } = useContext(AppContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -158,13 +153,13 @@ function Header() {
           <Button
             variant="contained"
             size="large"
-            // color="primary"
+            color="primary"
             to="/login"
             component={Link}
             style={{
               marginLeft: "15px",
               whiteSpace: "pre",
-              backgroundColor: "#22538d",
+              backgroundColor: "#1569C1",
             }}
           >
             Login
@@ -254,7 +249,7 @@ function Header() {
   const getDrawerChoices = () =>
     headersData.map(({ label, href }) => (
       <MenuButton key={label} color="inherit" to={href} component={Link}>
-        <MenuButtonMobile className="text-2xl text-red-500">{label}</MenuButtonMobile>
+        <MenuButtonMobile className="text-red-100 text-2xl">{label}</MenuButtonMobile>
       </MenuButton>
     ));
 
@@ -274,6 +269,7 @@ function Header() {
         color="inherit"
         to={href}
         className="menuButton"
+        activeClassName="active"
         style={{
           padding: "25px",
           textDecoration: "none",
