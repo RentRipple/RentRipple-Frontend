@@ -1,35 +1,53 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { BsSend } from "react-icons/bs";
 import useSendMessage from "../../hooks/useSendMessage";
-
+import { TextField, IconButton, CircularProgress, Box } from '@mui/material';
 
 const MessageInput = () => {
-	const [message, setMessage] = useState("");
-	const { loading, sendMessage } = useSendMessage();
+  const [message, setMessage] = useState("");
+  const { loading, sendMessage } = useSendMessage();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (!message) return;
-		await sendMessage(message);
-		setMessage("");
-	};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!message) return;
+    await sendMessage(message);
+    setMessage("");
+  };
 
-	return (
-		<form className='px-4 my-3' onSubmit={handleSubmit}>
-			<div className='w-full relative'>
-				<input
-					type='text'
-					className='border text-sm rounded-lg block w-full p-2.5  bg-gray-700 border-gray-600 text-white'
-					placeholder='Send a message'
-					value={message}
-					onChange={(e) => setMessage(e.target.value)}
-				/>
-				<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
-					{loading ? <div className='loading loading-spinner'></div> : <BsSend />}
-				</button>
-			</div>
-		</form>
-	);
+  return (
+    <form onSubmit={handleSubmit} style={{ padding: '16px', marginTop: '16px' }}>
+      <Box sx={{ width: '100%', position: 'relative' }}>
+        <TextField
+          variant="outlined"
+          fullWidth
+          placeholder="Send a message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey.700',
+              },
+              '&:hover fieldset': {
+                borderColor: 'grey.500',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+              },
+              bgcolor: 'grey.700',
+              color: 'white'
+            }
+          }}
+        />
+        <IconButton
+          type="submit"
+          sx={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)' }}
+        >
+          {loading ? <CircularProgress size={24} /> : <BsSend />}
+        </IconButton>
+      </Box>
+    </form>
+  );
 };
-export default MessageInput;
 
+export default MessageInput;
