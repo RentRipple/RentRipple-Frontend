@@ -33,8 +33,10 @@ const headersData = [
 ];
 
 const ToolbarStyled = styled(Toolbar)(() => ({
-  backgroundColor: "transparent",
+  backgroundColor: "#E7EDF2",
   border: "none",
+  marginBottom: "32px",
+  padding: "5px",
 }));
 
 const DrawerContainer = styled("div")({
@@ -43,7 +45,6 @@ const DrawerContainer = styled("div")({
 });
 
 const DrawerIcon = styled(IconButton)({
-  // color: "black",
   fontSize: "30px",
   padding: "10px",
 });
@@ -62,6 +63,11 @@ const MenuButtonMobile = styled(MenuItem)({
 const LogoBox = styled(Box)({
   display: "flex",
   alignItems: "center",
+  transition: "transform 0.3s",
+  '&:hover': {
+    cursor: "pointer",
+    transform: "scale(1.1)",
+  }
 });
 
 function Header() {
@@ -152,13 +158,13 @@ function Header() {
           <Button
             variant="contained"
             size="large"
-            color="primary"
+            // color="primary"
             to="/login"
             component={Link}
             style={{
               marginLeft: "15px",
               whiteSpace: "pre",
-              backgroundColor: "#1569C1",
+              backgroundColor: "#22538d",
             }}
           >
             Login

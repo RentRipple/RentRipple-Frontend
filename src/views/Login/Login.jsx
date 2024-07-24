@@ -4,7 +4,8 @@ import { styled } from "@mui/system";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import image from "../../assets/loginSide.PNG";
+// import image from "../../assets/loginSide.PNG";
+import image from "../../assets/login.gif"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
@@ -18,10 +19,10 @@ const FormContainer = styled(Box)(() => ({
 
 const LoginButton = styled(Button)(() => ({
   marginTop: "20px",
-  backgroundColor: "#04c4cc",
+  backgroundColor: "#22538d",
   color: "#fff",
   "&:hover": {
-    backgroundColor: "#9dcccf",
+    opacity: "0.8",
   },
 }));
 
@@ -56,7 +57,7 @@ const Login = () => {
           <img
             src={image}
             alt="SideImage"
-            style={{ width: "100%", height: "auto" }}
+            style={{ width: "126%", height: "auto", marginBottom:"-30px" }}
           />
         </Box>
       </Grid>

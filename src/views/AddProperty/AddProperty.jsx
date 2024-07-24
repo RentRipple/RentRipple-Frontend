@@ -321,7 +321,7 @@ const AddProperty = () => {
               <Button
                 type="submit"
                 variant="contained"
-                style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
+                style={{ backgroundColor: "#22538d", color: "white" }}
               >
                 Upload Images
               </Button>
@@ -380,7 +380,7 @@ const AddProperty = () => {
                 <Button
                   type="submit"
                   variant="contained"
-                  style={{ backgroundColor: "rgb(4, 196, 204)", color: "white" }}
+                  style={{ backgroundColor: "#22538d", color: "white" }}
                 >
                   Submit
                 </Button>

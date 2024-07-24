@@ -1,5 +1,3 @@
-// src/pages/DisplayProfilePage.js
-
 import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
@@ -18,6 +16,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"
 import ProfileReviewSection from "./ProfileReviewSection";
+import ProfilePropertiesSection from "./profilePropertiesSection";
 
 const Profile = () => {
   const { userProfile, fetchUserProfile, updateUserProfile, loading, error } =
@@ -263,6 +262,7 @@ const Profile = () => {
         <>
         <Grid item xs={12} md={6} mt={2}>
         <ProfileReviewSection />
+        <ProfilePropertiesSection propertyDetails={userProfile.propertyDetails} />
       </Grid>
         </>
       )        
