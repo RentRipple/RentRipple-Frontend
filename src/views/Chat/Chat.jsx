@@ -1,15 +1,16 @@
 import React from "react";
 import Sidebar from "../../component/sidebar/Sidebar";
 import MessageContainer from "../../component/messages/MessageContainer";
+import { Box, Paper } from '@mui/material';
 
 const Chat = () => {
   return (
-    <div>
-      <div className="flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+    <Box sx={{ display: 'flex', height: '100vh', borderRadius: 1, overflow: 'hidden', backdropFilter: 'blur(10px)', bgcolor: 'rgba(255, 255, 255, 0.5)' }}>
+      <Paper elevation={3} sx={{ display: 'flex', width: '100%' }}>
         <Sidebar />
         <MessageContainer />
-      </div>
-    </div>
+      </Paper>
+    </Box>
   );
 };
 

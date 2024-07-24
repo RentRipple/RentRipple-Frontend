@@ -5,45 +5,49 @@ import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import React from "react";
 import { AppContext } from "../../context/AppContext";
+import { Box, Typography, Paper } from '@mui/material';
 
 const MessageContainer = () => {
-	const { selectedConversation, setSelectedConversation } = useConversation();
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
-	useEffect(() => {
-		// cleanup function (unmounts)
-		return () => setSelectedConversation(null);
-	}, [setSelectedConversation]);
+  useEffect(() => {
+    // cleanup function (unmounts)
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation]);
 
-	return (
-		<div className='md:min-w-[450px] flex flex-col'>
-			{!selectedConversation ? (
-				<NoChatSelected />
-			) : (
-				<>
-					{/* Header */}
-					<div className='bg-slate-500 px-4 py-2 mb-2'>
-						<span className='label-text'>To:</span>{" "}
-						<span className='text-gray-900 font-bold'>{selectedConversation.firstName}</span>
-					</div>
-					<Messages />
-					<MessageInput />
-				</>
-			)}
-		</div>
-	);
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, height: '100%' }}>
+      {!selectedConversation ? (
+        <NoChatSelected />
+      ) : (
+        <>
+          {/* Header */}
+          <Paper elevation={2} sx={{px: 4, py: 2, m: 2 }}>
+            <Typography variant="body1" color="text.secondary">To:</Typography>
+            <Typography variant="h6" color="text.primary" fontWeight="bold">
+              {selectedConversation.firstName}
+            </Typography>
+          </Paper>
+          <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+            <Messages />
+          </Box>
+          <MessageInput />
+        </>
+      )}
+    </Box>
+  );
 };
 export default MessageContainer;
 
 const NoChatSelected = () => {
-	const { name } = useContext(AppContext);
-	return (
-		<div className='flex items-center justify-center w-full h-full'>
-			<div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
-				<p>Welcome 👋 {name} ❄</p>
-				<p>Select a chat to start messaging</p>
-				<TiMessages className='text-3xl md:text-6xl text-center' />
-			</div>
-		</div>
-	);
+  const { name } = useContext(AppContext);
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}>
+      <Box sx={{ px: 4, textAlign: 'center', typography: { sm: 'body1', md: 'h6' }, color: 'grey.200', fontWeight: 'fontWeightBold', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+        <Typography>Welcome 👋 {name} ❄</Typography>
+        <Typography>Select a chat to start messaging</Typography>
+        <TiMessages className='text-3xl md:text-6xl text-center' />
+      </Box>
+    </Box>
+  );
 };
-

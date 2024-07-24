@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import useConversation from "../../zustand/zustand/useConversation";
 import useGetConversations from "../../hooks/useGetConversations";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
+import { TextField, IconButton } from '@mui/material';
 
 const SearchInput = () => {
   const [search, setSearch] = useState("");
@@ -21,7 +22,7 @@ const SearchInput = () => {
     );
 
     if (conversation) {
-	console.log(conversation);
+      console.log(conversation);
       setSelectedConversation(conversation);
       setSearch("");
     } else {
@@ -30,17 +31,17 @@ const SearchInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2">
-      <input
-        type="text"
+    <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <TextField
+        variant="outlined"
         placeholder="Search…"
-        className="input input-bordered rounded-full"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        fullWidth
       />
-      <button type="submit" className="btn btn-circle bg-sky-500 text-white">
-        <IoSearchSharp className="w-6 h-6 outline-none" />
-      </button>
+      <IconButton type="submit" color="primary">
+        <IoSearchSharp />
+      </IconButton>
     </form>
   );
 };
