@@ -17,7 +17,7 @@ const Messages = () => {
   }, [messages]);
 
   return (
-    <Box sx={{ px: 4, flex: 1, overflow: 'auto' }}>
+    <Box sx={{ px: 4,overflow: 'auto' }}>
       {!loading && messages.length > 0 && messages.map((message) => (
         <Box key={message._id} ref={lastMessageRef}>
           <Message message={message} />
@@ -27,7 +27,7 @@ const Messages = () => {
       {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
       
       {!loading && messages.length === 0 && (
-        <Typography align="center">Send a message to start the conversation</Typography>
+        <Typography align="center" sx={{ mt: 5 }}>Send a message to start the conversation</Typography>
       )}
     </Box>
   );

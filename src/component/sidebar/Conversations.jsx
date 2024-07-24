@@ -18,7 +18,7 @@ const Conversations = () => {
         />
       ))}
 
-      {loading && <CircularProgress sx={{ alignSelf: 'center', mt: 2 }} />}
+      {loading ? <CircularProgress sx={{ alignSelf: 'center', mt: 2 }} /> : null}
     </Box>
   );
 };

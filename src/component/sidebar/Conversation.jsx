@@ -43,7 +43,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
           </Box>
         </Box>
       </Box>
-      {!lastIdx && <Divider />}
+      {!lastIdx && <Divider sx={{ my: 1 }} />}
     </>
   );
 };
@@ -53,7 +53,7 @@ Conversation.propTypes = {
     _id: PropTypes.string.isRequired,
     profilePic: PropTypes.string,
     firstName: PropTypes.string,
-  }),
+  }).isRequired,
   lastIdx: PropTypes.bool,
   emoji: PropTypes.string,
 };

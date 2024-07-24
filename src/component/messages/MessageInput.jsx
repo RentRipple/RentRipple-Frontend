@@ -26,15 +26,15 @@ const MessageInput = () => {
           sx={{
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                borderColor: 'grey.700',
+                borderColor: 'grey.500',
               },
               '&:hover fieldset': {
-                borderColor: 'grey.500',
+                borderColor: 'grey.200',
               },
               '&.Mui-focused fieldset': {
                 borderColor: 'primary.main',
               },
-              bgcolor: 'grey.700',
+              bgcolor: 'grey.400',
               color: 'white'
             }
           }}
