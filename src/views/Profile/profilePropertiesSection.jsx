@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Box, Grid, Pagination } from '@mui/material';
 import { styled } from '@mui/system';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -29,7 +29,7 @@ const PropertyImage = styled('img')({
 });
 
 const ProfilePropertiesSection = ({ propertyDetails }) => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const propertiesPerPage = 6;
   const totalPages = Math.ceil(propertyDetails.length / propertiesPerPage);
@@ -52,12 +52,12 @@ const ProfilePropertiesSection = ({ propertyDetails }) => {
         {propertyDetails
           .slice((page - 1) * propertiesPerPage, page * propertiesPerPage)
           .map((property) => {
-            // const firstImageUrl = property?.imageUrl[0];
-            const firstImageUrl = "1720636276215-home2.jpg";
+            const firstImageUrl = property?.imageUrl[0];
+            // const firstImageUrl = "1720636276215-home2.jpg";
             return (
               <Grid item xs={12} sm={6} md={4} key={property._id}>
-                <PropertyCard>
-                {/* <PropertyCard  onClick={() => navigate(`/property-details/${property?.id}`)}> */}
+                {/* <PropertyCard> */}
+                <PropertyCard  onClick={() => navigate(`/property-details/${property?.id}`)}>
                   {firstImageUrl && (
                     <PropertyImage
                       src={require(`../../assets/${firstImageUrl}`)}
@@ -68,7 +68,7 @@ const ProfilePropertiesSection = ({ propertyDetails }) => {
                     <strong>{property.address_line1}, {property.city}</strong>
                   </Typography>
                   <Typography variant="body2" component="div">
-                    Price: ${property.price}
+                    Price: {property.price}
                   </Typography>
                 </PropertyCard>
               </Grid>
