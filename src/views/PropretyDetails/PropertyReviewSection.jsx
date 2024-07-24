@@ -116,7 +116,7 @@ const PropertyReviewSection = ({ propertyId, isOwner }) => {
               type="submit"
               variant="contained"
               style={{
-                backgroundColor: "#04c4cc",
+                backgroundColor: "rgb(34, 83, 141)",
                 color: "white",
                 margin: "0 20px 0 0",
               }}

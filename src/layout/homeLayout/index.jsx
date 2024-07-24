@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import PropTypes from "prop-types";
-// import Footer from "./footer";
+import Footer from "./footer";
 import TopBar from "./topbar";
 
 const Root = styled("div")(() => ({
@@ -34,7 +34,7 @@ const HomeLayout = ({ children }) => {
       <MainLayoutDiv>
         <Content>{children}</Content>
       </MainLayoutDiv>
-      {/* <Footer /> */}
+      <Footer />
     </Root>
   );
 };
