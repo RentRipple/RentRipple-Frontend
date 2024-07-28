@@ -31,6 +31,10 @@ const headersData = [
     label: "Add Property",
     href: "/add-property",
   },
+  {
+    label: "Chats",
+    href: "/chat",
+  },
 ];
 
 const ToolbarStyled = styled(Toolbar)(() => ({
