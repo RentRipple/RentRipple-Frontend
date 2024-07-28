@@ -29,10 +29,12 @@ const headersData = [
   {
     label: "Add Property",
     href: "/add-property",
+    protected: true,
   },
   {
     label: "Chats",
     href: "/chat",
+    protected: true,
   },
 ];
 
@@ -68,26 +70,22 @@ const LogoBox = styled(Box)({
   display: "flex",
   alignItems: "center",
   transition: "transform 0.3s",
-  '&:hover': {
+  "&:hover": {
     cursor: "pointer",
     transform: "scale(1.1)",
-  }
+  },
 });
 
 function Header() {
   const { name, isLogin, handleLogout } = useContext(AppContext);
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
 
   const { mobileView, drawerOpen } = state;
-
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -111,13 +109,23 @@ function Header() {
   };
 
   const getInitials = () => {
-    return (name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)).toUpperCase()
-  }
+    return (
+      name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)
+    ).toUpperCase();
+  };
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
   const handleDrawerClose = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
+
+  const handleNavigation = (href, protectedRoute) => {
+    if (protectedRoute && !isLogin) {
+      navigate("/login");
+    } else {
+      navigate(href);
+    }
+  };
 
   const displayDesktop = () => (
     <ToolbarStyled>
@@ -130,7 +138,6 @@ function Header() {
         </Grid>
       </Grid>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {/* User profile and menu */}
         {isLogin ? (
           <>
             <Tooltip title="Account settings">
@@ -142,7 +149,9 @@ function Header() {
                 aria-haspopup="true"
                 aria-expanded={anchorEl ? "true" : undefined}
               >
-                <Avatar  sx={{ width: 40, height: 40, bgcolor: indigo[200] }}>{getInitials()}</Avatar>
+                <Avatar sx={{ width: 40, height: 40, bgcolor: indigo[200] }}>
+                  {getInitials()}
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -154,7 +163,7 @@ function Header() {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
+              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </>
@@ -162,7 +171,6 @@ function Header() {
           <Button
             variant="contained"
             size="large"
-            // color="primary"
             to="/login"
             component={Link}
             style={{
@@ -189,7 +197,6 @@ function Header() {
                   aria-label="delete"
                   aria-controls="simple-menu"
                   aria-haspopup="true"
-                  //   onClick={}
                   style={{ marginLeft: "10px" }}
                   size="small"
                 >
@@ -256,9 +263,13 @@ function Header() {
   );
 
   const getDrawerChoices = () =>
-    headersData.map(({ label, href }) => (
-      <MenuButton key={label} color="inherit" to={href} component={Link}>
-        <MenuButtonMobile className="text-2xl text-red-500">{label}</MenuButtonMobile>
+    headersData.map(({ label, href, protected: protectedRoute }) => (
+      <MenuButton
+        key={label}
+        color="inherit"
+        onClick={() => handleNavigation(href, protectedRoute)}
+      >
+        <MenuButtonMobile>{label}</MenuButtonMobile>
       </MenuButton>
     ));
 
@@ -271,11 +282,15 @@ function Header() {
   );
 
   const getMenuButtons = () =>
-    headersData.map(({ label, href }) => (
+    headersData.map(({ label, href, protected: protectedRoute }) => (
       <NavLink
         exact
         key={label}
         color="inherit"
+        onClick={(e) => {
+          e.preventDefault();
+          handleNavigation(href, protectedRoute);
+        }}
         to={href}
         className="menuButton"
         style={{
