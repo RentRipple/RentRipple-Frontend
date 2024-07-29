@@ -17,11 +17,11 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
           display: 'flex',
           gap: 2,
           alignItems: 'center',
-          bgcolor: isSelected ? 'primary.main' : 'transparent',
+          bgcolor: isSelected ? 'rgb(34, 83, 141)' : 'transparent',
           color: isSelected ? 'whitesmoke' : 'text.primary',
           '&:hover': {
-            bgcolor: "#fff",
-            color: "black",
+            bgcolor: "rgb(34, 83, 141, 0.8)",
+            color: 'whitesmoke'
           },
           borderRadius: 1,
           p: 1,

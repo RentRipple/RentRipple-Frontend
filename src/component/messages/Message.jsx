@@ -11,7 +11,7 @@ const Message = ({ message }) => {
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? "flex-end" : "flex-start";
   // const profilePic = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/440px-User_icon_2.svg.png";
-  const bubbleBgColor = fromMe ? "grey.700" : "primary.main";
+  const bubbleBgColor = fromMe ? "rgb(34, 83, 141, 0.8)" : "rgb(34, 83, 141)";
   const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
