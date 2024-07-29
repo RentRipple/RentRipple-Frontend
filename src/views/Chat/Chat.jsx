@@ -5,8 +5,10 @@ import { Box, Paper } from '@mui/material';
 
 const Chat = () => {
   return (
-    <Box sx={{ display: 'flex', height: '100vh', borderRadius: 1, overflow: 'hidden', backdropFilter: 'blur(10px)', bgcolor: 'rgba(255, 255, 255, 0.5)' }}>
-      <Paper elevation={3} sx={{ display: 'flex', width: '100%' }}>
+    <Box sx={{ display: 'flex', height: '100vh', borderRadius: 2, overflow: 'hidden', backdropFilter: 'blur(10px)'}}>
+      <Paper elevation={3} sx={{ display: 'flex', width: '100%', 
+        backgroundColor: "#E7EDF2", padding: "1px" 
+        }}>
         <Sidebar />
         <MessageContainer />
       </Paper>

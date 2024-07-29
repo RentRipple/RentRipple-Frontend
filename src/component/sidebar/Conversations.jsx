@@ -8,7 +8,7 @@ const Conversations = () => {
   const { loading, conversations } = useGetConversations();
 
   return (
-    <Box sx={{ py: 2, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+    <Box sx={{ py: 0, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
       {conversations.map((conversation, idx) => (
         <Conversation
           key={conversation._id}
