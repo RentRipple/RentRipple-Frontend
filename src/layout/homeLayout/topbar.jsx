@@ -192,8 +192,38 @@ function Header() {
         <DrawerContainer>
           <center>
             {isLogin ? (
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <>
                 <IconButton
+                  aria-label="delete"
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  style={{ marginLeft: "10px" }}
+                  size="large"
+                >
+                  <Avatar onClick={() => navigate("/profile")}
+                    style={{ marginBottom: "10px", width: "80px", height: "80px", backgroundColor: indigo[200] }}>
+                  {getInitials()}
+                </Avatar>
+                </IconButton>
+                {getDrawerChoices()} <br />
+                <Button
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  component={Link}
+                  style={{
+                    marginLeft: "15px",
+                    whiteSpace: "pre",
+                    backgroundColor: "rgb(34, 83, 141)",
+                  }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+              <IconButton
                   aria-label="delete"
                   aria-controls="simple-menu"
                   aria-haspopup="true"
@@ -207,22 +237,7 @@ function Header() {
                     style={{ marginBottom: "10px" }}
                   />
                 </IconButton>
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  component={Link}
-                  style={{
-                    marginLeft: "15px",
-                    whiteSpace: "pre",
-                    backgroundColor: "#1569C1",
-                  }}
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </div>
-            ) : (
+              {getDrawerChoices()}<br />
               <Button
                 variant="contained"
                 size="large"
@@ -232,13 +247,14 @@ function Header() {
                 style={{
                   marginLeft: "15px",
                   whiteSpace: "pre",
-                  backgroundColor: "#1569C1",
+                  backgroundColor: "rgb(34, 83, 141)",
                 }}
               >
                 Login
               </Button>
+              </>
             )}
-            {getDrawerChoices()}
+           
           </center>
         </DrawerContainer>
       </Drawer>
@@ -269,7 +285,7 @@ function Header() {
         color="inherit"
         onClick={() => handleNavigation(href, protectedRoute)}
       >
-        <MenuButtonMobile>{label}</MenuButtonMobile>
+        <MenuButtonMobile >{label}</MenuButtonMobile>
       </MenuButton>
     ));
 
