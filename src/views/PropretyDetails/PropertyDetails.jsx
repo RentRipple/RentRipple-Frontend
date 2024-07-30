@@ -2,12 +2,16 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "@mui/system";
 import profileImage from "../../assets/profile.svg";
-import { Button, Grid, Checkbox, TextField, Rating } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
+import {
+  Button,
+  Grid,
+  Checkbox,
+  TextField,
+  Rating,
+  Card,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import { AppContext } from "../../context/AppContext";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,7 +19,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./imageCustom.css";
 import { features, utilities } from "../../helpers/utilityAndFeatures";
 import { PropertyContext } from "../../context/PropertyContext";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import PropertyReviewSection from "./PropertyReviewSection";
 
 const ImageGrid = styled("div")(() => ({
@@ -40,8 +44,8 @@ const ChatGrid = styled("div")(() => ({
 
 const HeadTitle = styled("div")(() => ({
   fontSize: "26px",
-  paddingTop: "26px",
-  paddingBottom: "12px",
+  paddingTop: "40px",
+  paddingBottom: "20px",
 }));
 
 const OpacityText = styled("div")(() => ({
@@ -51,6 +55,8 @@ const OpacityText = styled("div")(() => ({
 const AboutProperty = styled("div")(() => ({
   fontSize: "14px",
   opacity: "0.8",
+  backgroundColor: "whitesmoke",
+  padding: "10px",
 }));
 
 const OwnerDetailsStyle = styled("div")(() => ({
@@ -61,12 +67,12 @@ const OwnerDetailsStyle = styled("div")(() => ({
 const PropertyDetails = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AppContext);
-  const { fetchPropertyById, propertyDetails, updateProperty } = useContext(PropertyContext);
+  const { fetchPropertyById, propertyDetails, updateProperty } =
+    useContext(PropertyContext);
   const [editMode, setEditMode] = useState(false);
   const [editedDetails, setEditedDetails] = useState({});
   const [images, setImages] = useState([]);
 
-  
   const propertyId = useParams();
   useEffect(() => {
     fetchPropertyById(propertyId.propertyId);
@@ -99,44 +105,41 @@ const PropertyDetails = () => {
     }));
   };
 
-
   const handleSave = async (e) => {
     e.preventDefault();
-  
+
     // Filtering out id and imageUel
     const filterOutId = (details) => {
-      const { id,imageUrl, ...rest } = details;
-      console.log(id,imageUrl)
+      const { id, imageUrl, ...rest } = details;
+      console.log(id, imageUrl);
       return rest;
     };
-  
+
     const filteredDetails = filterOutId(editedDetails);
-  
+
     console.log("Edited Data", filteredDetails);
-  
-    const response = await updateProperty(propertyId.propertyId, filteredDetails);
+
+    const response = await updateProperty(
+      propertyId.propertyId,
+      filteredDetails
+    );
     if (response) {
       toast.success("Property updated successfully");
       // reload the page
       fetchPropertyById(propertyId.propertyId);
     }
-  
+
     console.log("Images", images);
     setEditMode(false);
   };
 
   const isHttpUrl = function (url) {
     return url && url.startsWith("http");
-  }
-  
+  };
+
   const renderRatingStars = (rating) => {
     return (
-      <Rating
-        name="rating-stars"
-        value={rating}
-        precision={0.5}
-        readOnly 
-      />
+      <Rating name="rating-stars" value={rating} precision={0.5} readOnly />
     );
   };
 
@@ -152,7 +155,6 @@ const PropertyDetails = () => {
     slidesToScroll: 1,
   };
 
-
   return (
     <div style={{ fontFamily: "Roboto" }}>
       <Grid container spacing={2}>
@@ -161,40 +163,16 @@ const PropertyDetails = () => {
             <ImageGrid>
               {editMode ? (
                 <></>
-                // <div>
-                //   <input
-                //     type="file"
-                //     accept="image/*"
-                //     multiple
-                //     onChange={handleImageUpload}
-                //   />
-                //   <div
-                //     style={{ display: "flex", gap: "10px", marginTop: "10px" }}
-                //   >
-                //     {propertyDetails?.propertyDetails?.imageUrl.map(
-                //       (url, index) => (
-                //         <img
-                //           key={index}
-                //           src={url}
-                //           alt={`Thumbnail ${index}`}
-                //           style={{
-                //             width: "80px",
-                //             height: "80px",
-                //             objectFit: "cover",
-                //             borderRadius: "8px",
-                //           }}
-                //         />
-                //       )
-                //     )}
-                //   </div>
-                // </div>
               ) : (
+                
                 <Slider {...settings}>
                   {propertyDetails?.propertyDetails?.imageUrl?.map(
                     (url, index) => (
                       <LargeImageStyle
                         key={index}
-                        src={isHttpUrl(url) ? url : require(`../../assets/${url}`)}
+                        src={
+                          isHttpUrl(url) ? url : require(`../../assets/${url}`)
+                        }
                         alt={`Slide ${index}`}
                       />
                     )
@@ -209,44 +187,17 @@ const PropertyDetails = () => {
               <ImageGrid>
                 {editMode ? (
                   <></>
-                  // <div>
-                  //   <input
-                  //     type="file"
-                  //     accept="image/*"
-                  //     multiple
-                  //     onChange={handleImageUpload}
-                  //   />
-                  //   <div
-                  //     style={{
-                  //       display: "flex",
-                  //       gap: "10px",
-                  //       marginTop: "10px",
-                  //     }}
-                  //   >
-                  //     {propertyDetails?.propertyDetails?.imageUrl.map(
-                  //       (url, index) => (
-                  //         <img
-                  //           key={index}
-                  //           src={url}
-                  //           alt={`Thumbnail ${index}`}
-                  //           style={{
-                  //             width: "80px",
-                  //             height: "80px",
-                  //             objectFit: "cover",
-                  //             borderRadius: "8px",
-                  //           }}
-                  //         />
-                  //       )
-                  //     )}
-                  //   </div>
-                  // </div>
                 ) : (
                   <Slider {...settings}>
                     {propertyDetails?.propertyDetails?.imageUrl?.map(
                       (url, index) => (
                         <LargeImageStyle
                           key={index}
-                          src={isHttpUrl(url) ? url : require(`../../assets/${url}`)}
+                          src={
+                            isHttpUrl(url)
+                              ? url
+                              : require(`../../assets/${url}`)
+                          }
                           alt={`Slide ${index}`}
                         />
                       )
@@ -267,12 +218,11 @@ const PropertyDetails = () => {
                 />
                 <p>{propertyDetails?.ownerDetails?.name}</p>
                 <OwnerDetailsStyle>
-                {propertyDetails?.ownerDetails?.rating
-          ? renderRatingStars(propertyDetails.ownerDetails.rating)
-          : "No ratings"}
+                  {propertyDetails?.ownerDetails?.rating
+                    ? renderRatingStars(propertyDetails.ownerDetails.rating)
+                    : "No ratings"}
                 </OwnerDetailsStyle>
                 <OwnerDetailsStyle>
-
                   {propertyDetails?.ownerDetails?.email}
                 </OwnerDetailsStyle>
                 <OwnerDetailsStyle style={{ marginBottom: "14px" }}>
@@ -299,7 +249,10 @@ const PropertyDetails = () => {
                     Edit Property
                   </Button>
                   <Button
-                    style={{ backgroundColor: "rgb(34, 83, 141)", color: "white" }}
+                    style={{
+                      backgroundColor: "rgb(34, 83, 141)",
+                      color: "white",
+                    }}
                     onClick={handleAddProperty}
                   >
                     {" "}
@@ -351,61 +304,83 @@ const PropertyDetails = () => {
               </AboutProperty>
             </>
           )}
-          <HeadTitle>Pricing</HeadTitle>
-          <TableContainer>
-            <Table sx={{ minWidth: 500 }}>
-              <TableBody>
-                <TableRow align="left">
-                  <TableCell component="th">
-                    <OpacityText>Price</OpacityText>
-                  </TableCell>
-                  <TableCell>
+
+          <div>
+            <Grid container spacing={2} style={{paddingTop: "40px"}}>
+              <Grid item xs={8} sm={3}>
+                <Card
+                  style={{
+                    backgroundColor: "#E7EDF2",
+                    color: "#333",
+                  }}
+                >
+                  <CardContent style={{paddingBottom: "12px"}}>
+                    <Typography variant="h6" style={{fontWeight: "bold"}}>Price</Typography>
                     {editMode ? (
                       <TextField
                         name="price"
                         value={editedDetails.price}
                         onChange={handleChange}
+                        fullWidth
                       />
                     ) : (
-                      propertyDetails?.propertyDetails?.price
+                      <Typography variant="body1">
+                        {propertyDetails?.propertyDetails?.price}
+                      </Typography>
                     )}
-                  </TableCell>
-                </TableRow>
-                <TableRow align="left">
-                  <TableCell component="th">
-                    <OpacityText>Deposit</OpacityText>
-                  </TableCell>
-                  <TableCell>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={8} sm={3}>
+                <Card
+                  style={{
+                    backgroundColor: "#E7EDF2",
+                    color: "#333",
+                  }}
+                >
+                  <CardContent style={{paddingBottom: "12px"}}>
+                    <Typography variant="h6" style={{fontWeight: "bold"}}>Deposit</Typography>
                     {editMode ? (
                       <TextField
                         name="deposit"
                         value={editedDetails.deposit}
                         onChange={handleChange}
+                        fullWidth
                       />
                     ) : (
-                      propertyDetails?.propertyDetails?.deposit
+                      <Typography variant="body1">
+                        {propertyDetails?.propertyDetails?.deposit}
+                      </Typography>
                     )}
-                  </TableCell>
-                </TableRow>
-                <TableRow align="left">
-                  <TableCell component="th">
-                    <OpacityText>Lease length</OpacityText>
-                  </TableCell>
-                  <TableCell>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={8} sm={3}>
+                <Card
+                  style={{
+                    backgroundColor: "#E7EDF2",
+                    color: "#333",
+                  }}
+                >
+                  <CardContent style={{paddingBottom: "12px"}}>
+                    <Typography variant="h6" style={{fontWeight: "bold"}}>Lease Length</Typography>
                     {editMode ? (
                       <TextField
                         name="leaseLength"
                         value={editedDetails.leaseLength}
                         onChange={handleChange}
+                        fullWidth
                       />
                     ) : (
-                      propertyDetails?.propertyDetails?.leaseLength
+                      <Typography variant="body1">
+                        {propertyDetails?.propertyDetails?.leaseLength}
+                      </Typography>
                     )}
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </div>
           {editMode ? (
             //All checkboxes for features in Edit form
             <>
@@ -422,14 +397,22 @@ const PropertyDetails = () => {
                             style={{ width: "40px", marginRight: "10px" }}
                           />
                         </Grid>
-                        <Grid item>
-                          {feature.name}
+                        <Grid
+                          item
+                          style={{
+                            backgroundColor: "whitesmoke",
+                            padding: "10px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >                          
                           <Checkbox
                             checked={editedDetails.features[feature.key]}
                             onChange={(e) =>
                               handleChangeCheckbox(e, "features", feature.key)
                             }
                           />
+                          {feature.name}
                         </Grid>
                       </Grid>
                     </Grid>
@@ -453,7 +436,15 @@ const PropertyDetails = () => {
                             style={{ width: "40px", marginRight: "10px" }}
                           />
                         </Grid>
-                        <Grid item>
+                        <Grid
+                          item
+                          style={{
+                            backgroundColor: "whitesmoke",
+                            padding: "10px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >
                           {feature.name}
                           <OpacityText>
                             {propertyDetails?.propertyDetails?.features[
@@ -468,9 +459,12 @@ const PropertyDetails = () => {
                   ))}
                 </Grid>
               </Grid>
-                <Grid>
-                  <PropertyReviewSection propertyId={propertyId.propertyId} isOwner={userId === propertyDetails?.ownerDetails?.id} />
-                </Grid>
+              <Grid>
+                <PropertyReviewSection
+                  propertyId={propertyId.propertyId}
+                  isOwner={userId === propertyDetails?.ownerDetails?.id}
+                />
+              </Grid>
             </>
           )}
         </Grid>
@@ -493,14 +487,22 @@ const PropertyDetails = () => {
                             style={{ width: "40px", marginRight: "10px" }}
                           />
                         </Grid>
-                        <Grid item>
-                          {utility.name}
+                        <Grid
+                          item
+                          style={{
+                            backgroundColor: "whitesmoke",
+                            padding: "10px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >
                           <Checkbox
                             checked={editedDetails.utilities[utility.key]}
                             onChange={(e) =>
                               handleChangeCheckbox(e, "utilities", utility.key)
                             }
                           />
+                          {utility.name}
                         </Grid>
                       </Grid>
                     </Grid>
@@ -526,7 +528,15 @@ const PropertyDetails = () => {
                             style={{ width: "40px", marginRight: "10px" }}
                           />
                         </Grid>
-                        <Grid item>
+                        <Grid
+                          item
+                          style={{
+                            backgroundColor: "whitesmoke",
+                            padding: "10px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >
                           {utility.name}
                           <OpacityText>
                             {propertyDetails?.propertyDetails?.utilities[
@@ -550,7 +560,11 @@ const PropertyDetails = () => {
             <>
               <Button
                 onClick={handleSave}
-                style={{ backgroundColor: "rgb(34, 83, 141)", color: "white", margin: "0 20px 0 0", }}
+                style={{
+                  backgroundColor: "rgb(34, 83, 141)",
+                  color: "white",
+                  margin: "0 20px 0 0",
+                }}
               >
                 Save Changes
               </Button>
