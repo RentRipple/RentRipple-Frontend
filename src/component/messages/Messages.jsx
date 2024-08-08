@@ -12,12 +12,12 @@ const Messages = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+      // lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }, [messages]);
 
   return (
-    <Box sx={{ px: 4,overflow: 'auto' }}>
+    <Box sx={{ px: 4,overflow: 'auto', backgroundColor:"lightgrey", minHeight:"79vh", margin: "0 0px 0 16px", paddingTop: "16px", paddingBottom: "16px" }}>
       {!loading && messages.length > 0 && messages.map((message) => (
         <Box key={message._id} ref={lastMessageRef}>
           <Message message={message} />

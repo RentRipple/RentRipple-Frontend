@@ -187,7 +187,7 @@ const Profile = () => {
         </Grid>
 
         {/* Column 2: Rental History */}
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>
             Rental History
           </Typography>
@@ -197,7 +197,7 @@ const Profile = () => {
               <strong>{rental.address_line1}, {rental.city}, {rental.country}</strong>
             </Typography>
           ))}
-        </Grid>
+        </Grid> */}
 
         {/* Column 3: Preferred Location */}
         <Grid item xs={12} md={6}>

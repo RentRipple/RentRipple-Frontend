@@ -15,7 +15,7 @@ const MessageInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: '16px', marginTop: '16px' }}>
+    <form onSubmit={handleSubmit} style={{ padding: '0 0 0 16px'}}>
       <Box sx={{ width: '100%', position: 'relative' }}>
         <TextField
           variant="outlined"
@@ -34,8 +34,8 @@ const MessageInput = () => {
               '&.Mui-focused fieldset': {
                 borderColor: 'primary.main',
               },
-              bgcolor: 'grey.700',
-              color: 'white'
+              bgcolor: 'white.700',
+              color: 'black'
             }
           }}
         />

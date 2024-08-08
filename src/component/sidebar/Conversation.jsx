@@ -17,9 +17,11 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
           display: 'flex',
           gap: 2,
           alignItems: 'center',
-          bgcolor: isSelected ? 'primary.main' : 'transparent',
+          bgcolor: isSelected ? 'rgb(34, 83, 141)' : 'transparent',
+          color: isSelected ? 'whitesmoke' : 'text.primary',
           '&:hover': {
-            bgcolor: 'primary.light',
+            bgcolor: "rgb(34, 83, 141, 0.8)",
+            color: 'whitesmoke'
           },
           borderRadius: 1,
           p: 1,
@@ -34,7 +36,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
         />
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="body1" fontWeight="bold" color="text.primary">
+            <Typography variant="body1" fontWeight="bold" >
               {conversation.firstName}
             </Typography>
             <Typography variant="h6">
